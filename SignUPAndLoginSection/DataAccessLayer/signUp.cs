@@ -1,5 +1,5 @@
-namespace signUpSection.dataAccessLayer;
-using signUpSection.dataAccessLayer;
+namespace signUpSection.DataAccessLayer;
+using signUpSection.DataAccessLayer;
 using System;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +12,7 @@ public class userName
         public bool isValidUsername = false;
         public string userNameContext;
         public string userNameErrorMessage;
-        public bool isContainLetters = false;
+        private bool isContainLetters = false;
         private bool isContainDigits = false;
         private bool isContainDashOrUnderscore = false;
         private bool isDashOrUnderscoreInStart = false;
@@ -21,7 +21,7 @@ public class userName
         private int numberOfUnderscore = 0;
 
         public userName(string un)
-        {
+        { 
             usernameValidator(un);
         }
         
@@ -173,9 +173,9 @@ public class userName
 
 public class email
 {
-    public  string emailErrorMassage="";
+   
     public  bool isValidEmail = false;
-
+    public string emailErrorMassage = "";
     public email(string e)
     {
         emailValidator(e);
@@ -186,7 +186,7 @@ public class email
 
         if (string.IsNullOrEmpty(email))
         {
-            emailErrorMassage = "invalid email!";
+             emailErrorMassage = "invalid email!";
             return isValidEmail;
         }
 
@@ -237,7 +237,7 @@ public class fullName
         else
         { 
             fullNameErrorMassage = "inValid fullName!";
-        return isValidFullName;
+            return isValidFullName;
         }
     }
 }
@@ -404,7 +404,7 @@ public class password
 public class mobilePhone
 {
         public string mobilePhoneContext;
-        public string moileErrorMessage="";
+        public string moileErrorMessage;
         public bool isValidMobilePhone = false;
         private bool isContainDigits = true;
         private bool isStartsWithZeroAndNine = false;
@@ -487,50 +487,8 @@ public class mobilePhone
                 mobilePhoneProblemsHandler();
                 return isValidMobilePhone;
             }
+           
         }
 }
 
 
-public class userValidator
-{
-    public user u;
-    public bool isValidUser = false;
-
-    public userValidator(user input)
-    {
-        u = input;
-    }
-
-    public bool userValidating()
-    {
-        if (u.username.isValidUsername && u.email.isValidEmail && u.fullname.isValidFullName &&
-            u.password.isValidPassword && u.mobilePhone.isValidMobilePhone)
-        {
-            isValidUser = true;
-            return isValidUser;
-        }
-
-         else{
-             if(u.username.userNameErrorMessage != ""){
-                Console.WriteLine(u.username.userNameErrorMessage);
-             }
-             if(u.password.passwordErrorMessage != ""){
-                 Console.WriteLine(u.password.passwordErrorMessage);
-
-             }
-             if(u.mobilePhone.moileErrorMessage != ""){
-                 Console.WriteLine(u.mobilePhone.moileErrorMessage);
-
-             }
-             if(u.email.emailErrorMassage!= ""){
-                 Console.WriteLine(u.email.emailErrorMassage);
-
-             }
-             if(u.fullname.fullNameErrorMassage != ""){
-                 Console.WriteLine(u.fullname.fullNameErrorMassage);
-
-             }
-         }
-        return isValidUser;
-    }
-}
