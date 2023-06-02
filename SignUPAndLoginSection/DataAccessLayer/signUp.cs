@@ -1,5 +1,5 @@
-namespace signUpSection.DataAccessLayer;
-using signUpSection.DataAccessLayer;
+namespace signUpSection.dataAccessLayer;
+using signUpSection.dataAccessLayer;
 using System;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +12,7 @@ public class userName
         public bool isValidUsername = false;
         public string userNameContext;
         public string userNameErrorMessage;
-        private bool isContainLetters = false;
+        public bool isContainLetters = false;
         private bool isContainDigits = false;
         private bool isContainDashOrUnderscore = false;
         private bool isDashOrUnderscoreInStart = false;
@@ -173,25 +173,25 @@ public class userName
 
 public class email
 {
-    public string emailContetx;
-    public bool isValidEmail = false;
+    public  string emailErrorMassage="";
+    public  bool isValidEmail = false;
 
     public email(string e)
     {
         emailValidator(e);
     }
-    public bool emailValidator(string email)
+    public  bool emailValidator(string email)
     {
+        string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-        Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
-        if (emailRegex.IsMatch(email))
+        if (string.IsNullOrEmpty(email))
         {
-            emailContetx = email;
-            isValidEmail = true;
+            emailErrorMassage = "invalid email!";
             return isValidEmail;
         }
 
-        return isValidEmail;
+        Regex regex = new Regex(emailPattern);
+        return regex.IsMatch(email);
     }
 
     
@@ -202,7 +202,7 @@ public class fullName
     public string nameContext;
     public bool isValidFullName = false;
     private bool isContainLetters = false;
-
+    public string fullNameErrorMassage = "";
     private bool chekingLetters(string fn)
     {
         foreach (char ch in fn)
@@ -234,8 +234,11 @@ public class fullName
             isValidFullName = true;
             return isValidFullName;
         }
-
+        else
+        { 
+            fullNameErrorMassage = "inValid fullName!";
         return isValidFullName;
+        }
     }
 }
 
@@ -401,7 +404,7 @@ public class password
 public class mobilePhone
 {
         public string mobilePhoneContext;
-        public string moileErrorMessage;
+        public string moileErrorMessage="";
         public bool isValidMobilePhone = false;
         private bool isContainDigits = true;
         private bool isStartsWithZeroAndNine = false;
@@ -488,3 +491,46 @@ public class mobilePhone
 }
 
 
+public class userValidator
+{
+    public user u;
+    public bool isValidUser = false;
+
+    public userValidator(user input)
+    {
+        u = input;
+    }
+
+    public bool userValidating()
+    {
+        if (u.username.isValidUsername && u.email.isValidEmail && u.fullname.isValidFullName &&
+            u.password.isValidPassword && u.mobilePhone.isValidMobilePhone)
+        {
+            isValidUser = true;
+            return isValidUser;
+        }
+
+         else{
+             if(u.username.userNameErrorMessage != ""){
+                Console.WriteLine(u.username.userNameErrorMessage);
+             }
+             if(u.password.passwordErrorMessage != ""){
+                 Console.WriteLine(u.password.passwordErrorMessage);
+
+             }
+             if(u.mobilePhone.moileErrorMessage != ""){
+                 Console.WriteLine(u.mobilePhone.moileErrorMessage);
+
+             }
+             if(u.email.emailErrorMassage!= ""){
+                 Console.WriteLine(u.email.emailErrorMassage);
+
+             }
+             if(u.fullname.fullNameErrorMassage != ""){
+                 Console.WriteLine(u.fullname.fullNameErrorMassage);
+
+             }
+         }
+        return isValidUser;
+    }
+}
