@@ -478,7 +478,7 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/1.1.0": {
+      "Microsoft.NETCore.Platforms/8.0.0-preview.4.23259.5": {
         "type": "package",
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -1567,19 +1567,21 @@
         "microsoft.identitymodel.xml.nuspec"
       ]
     },
-    "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+    "Microsoft.NETCore.Platforms/8.0.0-preview.4.23259.5": {
+      "sha512": "wo0G+Rune/b1ZifUzf/aAtBAlnyiDRXzcKVTTYEs9xfy8xOQTQgvmR6NWpQ8qhgxYcSR+NW4P7arE9JbBRKxKQ==",
       "type": "package",
-      "path": "microsoft.netcore.platforms/1.1.0",
+      "path": "microsoft.netcore.platforms/8.0.0-preview.4.23259.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+        "microsoft.netcore.platforms.8.0.0-preview.4.23259.5.nupkg.sha512",
         "microsoft.netcore.platforms.nuspec",
-        "runtime.json"
+        "runtime.json",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.NETCore.Targets/1.1.0": {
@@ -2311,6 +2313,7 @@
       "Microsoft.IdentityModel.Protocols.OpenIdConnect >= 6.30.1",
       "Microsoft.IdentityModel.Tokens >= 6.30.1",
       "Microsoft.IdentityModel.Tokens.Saml >= 6.30.1",
+      "Microsoft.NETCore.Platforms >= 8.0.0-preview.4.23259.5",
       "ScottBrady.IdentityModel.Tokens.Branca >= 3.0.0",
       "ScottBrady.IdentityModel.Tokens.Paseto >= 3.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.30.1"
@@ -2392,6 +2395,10 @@
           "Microsoft.IdentityModel.Tokens.Saml": {
             "target": "Package",
             "version": "[6.30.1, )"
+          },
+          "Microsoft.NETCore.Platforms": {
+            "target": "Package",
+            "version": "[8.0.0-preview.4.23259.5, )"
           },
           "ScottBrady.IdentityModel.Tokens.Branca": {
             "target": "Package",

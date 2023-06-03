@@ -9,7 +9,8 @@ namespace SignUPAndLoginSection
     {
         public static void Main(string[] args)
         {
-           // var builder = WebApplication.CreateBuilder(args);
+
+            // var builder = WebApplication.CreateBuilder(args);
            // var app = builder.Build();
             presentationLayer.signUp.suignUpAPI(new user(1,"maneli1234","maneligmail.com","maforoutan"
                 ,"1203R@fd","096790882"));

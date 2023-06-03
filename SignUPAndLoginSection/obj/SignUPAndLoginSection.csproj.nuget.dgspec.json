@@ -78,6 +78,10 @@
               "target": "Package",
               "version": "[6.30.1, )"
             },
+            "Microsoft.NETCore.Platforms": {
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.5, )"
+            },
             "ScottBrady.IdentityModel.Tokens.Branca": {
               "target": "Package",
               "version": "[3.0.0, )"

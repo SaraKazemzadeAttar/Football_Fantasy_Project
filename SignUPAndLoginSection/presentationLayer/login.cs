@@ -19,7 +19,7 @@ namespace SignUPAndLoginSection.presentationLayer
         {
             if (businessLayer.login.isUserRegistered(password, email_username))
             {
-                businessLayer.login.generateToken(password, email_username);
+                businessLayer.login.generateToken(password, email_username); 
                 // print main page of site (front)
             }
             else

@@ -171,7 +171,6 @@ public class userName
                 return isValidUsername;
             }
         }
-
 }
 
 public class email
@@ -183,21 +182,15 @@ public class email
     {
         emailValidator(e);
     }
-    public  bool emailValidator(string email)
+    public bool emailValidator(string email)
     {
-        string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        string emailPattern = @"^[a-zA-Z0-9._%+-]+(@gmail|@email|@yahoo)\.(com|co|ir)\b";
 
         if (string.IsNullOrEmpty(email))
         {
-            emailErrorMassage = "invalid email!";
+            emailErrorMassage = "Invalid email!";
             return isValidEmail;
         }
-
-        if (!email.Contains("@"))
-            {
-                emailErrorMassage = "Invalid email format!";
-                return isValidEmail;
-            }
 
         Regex regex = new Regex(emailPattern);
         return regex.IsMatch(email);
