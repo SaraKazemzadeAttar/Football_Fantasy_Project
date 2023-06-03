@@ -12,7 +12,7 @@ public class userName
         public bool isValidUsername = false;
         public string userNameContext;
         public string userNameErrorMessage;
-        private bool isContainLetters = true;
+        public bool isContainLetters = true;
         private bool isContainDigits = false;
         private bool isContainDashOrUnderscore = false;
         private bool isDashOrUnderscoreInStart = false;
@@ -31,11 +31,11 @@ public class userName
 
             if (containsLetter)
             {
-                return isValidUsername;
+                return isContainLetters;
             }
             else
             {
-                isValidUsername=false;
+                isContainLetters=false;
                 return false;
             }
         }
@@ -155,8 +155,10 @@ public class userName
         }
         public bool usernameValidator(string un)
         {
-            if ((isContainLetters) && (isContainDigits) && (!isDashOrUnderscoreInEnd) && (!isDashOrUnderscoreInStart) &&
-                (numberOfDash <= 1) && (numberOfUnderscore <= 1))
+            numberOfDashAndUnderscore(un);
+
+            if ((checkingLetters(un)) && (checkingDigits(un)) && (chekingDashOrUnderscore(un)) && 
+                (numberOfDash <= 1) && (numberOfUnderscore <= 1)&&(!chekingDashOrUnderscoreInEnd(un))&& (!chekingDashOrUnderscoreInStart(un)))
             {
                 userNameContext = un;
                 isValidUsername = true;
@@ -187,15 +189,19 @@ public class email
 
         if (string.IsNullOrEmpty(email))
         {
-             emailErrorMassage = "invalid email!";
+            emailErrorMassage = "invalid email!";
             return isValidEmail;
         }
+
+        if (!email.Contains("@"))
+            {
+                emailErrorMassage = "Invalid email format!";
+                return isValidEmail;
+            }
 
         Regex regex = new Regex(emailPattern);
         return regex.IsMatch(email);
     }
-
-    
 }
 
 public class fullName
