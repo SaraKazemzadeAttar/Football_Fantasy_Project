@@ -55,6 +55,42 @@
             "Microsoft.EntityFrameworkCore.Sqlite.Design": {
               "target": "Package",
               "version": "[2.0.0-preview1-final, )"
+            },
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[6.30.1, )"
+            },
+            "Microsoft.IdentityModel.Logging": {
+              "target": "Package",
+              "version": "[6.30.1, )"
+            },
+            "Microsoft.IdentityModel.Protocols": {
+              "target": "Package",
+              "version": "[6.30.1, )"
+            },
+            "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.30.1, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.30.1, )"
+            },
+            "Microsoft.IdentityModel.Tokens.Saml": {
+              "target": "Package",
+              "version": "[6.30.1, )"
+            },
+            "ScottBrady.IdentityModel.Tokens.Branca": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "ScottBrady.IdentityModel.Tokens.Paseto": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.30.1, )"
             }
           },
           "imports": [

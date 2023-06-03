@@ -6,12 +6,12 @@ namespace SignUPAndLoginSection.presentationLayer;
 
 public class login
 {
-    public void logInAPI(password password , string x)
+    public void loginAPI(password password , string email_username)
     {
         
-        if (businessLayer.login.isUserRegistered(password, x))
+        if (businessLayer.login.isUserRegistered(password, email_username))
         {
-            
+            businessLayer.login.generateToken(password, email_username);
         }
         else
         {
@@ -20,3 +20,5 @@ public class login
             
     }
 }
+
+
