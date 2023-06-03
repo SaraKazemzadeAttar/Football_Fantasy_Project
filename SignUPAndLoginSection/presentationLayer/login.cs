@@ -1,24 +1,32 @@
 using System;
 using SignUPAndLoginSection.DataAccessLayer;
+using System;
 using SignUPAndLoginSection.businessLayer;
+using SignUPAndLoginSection.presentationLayer;
 
-namespace SignUPAndLoginSection.presentationLayer;
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
 
-public class login
+app.MapGet("/", () => "");
+
+app.Run("http://localhost:3001");
+
+namespace SignUPAndLoginSection.presentationLayer
 {
-    public void loginAPI(password password , string email_username)
+    public class login
     {
-        
-        if (businessLayer.login.isUserRegistered(password, email_username))
+        public void loginApi(password password, string email_username)
         {
-            businessLayer.login.generateToken(password, email_username);
+            if (businessLayer.login.isUserRegistered(password, email_username))
+            {
+                businessLayer.login.generateToken(password, email_username);
+                // print main page of site (front)
+            }
+            else
+            {
+// tell user that login was not successful
+            }
         }
-        else
-        {
-            // tell error
-        }
-            
     }
+
 }
-
-
