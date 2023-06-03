@@ -34,7 +34,7 @@ public class login
             issuer: "http://localhost:3001",
             audience: "http://localhost:3001",
             claims,
-            expires: DateTime.Now.AddSeconds(1),
+            expires: DateTime.Now.AddDays(1),
             signingCredentials: credentials
         );
         return token;
