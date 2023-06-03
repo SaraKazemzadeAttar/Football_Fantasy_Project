@@ -12,7 +12,7 @@ public class userName
         public bool isValidUsername = false;
         public string userNameContext;
         public string userNameErrorMessage;
-        private bool isContainLetters = false;
+        private bool isContainLetters = true;
         private bool isContainDigits = false;
         private bool isContainDashOrUnderscore = false;
         private bool isDashOrUnderscoreInStart = false;
@@ -24,19 +24,20 @@ public class userName
         { 
             usernameValidator(un);
         }
-        
-        private bool checkingLetters(string un)
-        {
-            foreach (char ch in un)
-            {
-                if (char.IsLetter(ch))
-                {
-                    isContainLetters = true;
-                    return isContainLetters;
-                }
-            }
 
-            return isContainLetters;
+        public bool checkingLetters(string un)
+        {
+            bool containsLetter = Regex.IsMatch(un, "[a-zA-Z]");
+
+            if (containsLetter)
+            {
+                return isValidUsername;
+            }
+            else
+            {
+                isValidUsername=false;
+                return false;
+            }
         }
 
         private bool checkingDigits(string un)
