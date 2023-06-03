@@ -1,6 +1,6 @@
 using System;
 using SignUPAndLoginSection.DataAccessLayer;
-using signUpSection.DataAccessLayer;
+using SignUPAndLoginSection.businessLayer;
 
 namespace SignUPAndLoginSection.businessLayer;
 
