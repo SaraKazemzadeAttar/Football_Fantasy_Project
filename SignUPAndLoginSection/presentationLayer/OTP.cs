@@ -3,13 +3,13 @@ using System.Net.Mail;
 
 class program
 {
-   //static void Main()
-   //{
-   //    string email = "example@example.com";
-   //    string confirmationLink = "https://www.example.com/confirm";
+  static void Main()
+  {
+      string email = "example@example.com";
+      string confirmationLink = "https://www.example.com/confirm";
 
-   //    SendConfirmationEmail(email, confirmationLink);
-   //}
+      SendConfirmationEmail(email, confirmationLink);
+  }
 
     static void SendConfirmationEmail(string email, string confirmationLink)
     {
