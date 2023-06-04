@@ -231,3 +231,12 @@ C:\Users\User\Desktop\project\Football_Fantasy_Project\SignUPAndLoginSection\obj
 C:\Users\User\Desktop\project\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.pdb
 C:\Users\User\Desktop\project\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.genruntimeconfig.cache
 C:\Users\User\Desktop\project\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\ref\SignUPAndLoginSection.dll
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.AssemblyInfo.cs
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.dll
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\refint\SignUPAndLoginSection.dll
+C:\Users\User\Desktop\finalProject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.pdb

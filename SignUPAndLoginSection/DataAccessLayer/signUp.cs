@@ -17,8 +17,8 @@ public class userName
         private bool isContainDashOrUnderscore = false;
         private bool isDashOrUnderscoreInStart = false;
         private bool isDashOrUnderscoreInEnd = false;
-        private int numberOfDash = 0;
-        private int numberOfUnderscore = 0;
+        public int numberOfDash = 0;
+        public int numberOfUnderscore = 0;
 
         public userName(string un)
         { 
@@ -40,7 +40,7 @@ public class userName
             }
         }
 
-        private bool checkingDigits(string un)
+        public bool checkingDigits(string un)
         {
             foreach (char ch in un)
             {
@@ -54,7 +54,7 @@ public class userName
             return isContainDigits;
         }
 
-        private bool chekingDashOrUnderscore(string un)
+        public bool chekingDashOrUnderscore(string un)
         {
             foreach (char ch in un)
             {
@@ -68,7 +68,7 @@ public class userName
             return isContainDashOrUnderscore;
         }
 
-        private void numberOfDashAndUnderscore(string un)
+        public void numberOfDashAndUnderscore(string un)
         {
             if (isContainDashOrUnderscore)
             {
@@ -88,7 +88,7 @@ public class userName
             return;
         }
 
-        private bool chekingDashOrUnderscoreInStart(string un)
+        public bool chekingDashOrUnderscoreInStart(string un)
         {
             if (isContainDashOrUnderscore)
             {
@@ -102,7 +102,7 @@ public class userName
             return isDashOrUnderscoreInStart;
         }
 
-        private bool chekingDashOrUnderscoreInEnd(string un)
+        public bool chekingDashOrUnderscoreInEnd(string un)
         {
             if (isContainDashOrUnderscore)
             {
@@ -115,7 +115,7 @@ public class userName
             }
             return isDashOrUnderscoreInEnd;
         }
-        private void usernameProblemsHandler()
+        public void usernameProblemsHandler()
         {
             if (!isContainLetters)
             {
@@ -203,7 +203,7 @@ public class fullName
     public bool isValidFullName = false;
     private bool isContainLetters = false;
     public string fullNameErrorMassage = "";
-    private bool chekingLetters(string fn)
+    public bool chekingLetters(string fn)
     {
         foreach (char ch in fn)
         {
@@ -259,7 +259,7 @@ public class password
             passwordValidation(str);
         }
 
-        private bool checkingUpperCaseLetters(string str)
+        public bool checkingUpperCaseLetters(string str)
         {
             foreach (char ch in str)
             {
@@ -273,7 +273,7 @@ public class password
             return isContainUpperCaseLetters;
         }
 
-        private bool checkingLowerCaseLetters(string str)
+        public bool checkingLowerCaseLetters(string str)
         {
             foreach (char ch in str)
             {
@@ -287,7 +287,7 @@ public class password
             return isContainLowerCaseLetters;
         }
 
-        private bool chekingLetters(string str)
+        public bool chekingLetters(string str)
         {
             if (isContainLowerCaseLetters || isContainUpperCaseLetters)
             {
@@ -298,7 +298,7 @@ public class password
             return isContainLetters;
         }
 
-        private bool chekingDigits(string str)
+        public bool chekingDigits(string str)
         {
             foreach (char ch in str)
             {
@@ -312,21 +312,21 @@ public class password
             return isContainDigits;
         }
 
-        private bool chekingSpecialCharacters(string str)
+        public bool chekingSpecialCharacters(string str)
         {
-            foreach (char ch in str)
+            string specialChars = "!@#$%&*-_/"; // list of special characters to check for
+            foreach (char ch in specialChars)
             {
-                if (!char.IsLetterOrDigit(ch))
+                if (str.Contains(ch))
                 {
                     isContainSpecialCharacters = true;
                     return isContainSpecialCharacters;
                 }
             }
-
             return isContainSpecialCharacters;
         }
 
-        private bool chekingLength(string str)
+        public bool chekingLength(string str)
         {
             if (str.Length == 8)
             {
@@ -337,7 +337,7 @@ public class password
             return isLengthEqualToEight;
         }
 
-        private void passwordProblemsHandler()
+        public void passwordProblemsHandler()
         {
             if (!isContainUpperCaseLetters)
             {
@@ -406,15 +406,15 @@ public class mobilePhone
         public string mobilePhoneContext;
         public string moileErrorMessage;
         public bool isValidMobilePhone = false;
-        private bool isContainDigits = true;
-        private bool isStartsWithZeroAndNine = false;
-        private bool isLengthEqualsToEleven = false;
+        public bool isContainDigits = true;
+        public bool isStartsWithZeroAndNine = false;
+        public bool isLengthEqualsToEleven = false;
 
         public mobilePhone(string pn)
         {
             mobilePhoneValidator(pn);
         }
-        private bool chekingDigits(string pn)
+        public bool chekingDigits(string pn)
         {
             foreach (char ch in pn)
             {
@@ -427,7 +427,7 @@ public class mobilePhone
             return isContainDigits;
         }
 
-        private bool chekingStartsWithZeroAndNine(string pn)
+        public bool chekingStartsWithZeroAndNine(string pn)
         {
             if (pn[0] == '0' && pn[1] == '9')
             {
@@ -438,7 +438,7 @@ public class mobilePhone
             return isStartsWithZeroAndNine;
         }
 
-        private bool chekingLengthEqualsToEleven(string pn)
+        public bool chekingLengthEqualsToEleven(string pn)
         {
             if (pn.Length == 11)
             {
@@ -449,7 +449,7 @@ public class mobilePhone
             return isLengthEqualsToEleven;
         }
 
-        private void mobilePhoneProblemsHandler()
+        public void mobilePhoneProblemsHandler()
         {
             if (!isContainDigits)
             {
