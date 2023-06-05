@@ -4,18 +4,11 @@ using System;
 using SignUPAndLoginSection.businessLayer;
 using SignUPAndLoginSection.presentationLayer;
 
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.MapGet("/", () => "");
-
-app.Run("http://localhost:3001");
-
 namespace SignUPAndLoginSection.presentationLayer
 {
     public class login
     {
-        public void loginApi(password password, string email_username)
+        public static void loginApi(password password, string email_username)
         {
             if (businessLayer.login.isUserRegistered(password, email_username))
             {
