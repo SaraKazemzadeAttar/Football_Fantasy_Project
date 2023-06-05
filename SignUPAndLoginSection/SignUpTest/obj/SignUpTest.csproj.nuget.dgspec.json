@@ -96,6 +96,10 @@
               "target": "Package",
               "version": "[3.0.0, )"
             },
+            "ServiceStack.Text": {
+              "target": "Package",
+              "version": "[6.8.0, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[6.30.1, )"

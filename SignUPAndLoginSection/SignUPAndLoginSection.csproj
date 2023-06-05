@@ -21,6 +21,7 @@
       <PackageReference Include="NUnit" Version="3.13.3" />
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Branca" Version="3.0.0" />
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Paseto" Version="3.0.0" />
+      <PackageReference Include="ServiceStack.Text" Version="6.8.0" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
     </ItemGroup>
 
