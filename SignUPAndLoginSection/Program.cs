@@ -9,6 +9,7 @@ namespace SignUPAndLoginSection
     {
         public static void Main(string[] args)
         {
+
             //log in API:
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
@@ -19,24 +20,21 @@ namespace SignUPAndLoginSection
             // end log in
             
             // calling List Of players API
-            app.MapGet("/callAPI", () =>RecievingDataOfPLayers.callAPI );
+            app.MapGet("/callAPI", () =>businessLayer.ListOfPlayers.callListOfPlayersAPI );
             app.Run("http://localhost:3001");
-            }
+            presentationLayer.signUp.signUpAPI(new user(1,"maneli1234","maneligmail.com","maforoutan"
+            ,"1203R@fd","096790882"));
+        }
             //end of calling list of players
-        
-        
-            // var builder = WebApplication.CreateBuilder(args);
-           // var app = builder.Build();
-            presentationLayer.signUp.suignUpAPI(new user(1,"maneli1234","maneligmail.com","maforoutan"
-                ,"1203R@fd","096790882"));
+            
+
             //app.MapPost("/signUp-User", presentationLayer.signUp.suignUpAPI);
             //app.Run();
         }
-    }
+}
     // var builder = WebApplication.CreateBuilder(args);
     // var app = builder.Build();
 
     // app.MapPost("/signUp-User", presentationLayer.signUp.suignUpAPI);
     // app.Run();
-
-}
+    
