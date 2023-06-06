@@ -9,12 +9,28 @@ namespace SignUPAndLoginSection
     {
         public static void Main(string[] args)
         {
+            //log in API:
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
+
+            app.MapGet("/login", () =>presentationLayer.login.loginApi);
+
+            app.Run("http://localhost:3001");
+            // end log in
+            
+            // calling List Of players API
+            app.MapGet("/callAPI", () =>RecievingDataOfPLayers.callAPI );
+            app.Run("http://localhost:3001");
+            }
+            //end of calling list of players
+        
+        
+            // var builder = WebApplication.CreateBuilder(args);
+           // var app = builder.Build();
             presentationLayer.signUp.suignUpAPI(new user(1,"maneli1234","maneligmail.com","maforoutan"
                 ,"1203R@fd","096790882"));
-            app.MapPost("/signUp-User", presentationLayer.signUp.suignUpAPI);
-            app.Run();
+            //app.MapPost("/signUp-User", presentationLayer.signUp.suignUpAPI);
+            //app.Run();
         }
     }
     // var builder = WebApplication.CreateBuilder(args);

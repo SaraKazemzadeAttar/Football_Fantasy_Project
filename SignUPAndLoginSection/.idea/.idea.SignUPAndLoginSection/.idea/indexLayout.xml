@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="UserContentModel">
-    <attachedFolders />
+    <attachedFolders>
+      <Path>../../../finalProject</Path>
+      <Path>../../Football_Fantasy_Project</Path>
+      <Path>../../../project</Path>
+    </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />
   </component>

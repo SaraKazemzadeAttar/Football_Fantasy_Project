@@ -1,7 +1,6 @@
 namespace SignUPAndLoginSection.DataAccessLayer;
 
 using System;
-using signUpSection.DataAccessLayer;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

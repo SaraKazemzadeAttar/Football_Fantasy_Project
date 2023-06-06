@@ -4,7 +4,6 @@ using SignUPAndLoginSection.businessLayer;
 public class signUp
 {
     
-
     public static void suignUpAPI(user u)
     {
         // if validUser == true -> check : is it new or repeated?

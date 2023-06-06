@@ -1,21 +1,25 @@
 using System;
-using signUpSection.DataAccessLayer;
+using SignUPAndLoginSection.DataAccessLayer;
+using System;
 using SignUPAndLoginSection.businessLayer;
+using SignUPAndLoginSection.presentationLayer;
 
-namespace SignUPAndLoginSection.presentationLayer;
-
-public class login
+namespace SignUPAndLoginSection.presentationLayer
 {
-    public void logInAPI(password password , string x)
+    public class login
     {
-        if (businessLayer.login.isUserRegistered(password, x))
+        public static void loginApi(password password, string email_username)
         {
-            // token in business
+            if (businessLayer.login.isUserRegistered(password, email_username))
+            {
+                businessLayer.login.generateToken(password, email_username); 
+                // print main page of site (front)
+            }
+            else
+            {
+// tell user that login was not successful
+            }
         }
-        else
-        {
-            // tell error
-        }
-            
     }
+
 }
