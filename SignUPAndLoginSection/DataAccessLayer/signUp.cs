@@ -111,7 +111,6 @@ public class userName
                     isDashOrUnderscoreInEnd = true;
                     return isDashOrUnderscoreInEnd;
                 }
-
             }
             return isDashOrUnderscoreInEnd;
         }
