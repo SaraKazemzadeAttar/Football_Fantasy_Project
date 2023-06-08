@@ -14,9 +14,9 @@ namespace SignUPAndLoginSection
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
 
-            app.MapGet("/login", () =>presentationLayer.login.loginApi);
+            app.MapGet("/login",presentationLayer.login.loginApi);
 
-            app.Run("http://localhost:3001");
+           
             // end log in
             
             // calling List Of players API
@@ -24,6 +24,10 @@ namespace SignUPAndLoginSection
             app.Run("http://localhost:3001");
             presentationLayer.signUp.signUpAPI(new user(1,"maneli1234","maneligmail.com","maforoutan"
             ,"1203R@fd","096790882"));
+            
+            
+            
+            app.Run("http://localhost:3001");
         }
             //end of calling list of players
             

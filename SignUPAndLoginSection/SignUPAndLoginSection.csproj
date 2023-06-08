@@ -25,4 +25,10 @@
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="SignUpTest\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="SignUpTest\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="SignUpTest\obj\SignUpTest.csproj.nuget.dgspec.json" />
+    </ItemGroup>
+
 </Project>
