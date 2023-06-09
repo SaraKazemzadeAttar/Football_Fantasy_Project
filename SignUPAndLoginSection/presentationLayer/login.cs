@@ -17,9 +17,8 @@ namespace SignUPAndLoginSection.presentationLayer
             }
             else
             {
-// tell user that login was not successful
+                // tell user that login was not successful
             }
         }
-    }
-
+        }
 }

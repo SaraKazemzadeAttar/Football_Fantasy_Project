@@ -20,8 +20,6 @@ namespace SignUPAndLoginSection
             // end log in
             
             // calling List Of players API
-            app.MapGet("/callAPI", () =>businessLayer.ListOfPlayers.callListOfPlayersAPI );
-            app.Run("http://localhost:3001");
             presentationLayer.signUp.signUpAPI(new user(1,"maneli1234","maneligmail.com","maforoutan"
             ,"1203R@fd","096790882"));
             

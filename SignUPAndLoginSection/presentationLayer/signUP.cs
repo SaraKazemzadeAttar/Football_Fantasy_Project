@@ -1,91 +1,117 @@
-namespace SignUPAndLoginSection.presentationLayer;
-using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.businessLayer;
+using SignUPAndLoginSection.DataAccessLayer;
+
+namespace SignUPAndLoginSection.presentationLayer;
+
 public class signUp
 {
-    
-    public  void signUpAPI(user u)
-    {
-        string ExistanceInDataBaseError = "";
-        // if validUser == true -> check : is it new or repeated?
+    private bool emailExistance;
+    private bool phoneNumberExistance;
+    private bool userNameExistance;
+    private string ExistanceInDataBaseError = "";
+
+    // if validUser == true -> check : is it new or repeated?
         //                                     if new -> save the user
         //                                     if repeated:
         //                                                 email repeated -> error message
         //                                                 mobile repeated -> error message
         //                                                 username repeated -> error message
         //  if validUser == false -> special error message must be returned 
-        userValidator user = new userValidator(u);
-        
-        if (user.userValidating())
+        public void SignUpAPI(user u)
         {
-            if (doesEmailExistBefore(u.email))
-            {
-                ExistanceInDataBaseError = "there is already an account with this email";
-                return;
-            }
+            userValidator user = new userValidator(u);
 
-            if (doesPhoneNumberExistBefore(u.mobilePhone))
+            if (user.userValidating())
             {
-                ExistanceInDataBaseError = "there is already an account with this mobile phone";
-                return;
-            }
-
-            if (doesUserNameExistBefore(u.username))
-            {
-                ExistanceInDataBaseError = "there is already an account with this username";
-                return;
-            }
-
-            if (!doesEmailExistBefore(u.email) && !doesPhoneNumberExistBefore(u.mobilePhone) &&
-                !doesUserNameExistBefore(u.username))
-            {
-                using (var db = new DataBase())
+                doesEmailExistBefore(u.email);
+                doesPhoneNumberExistBefore(u.mobilePhone);
+                doesUserNameExistBefore(u.username);
+                if (!emailExistance && !phoneNumberExistance && !userNameExistance)
                 {
-                    db.userTable.Add(u);
-                    db.SaveChanges();
+                    using (var db = new DataBase())
+                    {
+                        db.userTable.Add(u);
+                        db.SaveChanges();
+                    }
                 }
+                else
+                {
+                    existanceProblemsHandler();
+                }
+            }
+            else
+            {
+                // the reason why user is not valid must be shown ...?!
+            }
+        }
+
+        public void existanceProblemsHandler()
+        {
+            if (emailExistance)
+            {
+                ExistanceInDataBaseError = "There is an account with this email already";
+                return;
+            }
+
+            if (userNameExistance)
+            {
+                ExistanceInDataBaseError = "There is an account with this username already";
+                return;
+            }
+
+            if (phoneNumberExistance)
+            {
+                ExistanceInDataBaseError = "There is an account with this phone number already";
                 return;
             }
         }
-    }
-    public bool doesEmailExistBefore(email email_)
-    {
-        using (var db = new DataBase())
+
+        public bool doesEmailExistBefore(email email_)
         {
-            foreach (var user in db.userTable)
+            using (var db = new DataBase())
             {
-                if (email_.Equals(user.email))
+                foreach (var user in db.userTable)
+                {
+                    if (email_.Equals(user.email))
+                        emailExistance = true;
                     return true;
+                }
             }
+
+            return false;
         }
 
-        return false;
-    }
-    public bool doesPhoneNumberExistBefore(mobilePhone num_)
-    {
-        using (var db = new DataBase())
+        public bool doesPhoneNumberExistBefore(mobilePhone num_)
         {
-            foreach (var user in db.userTable)
+            using (var db = new DataBase())
             {
-                if (num_.Equals(user.mobilePhone))
-                    return true;
+                foreach (var user in db.userTable)
+                {
+                    if (num_.Equals(user.mobilePhone))
+                    {
+                        phoneNumberExistance = true;
+                        return true;
+                    }
+                }
             }
+
+            return false;
         }
 
-        return false;
-    }
-
-    public bool doesUserNameExistBefore(userName userName_) 
-    {
-        using (var db = new DataBase())
+        public bool doesUserNameExistBefore(userName userName_)
         {
-            foreach (var user in db.userTable)
+            using (var db = new DataBase())
             {
-                if (userName_.Equals(user.username))
-                    return true;
+                foreach (var user in db.userTable)
+                {
+                    if (userName_.Equals(user.username))
+                    {
+                        userNameExistance = true;
+                        return true;
+                    }
+                }
             }
-        }
 
-        return false;
-    }
+            return false;
+        }
 }

@@ -11,6 +11,7 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class login
 {
+    public  static bool isTokenActive = false;
     public static bool isUserRegistered(password password, string email_username)
     {
         if (DataAccessLayer.logIn.arePasswordAndUsernameSync(email_username, password.passwordContext) || DataAccessLayer.logIn.arePasswordAndEmailSync(email_username,password.passwordContext))
@@ -37,6 +38,12 @@ public class login
             expires: DateTime.Now.AddDays(1),
             signingCredentials: credentials
         );
+        setTokenActive();
         return token;
+    }
+
+    public static  void setTokenActive()
+    {
+        isTokenActive = true;
     }
 }

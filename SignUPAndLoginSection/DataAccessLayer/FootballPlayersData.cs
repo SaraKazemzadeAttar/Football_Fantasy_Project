@@ -9,18 +9,18 @@ namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class FootballPlayersData
 {
-    public List<Player> elements =businessLayer.ListOfPlayers.convertPlayersJsonToList() ;
-
+    public List<Player> elements ;
+    
     public void insertPlayersInDataBase()
     {
 
-            using (var db = new DataBase())
+        using (var db = new DataBase())
+        {
+            foreach (var player in ListOfPlayers.getListOfPlayers())
             {
-                foreach (var player in elements)
-                {
                 db.playerTable.Add(player);
                 db.SaveChanges();
-                }
             }
+        }
     }
 }
