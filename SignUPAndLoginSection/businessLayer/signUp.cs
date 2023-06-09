@@ -6,56 +6,57 @@ public class userValidator
 {
     public user u;
     public bool isValidUser = false;
+    public string validationErrorMessage = "";
 
     public userValidator(user input)
     {
         u = input;
-        //userValidating();
+        // userValidating();
     }
 
-    public bool userValidating()
+    public void userValidating()
     {
         if (u.username.isValidUsername && u.email.isValidEmail && u.fullname.isValidFullName &&
             u.password.isValidPassword && u.mobilePhone.isValidMobilePhone)
         {
             isValidUser = true;
-            return isValidUser;
         }
         else
         {
-            if (u.username.userNameErrorMessage != "")
-            {
-                Console.WriteLine(u.username.userNameErrorMessage);
-            }
+            userValidationProblemsHandler();
+        }
+    }
 
-            if (u.password.passwordErrorMessage != "")
-            {
-                Console.WriteLine(u.password.passwordErrorMessage);
-
-            }
-
-            if (u.mobilePhone.moileErrorMessage != "")
-            {
-                Console.WriteLine(u.mobilePhone.moileErrorMessage);
-
-            }
-
-            if (u.email.emailErrorMassage != "")
-            {
-                Console.WriteLine(u.email.emailErrorMassage);
-
-            }
-
-            if (u.fullname.fullNameErrorMassage != "")
-            {
-                Console.WriteLine(u.fullname.fullNameErrorMassage);
-
-            }
+    private void userValidationProblemsHandler()
+    {
+        if (!u.username.isValidUsername)
+        {
+            validationErrorMessage = u.username.userNameErrorMessage;
+            return;
         }
 
-        return isValidUser;
+        if (!u.email.isValidEmail)
+        {
+            validationErrorMessage = u.email.emailErrorMassage;
+            return;
+        }
+
+        if (!u.mobilePhone.isValidMobilePhone)
+        {
+            validationErrorMessage = u.mobilePhone.moileErrorMessage;
+            return;
+        }
+
+        if (!u.password.isValidPassword)
+        {
+            validationErrorMessage = u.password.passwordErrorMessage;
+            return;
+        }
+
+        if (!u.fullname.isValidFullName)
+        {
+            validationErrorMessage = u.fullname.fullNameErrorMassage;
+            return;
+        }
     }
 }
-        
-
-

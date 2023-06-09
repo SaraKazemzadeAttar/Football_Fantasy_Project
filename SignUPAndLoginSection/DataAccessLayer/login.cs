@@ -10,7 +10,6 @@ using SignUPAndLoginSection.DataAccessLayer;
 
 public class logIn
 {
-
     public static bool arePasswordAndUsernameSync(string userName_, string password_)
     {
         using (var db = new DataBase())
@@ -18,8 +17,12 @@ public class logIn
             foreach (var user in db.userTable)
             {
                 if (password_.Equals(user.password))
+                {
                     if (userName_.Equals(user.username))
+                    {
                         return true;
+                    }
+                }
             }
         }
 
@@ -33,8 +36,12 @@ public class logIn
             foreach (var user in db.userTable)
             {
                 if (email_.Equals(user.email))
+                {
                     if (userName_.Equals(user.username))
+                    {
                         return true;
+                    }
+                }
             }
         }
 
