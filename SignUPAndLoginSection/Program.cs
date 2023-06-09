@@ -31,7 +31,6 @@ namespace SignUPAndLoginSection
             
 
             //app.MapPost("/signUp-User", presentationLayer.signUp.suignUpAPI);
-            //app.Run();
         }
 }
     // var builder = WebApplication.CreateBuilder(args);
