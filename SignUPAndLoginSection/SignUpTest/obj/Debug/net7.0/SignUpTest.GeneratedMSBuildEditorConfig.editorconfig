@@ -8,4 +8,8 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SignUpTest
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\Asus Center\Desktop\Football_Fantasy_Project\SignUPAndLoginSection\SignUpTest\
+=======
+build_property.ProjectDir = C:\Users\User\Desktop\p\Football_Fantasy_Project\SignUPAndLoginSection\SignUpTest\
+>>>>>>> d2eb7ec0bee21c312743d837206c27b625665fdb

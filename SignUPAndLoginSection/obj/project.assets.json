@@ -2455,11 +2455,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Asus Center\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\User\\.nuget\\packages\\": {}
+>>>>>>> d2eb7ec0bee21c312743d837206c27b625665fdb
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
       "projectName": "SignUPAndLoginSection",
       "projectPath": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
@@ -2468,6 +2473,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Asus Center\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "projectName": "SignUPAndLoginSection",
+      "projectPath": "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> d2eb7ec0bee21c312743d837206c27b625665fdb
       ],
       "originalTargetFrameworks": [
         "net7.0"

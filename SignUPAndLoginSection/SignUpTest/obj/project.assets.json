@@ -3234,11 +3234,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Asus Center\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\User\\.nuget\\packages\\": {}
+>>>>>>> d2eb7ec0bee21c312743d837206c27b625665fdb
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpTest\\SignUpTest.csproj",
       "projectName": "SignUpTest",
       "projectPath": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpTest\\SignUpTest.csproj",
@@ -3247,6 +3252,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Asus Center\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpTest\\SignUpTest.csproj",
+      "projectName": "SignUpTest",
+      "projectPath": "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpTest\\SignUpTest.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpTest\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> d2eb7ec0bee21c312743d837206c27b625665fdb
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -3258,8 +3273,13 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
               "projectPath": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj"
+=======
+            "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\p\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj"
+>>>>>>> d2eb7ec0bee21c312743d837206c27b625665fdb
             }
           }
         }
