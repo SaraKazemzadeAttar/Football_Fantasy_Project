@@ -14,13 +14,13 @@ public class FootballPlayersData
     public void insertPlayersInDataBase()
     {
 
-        using (var db = new DataBase())
-        {
-            foreach (var player in ListOfPlayers.getListOfPlayers())
+            using (var db = new DataBase())
             {
+                foreach (var player in ListOfPlayers.getListOfPlayers())
+                {
                 db.playerTable.Add(player);
                 db.SaveChanges();
+                }
             }
-        }
     }
 }

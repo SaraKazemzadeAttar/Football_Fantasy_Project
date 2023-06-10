@@ -17,7 +17,7 @@ public class logIn
         {
             foreach (var user in db.userTable)
             {
-                if (userName_.Equals(user.username))
+                if (userName_.Equals(user.userName))
                     if (password_.Equals(user.password))
                         return true;
             }
@@ -33,7 +33,7 @@ public class logIn
             foreach (var user in db.userTable)
             {
                 if (email_.Equals(user.email))
-                    if (userName_.Equals(user.username))
+                    if (userName_.Equals(user.userName))
                         return true;
             }
         }

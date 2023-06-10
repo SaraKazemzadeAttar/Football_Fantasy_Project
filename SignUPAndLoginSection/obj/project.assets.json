@@ -2460,11 +2460,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\hamgit Project\\first-project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
       "projectName": "SignUPAndLoginSection",
-      "projectPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "projectPath": "C:\\Users\\Asus\\Desktop\\hamgit Project\\first-project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
+      "outputPath": "C:\\Users\\Asus\\Desktop\\hamgit Project\\first-project\\SignUPAndLoginSection\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",

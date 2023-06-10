@@ -1,61 +1,76 @@
 using System;
 using SignUPAndLoginSection.DataAccessLayer;
+using SignUPAndLoginSection.presentationLayer;
+
 namespace SignUPAndLoginSection.businessLayer;
 
-public class userValidator
+public class User
 {
-    public user u;
-    public bool isValidUser = false;
+    public int userId ;
+    public UserNameValidation userName;
+    public EmailValidation email;
+    public FullNameValidation fullname;
+    public PasswordValidation password;
+    public MobilePhoneValidation mobilePhone;
 
-    public userValidator(user input)
+}
+public class UserValidator
+{
+    public User u;
+    public bool isValidUser = false;
+    public string validationErrorMessage = "";
+    
+    public UserValidator (User input)
     {
         u = input;
-        //userValidating();
+         userValidating();
     }
+    
 
-    public bool userValidating()
+    public void userValidating()
     {
-        if (u.username.isValidUsername && u.email.isValidEmail && u.fullname.isValidFullName &&
+        if (u.userName.isValidUsername && u.email.isValidEmail && u.fullname.isValidFullName &&
             u.password.isValidPassword && u.mobilePhone.isValidMobilePhone)
         {
             isValidUser = true;
-            return isValidUser;
         }
         else
         {
-            if (u.username.userNameErrorMessage != "")
-            {
-                Console.WriteLine(u.username.userNameErrorMessage);
-            }
+            userValidationProblemsHandler();
+        }
+    }
 
-            if (u.password.passwordErrorMessage != "")
-            {
-                Console.WriteLine(u.password.passwordErrorMessage);
-
-            }
-
-            if (u.mobilePhone.moileErrorMessage != "")
-            {
-                Console.WriteLine(u.mobilePhone.moileErrorMessage);
-
-            }
-
-            if (u.email.emailErrorMassage != "")
-            {
-                Console.WriteLine(u.email.emailErrorMassage);
-
-            }
-
-            if (u.fullname.fullNameErrorMassage != "")
-            {
-                Console.WriteLine(u.fullname.fullNameErrorMassage);
-
-            }
+    public void userValidationProblemsHandler()
+    {
+        if (!u.userName.isValidUsername)
+        {
+            validationErrorMessage = u.userName.userNameErrorMessage;
+            return;
         }
 
-        return isValidUser;
+        if (!u.email.isValidEmail)
+        {
+            validationErrorMessage = u.email.emailErrorMassage;
+            return;
+        }
+
+        if (!u.mobilePhone.isValidMobilePhone)
+        {
+            validationErrorMessage = u.mobilePhone.moileErrorMessage;
+            return;
+        }
+
+        if (!u.password.isValidPassword)
+        {
+            validationErrorMessage = u.password.passwordErrorMessage;
+            return;
+        }
+
+        if (!u.fullname.isValidFullName)
+        {
+            validationErrorMessage = u.fullname.fullNameErrorMassage;
+            return;
+        }
     }
 }
-        
-
 

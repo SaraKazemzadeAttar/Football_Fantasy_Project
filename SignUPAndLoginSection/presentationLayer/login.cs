@@ -1,14 +1,10 @@
-using System;
 using SignUPAndLoginSection.DataAccessLayer;
-using System;
-using SignUPAndLoginSection.businessLayer;
-using SignUPAndLoginSection.presentationLayer;
 
 namespace SignUPAndLoginSection.presentationLayer
 {
     public class login
     {
-        public static void loginApi(password password, string email_username)
+        public static void loginApi(string password, string email_username)
         {
             if (businessLayer.login.isUserRegistered(password, email_username))
             {
@@ -20,5 +16,6 @@ namespace SignUPAndLoginSection.presentationLayer
                 // tell user that login was not successful
             }
         }
-        }
+    }
+
 }

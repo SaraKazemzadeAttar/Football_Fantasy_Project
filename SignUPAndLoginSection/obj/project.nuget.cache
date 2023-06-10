@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K3GGGhPodTt4iAmOHGS7JjG6oXTL+3K6AbuHQecuaMFEUnlzOUWweS/x4t16kkbeE6KKeJyIhCd3GflF0xKaEQ==",
+  "dgSpecHash": "LjNdUhpfjFpldmNkBhs8aUE0EsXr4OZ5QG3945CKLo0PnA98uGC5eO2ZWRAlvChJpXAKHvJ7dMpzfO34GlrGQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+  "projectFilePath": "C:\\Users\\Asus\\Desktop\\hamgit Project\\first-project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.0-preview.4.23259.3\\microsoft.data.sqlite.core.8.0.0-preview.4.23259.3.nupkg.sha512",

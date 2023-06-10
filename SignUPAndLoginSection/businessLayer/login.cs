@@ -12,9 +12,9 @@ namespace SignUPAndLoginSection.businessLayer;
 public class login
 {
     public  static bool isTokenActive = false;
-    public static bool isUserRegistered(password password, string email_username)
+    public static bool isUserRegistered(string password, string email_username)
     {
-        if (DataAccessLayer.logIn.arePasswordAndUsernameSync(email_username, password.passwordContext) || DataAccessLayer.logIn.arePasswordAndEmailSync(email_username,password.passwordContext))
+        if (DataAccessLayer.logIn.arePasswordAndUsernameSync(email_username, password) || DataAccessLayer.logIn.arePasswordAndEmailSync(email_username,password))
         {
             return true;
         }
@@ -22,7 +22,7 @@ public class login
         return false;
     }
 
-    public static JwtSecurityToken generateToken(password password , string email_username)
+    public static  JwtSecurityToken generateToken(string password , string email_username)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("userTokenlsjdjsljljnbfkdkdjlhrbdjskfhhdjkkshf"));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
