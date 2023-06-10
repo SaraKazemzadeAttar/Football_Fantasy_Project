@@ -1,5 +1,7 @@
 
 using System;
+using System.Net;
+using System.Net.Mail;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.businessLayer;
 using SignUPAndLoginSection.presentationLayer;
@@ -10,6 +12,10 @@ namespace SignUPAndLoginSection
     {
         public static void Main(string[] args)
         {
+            
+            OTP otp = new OTP();
+            otp.send_code();
+
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
             // presentationLayer.signUp.signUpAPI(new user(1,"maneli1234","maneligmail.com","maforoutan"
