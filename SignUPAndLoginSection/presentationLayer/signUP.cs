@@ -23,7 +23,7 @@ public class User
 public class signUp
 {
 
-    public businessLayer.User convertPres_UserToBusi_User(presentationLayer.User PU)
+    public static businessLayer.User convertPres_UserToBusi_User(presentationLayer.User PU)
     {
         businessLayer.User BU = new businessLayer.User();
         
@@ -42,8 +42,8 @@ public class signUp
         return BU;
 
     }
-    
-    
+
+ 
     public IResult signUPAPI(presentationLayer.User input)
     {
         businessLayer.User u = new businessLayer.User();

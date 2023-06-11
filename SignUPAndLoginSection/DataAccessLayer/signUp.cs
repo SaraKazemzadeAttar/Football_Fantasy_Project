@@ -14,7 +14,18 @@ namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class signUp
 {
+    public static presentationLayer.User convertBusi_UserToPres_User(businessLayer.User BU)
+    {
+        presentationLayer.User PU = new presentationLayer.User();
+        PU.userName = BU.userName.ToString();
+        PU.email = BU.email.ToString();
+        PU.fullName = BU.fullname.ToString();
+        PU.password = BU.password.ToString();
+        PU.mobilePhone = BU.mobilePhone.ToString();
 
+        return PU;
+
+    }
     public static bool doesEmailExistBefore(EmailValidation email_)
     {
         using (var db = new DataBase())
@@ -61,8 +72,10 @@ public class signUp
         return false;
     }
 
-    public static void insertUserToDataBase(businessLayer.User u)
+    public static void insertUserToDataBase(businessLayer.User input)
     {
+        presentationLayer.User u = new presentationLayer.User();
+        u = convertBusi_UserToPres_User(input);
         using (var db = new DataBase())
         {
             db.userTable.Add(u);
