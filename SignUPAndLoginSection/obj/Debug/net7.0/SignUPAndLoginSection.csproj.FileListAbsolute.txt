@@ -524,3 +524,12 @@ C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football
 C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.pdb
 C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.genruntimeconfig.cache
 C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\ref\SignUPAndLoginSection.dll
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.csproj.AssemblyReference.cache
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.AssemblyInfoInputs.cache
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.AssemblyInfo.cs
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.csproj.CoreCompileInputs.cache
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.dll
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\refint\SignUPAndLoginSection.dll
+C:\Users\Asus Center\Desktop\githubPro\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.pdb
