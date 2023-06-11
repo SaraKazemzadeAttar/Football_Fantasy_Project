@@ -16,14 +16,14 @@ public class User
 }
 public class UserValidator
 {
-    public User u;
+    public businessLayer.User u;
     public bool isValidUser = false;
     public string validationErrorMessage = "";
     
-    public UserValidator (User input)
+    public UserValidator (businessLayer.User input)
     {
         u = input;
-         userValidating();
+        userValidating();
     }
     
 
@@ -56,7 +56,7 @@ public class UserValidator
 
         if (!u.mobilePhone.isValidMobilePhone)
         {
-            validationErrorMessage = u.mobilePhone.moileErrorMessage;
+            validationErrorMessage = u.mobilePhone.moibleErrorMessage;
             return;
         }
 

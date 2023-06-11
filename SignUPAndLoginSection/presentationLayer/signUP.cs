@@ -13,26 +13,50 @@ namespace SignUPAndLoginSection.presentationLayer;
 public class User
 {
     public string password { get; set; }
-    public string fullName{get; set;}
-    public int userId{get; set;}
-    public string email{get; set;}
-    public string mobilePhone {get; set;}
+    public string fullName { get; set; }
+    public int userId { get; set; }
+    public string email { get; set; }
+    public string mobilePhone { get; set; }
     public string userName { get; set; }
-
 }
+
 public class signUp
 {
 
-    public IResult user (businessLayer.User u)
+    public businessLayer.User convertPres_UserToBusi_User(presentationLayer.User PU)
     {
+        businessLayer.User BU = new businessLayer.User();
+        
+        UserNameValidation uv = new UserNameValidation(PU.userName);
+        EmailValidation ev = new EmailValidation(PU.email);
+        FullNameValidation fv = new FullNameValidation(PU.fullName);
+        PasswordValidation pv = new PasswordValidation(PU.password);
+        MobilePhoneValidation mv = new MobilePhoneValidation(PU.mobilePhone);
+        
+        BU.userName = uv;
+        BU.email = ev;
+        BU.fullname = fv;
+        BU.password = pv;
+        BU.mobilePhone = mv;
+
+        return BU;
+
+    }
+    
+    
+    public IResult signUPAPI(presentationLayer.User input)
+    {
+        businessLayer.User u = new businessLayer.User();
+        u = convertPres_UserToBusi_User(input);
         UserValidator user = new UserValidator(u);
 
         if (user.isValidUser)
         {
-            bool emailExistance=DataAccessLayer.signUp.doesEmailExistBefore(u.email);
-            bool phoneNumberExistance =DataAccessLayer.signUp.doesPhoneNumberExistBefore(u.mobilePhone);
-            bool userNameExistance=DataAccessLayer.signUp.doesUserNameExistBefore(u.userName);
-            if (!emailExistance && !phoneNumberExistance && !userNameExistance)
+            bool emailExistence = DataAccessLayer.signUp.doesEmailExistBefore(u.email);
+            bool phoneNumberExistence = DataAccessLayer.signUp.doesPhoneNumberExistBefore(u.mobilePhone);
+            bool userNameExistence = DataAccessLayer.signUp.doesUserNameExistBefore(u.userName);
+            
+            if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
                 DataAccessLayer.signUp.insertUserToDataBase(u);
 
@@ -40,7 +64,7 @@ public class signUp
                     {
                         message = "signUp was successful!"
                     }
-                );      
+                );
             }
             else
             {
@@ -109,7 +133,7 @@ public class UserNameValidation
         return isContainDigits;
     }
 
-    public bool chekingDashOrUnderscore(string un)
+    public bool checkingDashOrUnderscore(string un)
     {
         foreach (char ch in un)
         {
@@ -145,104 +169,104 @@ public class UserNameValidation
     }
 
 
-public bool chekingDashOrUnderscoreInStart(string un)
+    public bool checkingDashOrUnderscoreInStart(string un)
+    {
+        if (isContainDashOrUnderscore)
         {
-            if (isContainDashOrUnderscore)
+            if (un.StartsWith("-") || un.StartsWith("_"))
             {
-                if (un.StartsWith("-") || un.StartsWith("_"))
-                {
-                    isDashOrUnderscoreInStart = true;
-                    return isDashOrUnderscoreInStart;
-                }
-            }
-
-            return isDashOrUnderscoreInStart;
-        }
-
-        public bool chekingDashOrUnderscoreInEnd(string un)
-        {
-            if (isContainDashOrUnderscore)
-            {
-                if (un.EndsWith("-") || un.EndsWith("_"))
-                {
-                    isDashOrUnderscoreInEnd = true;
-                    return isDashOrUnderscoreInEnd;
-                }
-
-            }
-
-            return isDashOrUnderscoreInEnd;
-        }
-
-        public void usernameProblemsHandler()
-        {
-            if (!isContainLetters)
-            {
-                userNameErrorMessage = "username must contain letters!";
-                return;
-            }
-
-            if (!isContainDigits)
-            {
-                userNameErrorMessage = "username must contain digits!";
-                return;
-            }
-
-            if (isDashOrUnderscoreInEnd)
-            {
-                userNameErrorMessage = "username shouldn't end with dash or underscore!";
-                return;
-            }
-
-            if (isDashOrUnderscoreInStart)
-            {
-                userNameErrorMessage = "username shouldn't start with dash or underscore!";
-                return;
-            }
-
-            if (numberOfDash >= 2)
-            {
-                userNameErrorMessage = "username must have Maximum 1 dash!";
-                return;
-            }
-
-            if (numberOfUnderscore >= 2)
-            {
-                userNameErrorMessage = "username must have Maximum 1 underscore!";
-                return;
+                isDashOrUnderscoreInStart = true;
+                return isDashOrUnderscoreInStart;
             }
         }
 
-        public bool usernameValidator(string un)
-        {
-            numberOfDashAndUnderscore(un);
+        return isDashOrUnderscoreInStart;
+    }
 
-            if ((checkingLetters(un)) && (checkingDigits(un)) && (chekingDashOrUnderscore(un)) &&
-                (numberOfDash <= 1) && (numberOfUnderscore <= 1) && (!chekingDashOrUnderscoreInEnd(un)) &&
-                (!chekingDashOrUnderscoreInStart(un)))
+    public bool checkingDashOrUnderscoreInEnd(string un)
+    {
+        if (isContainDashOrUnderscore)
+        {
+            if (un.EndsWith("-") || un.EndsWith("_"))
             {
-                userNameContext = un;
-                isValidUsername = true;
-                return isValidUsername;
+                isDashOrUnderscoreInEnd = true;
+                return isDashOrUnderscoreInEnd;
             }
-            else
-            {
-                isValidUsername = false;
-                usernameProblemsHandler();
-                return isValidUsername;
-            }
+        }
+
+        return isDashOrUnderscoreInEnd;
+    }
+
+    public void usernameProblemsHandler()
+    {
+        if (!isContainLetters)
+        {
+            userNameErrorMessage = "username must contain letters!";
+            return;
+        }
+
+        if (!isContainDigits)
+        {
+            userNameErrorMessage = "username must contain digits!";
+            return;
+        }
+
+        if (isDashOrUnderscoreInEnd)
+        {
+            userNameErrorMessage = "username shouldn't end with dash or underscore!";
+            return;
+        }
+
+        if (isDashOrUnderscoreInStart)
+        {
+            userNameErrorMessage = "username shouldn't start with dash or underscore!";
+            return;
+        }
+
+        if (numberOfDash >= 2)
+        {
+            userNameErrorMessage = "username must have Maximum 1 dash!";
+            return;
+        }
+
+        if (numberOfUnderscore >= 2)
+        {
+            userNameErrorMessage = "username must have Maximum 1 underscore!";
+            return;
         }
     }
 
+    public bool usernameValidator(string un)
+    {
+        numberOfDashAndUnderscore(un);
+
+        if ((checkingLetters(un)) && (checkingDigits(un)) && (checkingDashOrUnderscore(un)) &&
+            (numberOfDash <= 1) && (numberOfUnderscore <= 1) && (!checkingDashOrUnderscoreInEnd(un)) &&
+            (!checkingDashOrUnderscoreInStart(un)))
+        {
+            userNameContext = un;
+            isValidUsername = true;
+            return isValidUsername;
+        }
+        else
+        {
+            isValidUsername = false;
+            usernameProblemsHandler();
+            return isValidUsername;
+        }
+    }
+}
+
 public class EmailValidation
 {
-   
-    public  bool isValidEmail = false;
+    public bool isValidEmail = false;
     public string emailErrorMassage = "";
+
     public EmailValidation(string e)
     {
         emailValidator(e);
     }
+
     public bool emailValidator(string email)
     {
         string emailPattern = @"^[a-zA-Z0-9._%+-]+(@gmail|@email|@yahoo)\.(com|co|ir)\b";
@@ -264,7 +288,8 @@ public class FullNameValidation
     public bool isValidFullName = false;
     private bool isContainLetters = false;
     public string fullNameErrorMassage = "";
-    public bool chekingLetters(string fn)
+
+    public bool checkingLetters(string fn)
     {
         foreach (char ch in fn)
         {
@@ -286,17 +311,17 @@ public class FullNameValidation
     {
         fullNAmeValidator(fn);
     }
-        
+
     public bool fullNAmeValidator(string fn)
     {
-        if (chekingLetters(fn))
+        if (checkingLetters(fn))
         {
             nameContext = fn;
             isValidFullName = true;
             return isValidFullName;
         }
         else
-        { 
+        {
             fullNameErrorMassage = "inValid fullName!";
             return isValidFullName;
         }
@@ -305,250 +330,252 @@ public class FullNameValidation
 
 public class PasswordValidation
 {
-        public string passwordContext;
-        public bool isValidPassword = false;
-        public string passwordErrorMessage;
-        private bool isContainUpperCaseLetters = false;
-        private bool isContainLowerCaseLetters = false;
-        private bool isContainLetters = false;
-        private bool isContainDigits = false;
-        private bool isContainSpecialCharacters = false;
-        private bool isLengthEqualToEight = false;
+    public string passwordContext;
+    public bool isValidPassword = false;
+    public string passwordErrorMessage;
+    private bool isContainUpperCaseLetters = false;
+    private bool isContainLowerCaseLetters = false;
+    private bool isContainLetters = false;
+    private bool isContainDigits = false;
+    private bool isContainSpecialCharacters = false;
+    private bool isLengthEqualToEight = false;
 
-        public PasswordValidation(string str)
+    public PasswordValidation(string pw)
+    {
+        passwordValidation(pw);
+    }
+
+    public bool checkingUpperCaseLetters(string pw)
+    {
+        foreach (char ch in pw)
         {
-            passwordValidation(str);
+            if (char.IsUpper(ch))
+            {
+                isContainUpperCaseLetters = true;
+                return isContainUpperCaseLetters;
+            }
         }
 
-        public bool checkingUpperCaseLetters(string str)
-        {
-            foreach (char ch in str)
-            {
-                if (char.IsUpper(ch))
-                {
-                    isContainUpperCaseLetters = true;
-                    return isContainUpperCaseLetters;
-                }
-            }
+        return isContainUpperCaseLetters;
+    }
 
-            return isContainUpperCaseLetters;
+    public bool checkingLowerCaseLetters(string pw)
+    {
+        foreach (char ch in pw)
+        {
+            if (char.IsLower(ch))
+            {
+                isContainLowerCaseLetters = true;
+                return isContainLowerCaseLetters;
+            }
         }
 
-        public bool checkingLowerCaseLetters(string str)
+        return isContainLowerCaseLetters;
+    }
+
+    public bool checkingLetters(string pw)
+    {
+        if (isContainLowerCaseLetters || isContainUpperCaseLetters)
         {
-            foreach (char ch in str)
-            {
-                if (char.IsLower(ch))
-                {
-                    isContainLowerCaseLetters = true;
-                    return isContainLowerCaseLetters;
-                }
-            }
-
-            return isContainLowerCaseLetters;
-        }
-
-        public bool chekingLetters(string str)
-        {
-            if (isContainLowerCaseLetters || isContainUpperCaseLetters)
-            {
-                isContainLetters = true;
-                return isContainLetters;
-            }
-
+            isContainLetters = true;
             return isContainLetters;
         }
 
-        public bool chekingDigits(string str)
-        {
-            foreach (char ch in str)
-            {
-                if (char.IsDigit(ch))
-                {
-                    isContainDigits = true;
-                    return isContainDigits;
-                }
-            }
+        return isContainLetters;
+    }
 
-            return isContainDigits;
+    public bool checkingDigits(string pw)
+    {
+        foreach (char ch in pw)
+        {
+            if (char.IsDigit(ch))
+            {
+                isContainDigits = true;
+                return isContainDigits;
+            }
         }
 
-        public bool chekingSpecialCharacters(string str)
+        return isContainDigits;
+    }
+
+    public bool checkingSpecialCharacters(string pw)
+    {
+        string specialChars = "!@#$%&*-_/"; // list of special characters to check for
+        foreach (char ch in specialChars)
         {
-            string specialChars = "!@#$%&*-_/"; // list of special characters to check for
-            foreach (char ch in specialChars)
+            if (pw.Contains(ch))
             {
-                if (str.Contains(ch))
-                {
-                    isContainSpecialCharacters = true;
-                    return isContainSpecialCharacters;
-                }
+                isContainSpecialCharacters = true;
+                return isContainSpecialCharacters;
             }
-            return isContainSpecialCharacters;
         }
 
-        public bool chekingLength(string str)
-        {
-            if (str.Length == 8)
-            {
-                isLengthEqualToEight = true;
-                return isLengthEqualToEight;
-            }
+        return isContainSpecialCharacters;
+    }
 
+    public bool checkingLength(string pw)
+    {
+        if (pw.Length == 8)
+        {
+            isLengthEqualToEight = true;
             return isLengthEqualToEight;
         }
 
-        public void passwordProblemsHandler()
+        return isLengthEqualToEight;
+    }
+
+    public void passwordProblemsHandler()
+    {
+        if (!isContainUpperCaseLetters)
         {
-            if (!isContainUpperCaseLetters)
-            {
-                passwordErrorMessage= "password must have uppercase letters!";
-                return;
-            }
-
-            if (!isContainLowerCaseLetters)
-            {
-                passwordErrorMessage= "password must have lowercase letters!";
-                return;
-            }
-
-            if (!isContainLetters)
-            {
-                passwordErrorMessage= "password must have letters!";
-                return;
-            }
-
-            if (!isContainDigits)
-            {
-                passwordErrorMessage= "password must have digits!";
-                return;
-            }
-
-            if (!isContainSpecialCharacters)
-            {
-                passwordErrorMessage= "password must have special characters!";
-                return;
-            }
-
-            if (!isLengthEqualToEight)
-            {
-                passwordErrorMessage= "password must have 8 characters!";
-                return;
-            }
-            
+            passwordErrorMessage = "password must have uppercase letters!";
+            return;
         }
-        public bool passwordValidation(string str)
+
+        if (!isContainLowerCaseLetters)
         {
-            checkingUpperCaseLetters(str);
-            checkingLowerCaseLetters(str);
-            chekingDigits(str);
-            chekingLetters(str);
-            chekingSpecialCharacters(str);
-            chekingLength(str);
-            
-            if ((isContainUpperCaseLetters) && (isContainLowerCaseLetters) && (isContainLetters) && (isContainDigits) &&
-                (isContainSpecialCharacters) && (isLengthEqualToEight))
-            {
-                passwordContext = str;
-                isValidPassword = true;
-                return isValidPassword;
-            }
-            else
-            {
-                isValidPassword = false;
-                passwordProblemsHandler();
-                return isValidPassword;
-            }
+            passwordErrorMessage = "password must have lowercase letters!";
+            return;
+        }
+
+        if (!isContainLetters)
+        {
+            passwordErrorMessage = "password must have letters!";
+            return;
+        }
+
+        if (!isContainDigits)
+        {
+            passwordErrorMessage = "password must have digits!";
+            return;
+        }
+
+        if (!isContainSpecialCharacters)
+        {
+            passwordErrorMessage = "password must have special characters!";
+            return;
+        }
+
+        if (!isLengthEqualToEight)
+        {
+            passwordErrorMessage = "password must have 8 characters!";
+            return;
         }
     }
 
+    public bool passwordValidation(string pw)
+    {
+        checkingUpperCaseLetters(pw);
+        checkingLowerCaseLetters(pw);
+        checkingDigits(pw);
+        checkingLetters(pw);
+        checkingSpecialCharacters(pw);
+        checkingLength(pw);
+
+        if ((isContainUpperCaseLetters) && (isContainLowerCaseLetters) && (isContainLetters) && (isContainDigits) &&
+            (isContainSpecialCharacters) && (isLengthEqualToEight))
+        {
+            passwordContext = pw;
+            isValidPassword = true;
+            return isValidPassword;
+        }
+        else
+        {
+            isValidPassword = false;
+            passwordProblemsHandler();
+            return isValidPassword;
+        }
+    }
+}
+
 public class MobilePhoneValidation
 {
-        public string mobilePhoneContext;
-        public string moileErrorMessage;
-        public bool isValidMobilePhone = false;
-        public bool isContainDigits = true;
-        public bool isStartsWithZeroAndNine = false;
-        public bool isLengthEqualsToEleven = false;
+    public string mobilePhoneContext;
+    public string moibleErrorMessage;
+    public bool isValidMobilePhone = false;
+    public bool isContainDigits = true;
+    public bool isStartsWithZeroAndNine = false;
+    public bool isLengthEqualsToEleven = false;
 
-        public MobilePhoneValidation(string pn)
+    public MobilePhoneValidation(string pn)
+    {
+        mobilePhoneValidator(pn);
+    }
+
+    public bool checkingDigits(string pn)
+    {
+        foreach (char ch in pn)
         {
-            mobilePhoneValidator(pn);
-        }
-        public bool chekingDigits(string pn)
-        {
-            foreach (char ch in pn)
+            if (!char.IsDigit(ch))
             {
-                if (!char.IsDigit(ch))
-                {
-                    isContainDigits = false;
-                    return isContainDigits;
-                }
+                isContainDigits = false;
+                return isContainDigits;
             }
-            return isContainDigits;
         }
 
-        public bool chekingStartsWithZeroAndNine(string pn)
-        {
-            if (pn[0] == '0' && pn[1] == '9')
-            {
-                isStartsWithZeroAndNine = true;
-                return isStartsWithZeroAndNine;
-            }
+        return isContainDigits;
+    }
 
+    public bool checkingStartsWithZeroAndNine(string pn)
+    {
+        if (pn[0] == '0' && pn[1] == '9')
+        {
+            isStartsWithZeroAndNine = true;
             return isStartsWithZeroAndNine;
         }
 
-        public bool chekingLengthEqualsToEleven(string pn)
-        {
-            if (pn.Length == 11)
-            {
-                isLengthEqualsToEleven = true;
-                return isLengthEqualsToEleven;
-            }
+        return isStartsWithZeroAndNine;
+    }
 
+    public bool checkingLengthEqualsToEleven(string pn)
+    {
+        if (pn.Length == 11)
+        {
+            isLengthEqualsToEleven = true;
             return isLengthEqualsToEleven;
         }
 
-        public void mobilePhoneProblemsHandler()
-        {
-            if (!isContainDigits)
-            {
-                moileErrorMessage= "phone number must contain numbers!";
-                return;
-            }
+        return isLengthEqualsToEleven;
+    }
 
-            if (!isStartsWithZeroAndNine)
-            {
-                moileErrorMessage= "phone number must start with 09 !";
-                return;
-            }
-
-            if (!isLengthEqualsToEleven)
-            {
-                moileErrorMessage= "phone number must have 11 digits!";
-                return;
-            }
-        }
-        public bool mobilePhoneValidator(string pn)
+    public void mobilePhoneProblemsHandler()
+    {
+        if (!isContainDigits)
         {
-            chekingDigits(pn);
-            chekingStartsWithZeroAndNine(pn);
-            chekingLengthEqualsToEleven(pn);
-            
-            if ((isStartsWithZeroAndNine) && (isLengthEqualsToEleven) && (isContainDigits))
-            {
-                mobilePhoneContext = pn;
-                isValidMobilePhone = true;
-                return isValidMobilePhone;
-            }
-            else
-            {
-                isValidMobilePhone = false;
-                mobilePhoneProblemsHandler();
-                return isValidMobilePhone;
-            }
-           
+            moibleErrorMessage = "phone number must contain numbers!";
+            return;
         }
+
+        if (!isStartsWithZeroAndNine)
+        {
+            moibleErrorMessage = "phone number must start with 09 !";
+            return;
+        }
+
+        if (!isLengthEqualsToEleven)
+        {
+            moibleErrorMessage = "phone number must have 11 digits!";
+            return;
+        }
+    }
+
+    public bool mobilePhoneValidator(string pn)
+    {
+        checkingDigits(pn);
+        checkingStartsWithZeroAndNine(pn);
+        checkingLengthEqualsToEleven(pn);
+
+        if ((isStartsWithZeroAndNine) && (isLengthEqualsToEleven) && (isContainDigits))
+        {
+            mobilePhoneContext = pn;
+            isValidMobilePhone = true;
+            return isValidMobilePhone;
+        }
+        else
+        {
+            isValidMobilePhone = false;
+            mobilePhoneProblemsHandler();
+            return isValidMobilePhone;
+        }
+    }
 }
-

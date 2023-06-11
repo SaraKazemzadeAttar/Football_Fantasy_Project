@@ -12,7 +12,7 @@ using System.Security.AccessControl;
 namespace SignUPAndLoginSection.DataAccessLayer;
 
 
-public partial class signUp
+public class signUp
 {
 
     public static bool doesEmailExistBefore(EmailValidation email_)
