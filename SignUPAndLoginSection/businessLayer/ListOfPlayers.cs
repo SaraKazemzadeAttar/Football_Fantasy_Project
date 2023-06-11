@@ -7,6 +7,7 @@ using ServiceStack;
 using ServiceStack.Text;
 using System.Text.Json;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SignUPAndLoginSection.businessLayer;
 
@@ -25,6 +26,7 @@ public class ListOfPlayers
 public class Player
 {
     public string first_name;
+    [Key]
     public int id;
     public int now_cost;
     public string second_name;
