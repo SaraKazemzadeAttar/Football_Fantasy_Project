@@ -9,7 +9,7 @@ namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class FootballPlayersData
 {
-    public List<Player> elements ;
+    public List<businessLayer.Player> elements ;
     
     public void insertPlayersInDataBase()
     {
