@@ -8,4 +8,7 @@ public class User
         public string fullname;
         public string password;
         public string mobilePhone;
+        public string OTPCode;
+        public bool OTPCodeValidation;
+        public string OTPEmail;
 }

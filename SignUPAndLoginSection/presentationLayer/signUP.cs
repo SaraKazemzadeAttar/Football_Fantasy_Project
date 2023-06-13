@@ -18,6 +18,8 @@ public class User
     public string email { get; set; }
     public string mobilePhone { get; set; }
     public string userName { get; set; }
+    public string OTPEmail{ get; set; }
+    public string OTPCode{ get; set; }
 }
 
 public class SignUp

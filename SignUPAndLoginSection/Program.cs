@@ -12,7 +12,7 @@ namespace SignUPAndLoginSection
         public static void Main(string[] args)
         {
             OTP otp = new OTP();
-            otp.send_code();
+            otp.send_code(Model.User user);
 
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
