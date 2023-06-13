@@ -63,9 +63,9 @@ public class SignUp
 
         if (user.isValidUser)
         {
-            bool emailExistence = DataAccessLayer.signUp.doesEmailExistBefore(u.email);
-            bool phoneNumberExistence = DataAccessLayer.signUp.doesPhoneNumberExistBefore(u.mobilePhone);
-            bool userNameExistence = DataAccessLayer.signUp.doesUserNameExistBefore(u.userName);
+            bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(u.email) ;
+            bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(u.mobilePhone);
+            bool userNameExistence = businessLayer.checkEmail_Phone_Username.isUsernameExist(u.userName);
 
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {

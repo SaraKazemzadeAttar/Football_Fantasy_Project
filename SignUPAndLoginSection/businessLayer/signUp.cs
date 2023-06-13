@@ -72,5 +72,39 @@ public class UserValidator
             return;
         }
     }
+
+}
+
+public class checkEmail_Phone_Username
+{
+    public static bool isEmailExist(Email e)
+    {
+        if (DataAccessLayer.signUp.doesEmailExistBefore(e))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool isPhoneExist(MobilePhone m)
+    {
+        if (DataAccessLayer.signUp.doesPhoneNumberExistBefore(m))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool isUsernameExist(UserName un)
+    {
+        if (DataAccessLayer.signUp.doesUserNameExistBefore(un))
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
 
