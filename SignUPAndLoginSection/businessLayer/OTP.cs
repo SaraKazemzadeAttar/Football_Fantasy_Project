@@ -1,14 +1,17 @@
 using SignUPAndLoginSection.businessLayer;
 using SignUPAndLoginSection.Model;
+using SignUPAndLoginSection.presentationLayer;
 
-namespace SignUPAndLoginSection;
+namespace  SignUPAndLoginSection.businessLayer;
+
+
 using System;
 using System.Net;
 using System.Net.Mail;
 
 public class OTP
 {
-    public string GenerateRandomCode()
+    public static string GenerateRandomCode()
     {
         Random random = new Random();
         int randomNumber = random.Next(1000, 10000);
@@ -33,13 +36,13 @@ public class OTP
         smtp.Send(mail);
     }
 
-    public void ValidatinOTPCode(Model.User u)
+    public static void  ValidatinOTPCode(Model.User u)
     {
         using (var db = new DataBase())
         {
-            foreach (var user in db.userTable)
+            foreach (var email in db.userTable)
             {
-                if (u.OTPEmail.Equals(u.email) && GenerateRandomCode().Equals(u.OTPCode))
+                if (email.Equals(u.email) && GenerateRandomCode().Equals(u.OTPCode))
                     u.OTPCodeValidation = true;
 
                 else
