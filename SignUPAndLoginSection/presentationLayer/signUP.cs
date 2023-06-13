@@ -34,6 +34,7 @@ public class SignUp
         FullNameValidation fv = new FullNameValidation(PU.fullName);
         PasswordValidation pv = new PasswordValidation(PU.password);
         MobilePhoneValidation mv = new MobilePhoneValidation(PU.mobilePhone);
+
         
         BU.userName = uv;
         BU.email = ev;

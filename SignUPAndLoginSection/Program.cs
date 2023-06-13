@@ -18,6 +18,9 @@ namespace SignUPAndLoginSection
             var app = builder.Build();
             app.MapPost("/login", presentationLayer.login.loginApi);
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
+            app.MapPost("/signUp", businessLayer.OTP.ValidatinOTPCode);
+           
+
 
             app.Run("http://localhost:3001");
         }
