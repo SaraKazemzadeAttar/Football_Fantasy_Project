@@ -3,7 +3,9 @@ using System.Net;
 using System.Net.Mail;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.businessLayer;
+using SignUPAndLoginSection.Model;
 using SignUPAndLoginSection.presentationLayer;
+using User = SignUPAndLoginSection.Model.User;
 
 namespace SignUPAndLoginSection
 {
@@ -12,7 +14,8 @@ namespace SignUPAndLoginSection
         public static void Main(string[] args)
         {
             OTP otp = new OTP();
-            otp.send_code(Model.User user);
+            Model.User u = new User();
+            otp.send_code(u);
 
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();

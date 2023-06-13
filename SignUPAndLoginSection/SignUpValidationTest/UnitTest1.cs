@@ -1,4 +1,6 @@
 using SignUPAndLoginSection.DataAccessLayer;
+using SignUPAndLoginSection.presentationLayer;
+
 namespace SignUpTest;
 using SignUPAndLoginSection;
 
@@ -10,7 +12,7 @@ public class program
         public void ValidEmail_ReturnsTrue()
         {
             string email = "example@gmail.com";
-            email emailObj = new email(email);
+            Email emailObj = new Email(email);
 
             bool isValid = emailObj.isValidEmail;
 
@@ -21,7 +23,7 @@ public class program
         public void InvalidEmail_ReturnsFalse()
         {
             string email = "invalid_email";
-            email emailObj = new email(email);
+            Email emailObj = new Email(email);
 
             bool isValid = emailObj.isValidEmail;
 
@@ -32,7 +34,7 @@ public class program
         public void EmptyEmail_ReturnsFalse()
         {
             string email = "";
-            email emailObj = new email(email);
+            Email emailObj = new Email(email);
 
             bool isValid = emailObj.isValidEmail;
             string errorMessage = emailObj.emailErrorMassage;
@@ -49,7 +51,7 @@ public class program
         public void CheckingLetters_ValidUsernameWithLetters_ReturnsTrue()
         {
             string validUsername = "Sara1234";
-            userName user = new userName(validUsername);
+            UserName user = new UserName(validUsername);
 
             bool result = user.checkingLetters(validUsername);
 
@@ -60,7 +62,7 @@ public class program
         public void CheckingLetters_InvalidUsernameWithoutLetters_ReturnsFalse()
         {
             string invalidUsername = "12345";
-            userName user = new userName(invalidUsername);
+            UserName user = new UserName(invalidUsername);
 
             bool result = user.checkingLetters(invalidUsername);
 
@@ -71,7 +73,7 @@ public class program
         public void CheckingDigits_ValidUsernameWithDigits_ReturnsTrue()
         {
             string validUsername = "maneli123";
-            userName user = new userName(validUsername);
+            UserName user = new UserName(validUsername);
 
             bool result = user.checkingDigits(validUsername);
 
@@ -81,8 +83,8 @@ public class program
         [Test]
         public void CheckingDigits_InvalidUsernameWithoutDigits_ReturnsFalse()
         {
-            string invalidUsername = "reyhaneh";
-            userName user = new userName(invalidUsername);
+            string invalidUsername = "reyhaneh"; 
+            UserName user = new UserName(invalidUsername);
 
             bool result = user.checkingDigits(invalidUsername);
 
@@ -93,7 +95,7 @@ public class program
         public void ChekingDashOrUnderscore_ValidUsernameWithDashOrUnderscore_ReturnsTrue()
         {
             string validUsername = "qwe_doe";
-            userName user = new userName(validUsername);
+            UserName user = new UserName(validUsername);
 
             bool result = user.chekingDashOrUnderscore(validUsername);
 
@@ -104,7 +106,7 @@ public class program
         public void ChekingDashOrUnderscore_InvalidUsernameWithoutDashOrUnderscore_ReturnsFalse()
         {
             string invalidUsername = "abcdef";
-            userName user = new userName(invalidUsername);
+            UserName user = new userName(invalidUsername);
 
             bool result = user.chekingDashOrUnderscore(invalidUsername);
 
@@ -115,7 +117,7 @@ public class program
         public void NumberOfDashAndUnderscore_ValidUsernameWithDashAndUnderscore_CountsCorrectly()
         {
             string validUsername = "Ali_Ahmadi-123";
-            userName user = new userName(validUsername);
+            UserName user = new UserName(validUsername);
 
             user.numberOfDashAndUnderscore(validUsername);
 
@@ -127,7 +129,7 @@ public class program
         public void NumberOfDashAndUnderscore_InvalidUsernameWithoutDashOrUnderscore_ReturnsZero()
         {
             string invalidUsername = "mohammadreza";
-            userName user = new userName(invalidUsername);
+            UserName user = new UserName(invalidUsername);
 
             user.numberOfDashAndUnderscore(invalidUsername);
 
@@ -139,7 +141,7 @@ public class program
         public void ChekingDashOrUnderscoreInStart_And_CheckingLetters_ValidUsername_ReturnsTrue()
         {
             string validUsername = "asdf_dpe";
-            userName user = new userName(validUsername);
+            UserName user = new UserName(validUsername);
 
             bool result1 = user.chekingDashOrUnderscoreInStart(validUsername);
             bool result2 = user.checkingLetters(validUsername);
@@ -152,7 +154,7 @@ public class program
         public void ChekingDashOrUnderscoreInStart_And_CheckingLetters_InvalidUsername_ReturnsFalse()
         {
             string invalidUsername = "123_amirali";
-            userName user = new userName(invalidUsername);
+            UserName user = new UserName(invalidUsername);
 
             bool result1 = user.chekingDashOrUnderscoreInStart(invalidUsername);
             bool result2 = user.checkingLetters(invalidUsername);
@@ -165,7 +167,7 @@ public class program
         public void ChekingDashOrUnderscoreInEnd_ValidUsernameWithDashOrUnderscore_ReturnsTrue()
         {
             string validUsername = "hello_";
-            userName user = new userName(validUsername);
+            UserName user = new UserName(validUsername);
 
             bool result = user.chekingDashOrUnderscoreInEnd(validUsername);
 
@@ -176,7 +178,7 @@ public class program
         public void ChekingDashOrUnderscoreInEnd_InvalidUsernameWithoutDashOrUnderscore_ReturnsFalse()
         {
             string invalidUsername = "happyyyy";
-            userName user = new userName(invalidUsername);
+            UserName user = new UserName(invalidUsername);
 
             bool result = user.chekingDashOrUnderscoreInEnd(invalidUsername);
 
@@ -198,7 +200,7 @@ public class program
         public void UsernameProblemsHandler_InvalidUsername_ReturnsErrorMessage()
         {
             string invalidUsername = "-nazanin_";
-            userName user = new userName(invalidUsername);
+            UserName user = new UserName(invalidUsername);
 
             user.usernameProblemsHandler();
 
@@ -212,7 +214,7 @@ public class program
         public void ChekingLetters_ValidFullNameWithOnlyLetters_ReturnsTrue()
         {
             string validFullName = "Pooria Abbasi";
-            fullName name = new fullName(validFullName);
+            FullName name = new FullName(validFullName);
 
             bool result = name.chekingLetters(validFullName);
 
@@ -498,7 +500,7 @@ public class program
          public void mobilePhoneProblemsHandlerTest_InvalidMobilePhone_ReturnsErrorMessage()
          {
              string invalidMobilePhone = "09s23456789";
-             mobilePhone phoneNum = new mobilePhone(invalidMobilePhone);
+             MobilePhone phoneNum = new MobilePhone(invalidMobilePhone);
         
              phoneNum.mobilePhoneProblemsHandler();
         
@@ -509,7 +511,7 @@ public class program
         public void mobilePhoneValidatorTest_CheckValidMobilePhoneWithAllConditions_ReturnsTrue()
         {
             string validMobilePhone = "09109283765";
-            mobilePhone phoneNum = new mobilePhone(validMobilePhone);
+            MobilePhone phoneNum = new MobilePhone(validMobilePhone);
 
             bool result = phoneNum.chekingDigits(validMobilePhone);
             Assert.AreEqual(true, result);
