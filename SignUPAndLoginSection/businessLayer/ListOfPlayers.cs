@@ -35,6 +35,4 @@ public class Player
 
     public int total_points;
     // photo ->string
-    
-    
 }
