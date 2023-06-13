@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUPAndLoginSection", "SignUPAndLoginSection.csproj", "{ECEE2B31-6278-42E5-8CB5-091052CB5C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUpTest", "SignUpTest\SignUpTest.csproj", "{B2FA6B48-9FCF-4939-87B1-C63A0DAC0F2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUpValidationTest", "SignUpValidationTest\SignUpValidationTest.csproj", "{14D0CCFB-F936-469B-9299-8A4241CFFC1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		{ECEE2B31-6278-42E5-8CB5-091052CB5C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECEE2B31-6278-42E5-8CB5-091052CB5C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECEE2B31-6278-42E5-8CB5-091052CB5C0C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2FA6B48-9FCF-4939-87B1-C63A0DAC0F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2FA6B48-9FCF-4939-87B1-C63A0DAC0F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2FA6B48-9FCF-4939-87B1-C63A0DAC0F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2FA6B48-9FCF-4939-87B1-C63A0DAC0F2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D0CCFB-F936-469B-9299-8A4241CFFC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D0CCFB-F936-469B-9299-8A4241CFFC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D0CCFB-F936-469B-9299-8A4241CFFC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D0CCFB-F936-469B-9299-8A4241CFFC1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
