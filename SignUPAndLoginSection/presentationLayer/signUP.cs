@@ -44,8 +44,20 @@ public class SignUp
         return BU;
 
     }
+    
+    public static presentationLayer.User convertBusi_UserToPres_User(businessLayer.User BU)
+    {
+        presentationLayer.User PU = new presentationLayer.User();
+        PU.userName = BU.userName.ToString();
+        PU.email = BU.email.ToString();
+        PU.fullName = BU.fullname.ToString();
+        PU.password = BU.password.ToString();
+        PU.mobilePhone = BU.mobilePhone.ToString();
 
- 
+        return PU;
+
+    }
+
     public static IResult signUPAPI(presentationLayer.User input)
     {
         businessLayer.User u = new businessLayer.User();
@@ -60,8 +72,9 @@ public class SignUp
             
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
-                DataAccessLayer.signUp.insertUserToDataBase(u);
-
+                presentationLayer.User u2 = new presentationLayer.User();
+                u2 = convertBusi_UserToPres_User(u);
+                DataAccessLayer.signUp.insertUserToDataBase(u2);
                 return Results.Ok(new
                     {
                         message = "signUp was successful!"

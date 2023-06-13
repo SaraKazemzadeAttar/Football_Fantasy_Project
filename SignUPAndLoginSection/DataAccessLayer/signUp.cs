@@ -13,7 +13,6 @@ using User = SignUPAndLoginSection.businessLayer.User;
 
 namespace SignUPAndLoginSection.DataAccessLayer;
 
-
 public class signUp
 {
     public static bool doesEmailExistBefore(EmailValidation email_)
@@ -43,7 +42,7 @@ public class signUp
             }
         }
 
-        return false ;
+        return false;
     }
 
     public static bool doesUserNameExistBefore(UserNameValidation userName_)
@@ -62,7 +61,7 @@ public class signUp
         return false;
     }
 
-    public static void insertUserToDataBase(Model.User u)
+    public static void insertUserToDataBase(presentationLayer.User u)
     {
         using (var db = new DataBase())
         {
@@ -71,9 +70,3 @@ public class signUp
         }
     }
 }
-
-
-
-
-
-

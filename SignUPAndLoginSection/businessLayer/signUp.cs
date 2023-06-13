@@ -16,7 +16,7 @@ public class User
 }
 public class UserValidator
 {
-    public businessLayer.User u;
+    public businessLayer.User u = new businessLayer.User();
     public bool isValidUser = false;
     public string validationErrorMessage = "";
     

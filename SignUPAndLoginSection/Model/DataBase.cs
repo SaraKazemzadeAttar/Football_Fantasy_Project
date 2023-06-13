@@ -5,8 +5,8 @@ using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
-namespace SignUPAndLoginSection.Model;
 
+namespace SignUPAndLoginSection.Model;
 
 public class DataBase : DbContext
 {
