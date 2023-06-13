@@ -16,11 +16,10 @@ namespace SignUPAndLoginSection
 
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
-
             app.MapPost("/login", presentationLayer.login.loginApi);
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
-            
-            app.Run("http://localhost3001");
+
+            app.Run("http://localhost:3001");
         }
     }
 }

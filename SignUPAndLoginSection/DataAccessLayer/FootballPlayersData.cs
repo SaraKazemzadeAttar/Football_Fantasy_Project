@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
+using SignUPAndLoginSection.Model;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.presentationLayer;
 using SignUPAndLoginSection.businessLayer;

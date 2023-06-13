@@ -1,17 +1,16 @@
 using SignUPAndLoginSection.presentationLayer;
-
-namespace SignUPAndLoginSection.DataAccessLayer;
 using System;
 using SignUPAndLoginSection.DataAccessLayer;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
-using System.Security.AccessControl;
+namespace SignUPAndLoginSection.Model;
+
 
 public class DataBase : DbContext
 {
-    public DbSet<businessLayer.User> userTable { get; set; }
+    public DbSet<User> userTable { get; set; }
     public DbSet<businessLayer.Player> playerTable { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)
@@ -19,4 +18,3 @@ public class DataBase : DbContext
         contextOptionsBuilder.UseSqlite("Data source=database.db");
     }
 }
-
