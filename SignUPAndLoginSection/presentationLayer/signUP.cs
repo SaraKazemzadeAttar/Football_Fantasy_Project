@@ -18,23 +18,22 @@ public class User
     public string email { get; set; }
     public string mobilePhone { get; set; }
     public string userName { get; set; }
-    public string OTPCode{ get; set; }
+    public string OTPCode { get; set; }
 }
 
 public class SignUp
 {
-
     public static businessLayer.User convertPres_UserToBusi_User(presentationLayer.User PU)
     {
         businessLayer.User BU = new businessLayer.User();
-        
-        UserNameValidation uv = new UserNameValidation(PU.userName);
-        EmailValidation ev = new EmailValidation(PU.email);
-        FullNameValidation fv = new FullNameValidation(PU.fullName);
-        PasswordValidation pv = new PasswordValidation(PU.password);
-        MobilePhoneValidation mv = new MobilePhoneValidation(PU.mobilePhone);
 
-        
+        UserName uv = new UserName(PU.userName);
+        Email ev = new Email(PU.email);
+        FullName fv = new FullName(PU.fullName);
+        Password pv = new Password(PU.password);
+        MobilePhone mv = new MobilePhone(PU.mobilePhone);
+
+
         BU.userName = uv;
         BU.email = ev;
         BU.fullname = fv;
@@ -42,9 +41,8 @@ public class SignUp
         BU.mobilePhone = mv;
 
         return BU;
-
     }
-    
+
     public static presentationLayer.User convertBusi_UserToPres_User(businessLayer.User BU)
     {
         presentationLayer.User PU = new presentationLayer.User();
@@ -55,7 +53,6 @@ public class SignUp
         PU.mobilePhone = BU.mobilePhone.ToString();
 
         return PU;
-
     }
 
     public static IResult signUPAPI(presentationLayer.User input)
@@ -69,7 +66,7 @@ public class SignUp
             bool emailExistence = DataAccessLayer.signUp.doesEmailExistBefore(u.email);
             bool phoneNumberExistence = DataAccessLayer.signUp.doesPhoneNumberExistBefore(u.mobilePhone);
             bool userNameExistence = DataAccessLayer.signUp.doesUserNameExistBefore(u.userName);
-            
+
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
                 presentationLayer.User u2 = new presentationLayer.User();
@@ -101,7 +98,7 @@ public class SignUp
     }
 }
 
-public class UserNameValidation
+public class UserName
 {
     public bool isValidUsername = false;
     public string userNameContext;
@@ -114,7 +111,7 @@ public class UserNameValidation
     public int numberOfDash = 0;
     public int numberOfUnderscore = 0;
 
-    public UserNameValidation(string un)
+    public UserName(string un)
     {
         usernameValidator(un);
     }
@@ -272,12 +269,12 @@ public class UserNameValidation
     }
 }
 
-public class EmailValidation
+public class Email
 {
     public bool isValidEmail = false;
     public string emailErrorMassage = "";
 
-    public EmailValidation(string e)
+    public Email(string e)
     {
         emailValidator(e);
     }
@@ -297,7 +294,7 @@ public class EmailValidation
     }
 }
 
-public class FullNameValidation
+public class FullName
 {
     public string nameContext;
     public bool isValidFullName = false;
@@ -322,7 +319,7 @@ public class FullNameValidation
         return isContainLetters;
     }
 
-    public FullNameValidation(string fn)
+    public FullName(string fn)
     {
         fullNAmeValidator(fn);
     }
@@ -343,7 +340,7 @@ public class FullNameValidation
     }
 }
 
-public class PasswordValidation
+public class Password
 {
     public string passwordContext;
     public bool isValidPassword = false;
@@ -355,7 +352,7 @@ public class PasswordValidation
     private bool isContainSpecialCharacters = false;
     private bool isLengthEqualToEight = false;
 
-    public PasswordValidation(string pw)
+    public Password(string pw)
     {
         passwordValidation(pw);
     }
@@ -503,7 +500,7 @@ public class PasswordValidation
     }
 }
 
-public class MobilePhoneValidation
+public class MobilePhone
 {
     public string mobilePhoneContext;
     public string moibleErrorMessage;
@@ -512,7 +509,7 @@ public class MobilePhoneValidation
     public bool isStartsWithZeroAndNine = false;
     public bool isLengthEqualsToEleven = false;
 
-    public MobilePhoneValidation(string pn)
+    public MobilePhone(string pn)
     {
         mobilePhoneValidator(pn);
     }

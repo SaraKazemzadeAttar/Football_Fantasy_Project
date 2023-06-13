@@ -15,7 +15,7 @@ namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class signUp
 {
-    public static bool doesEmailExistBefore(EmailValidation email_)
+    public static bool doesEmailExistBefore(Email email_)
     {
         using (var db = new DataBase())
         {
@@ -29,7 +29,7 @@ public class signUp
         return false;
     }
 
-    public static bool doesPhoneNumberExistBefore(MobilePhoneValidation num_)
+    public static bool doesPhoneNumberExistBefore(MobilePhone num_)
     {
         using (var db = new DataBase())
         {
@@ -45,7 +45,7 @@ public class signUp
         return false;
     }
 
-    public static bool doesUserNameExistBefore(UserNameValidation userName_)
+    public static bool doesUserNameExistBefore(UserName userName_)
     {
         using (var db = new DataBase())
         {

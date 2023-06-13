@@ -10,7 +10,7 @@ namespace SignUPAndLoginSection.Model;
 
 public class DataBase : DbContext
 {
-    public DbSet<User> userTable { get; set; }
+    public DbSet<presentationLayer.User> userTable { get; set; }
     public DbSet<businessLayer.Player> playerTable { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)

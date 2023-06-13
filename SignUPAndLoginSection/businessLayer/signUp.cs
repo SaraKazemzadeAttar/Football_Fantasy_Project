@@ -7,11 +7,11 @@ namespace SignUPAndLoginSection.businessLayer;
 public class User
 {
     public int userId ;
-    public UserNameValidation userName;
-    public EmailValidation email;
-    public FullNameValidation fullname;
-    public PasswordValidation password;
-    public MobilePhoneValidation mobilePhone;
+    public UserName userName;
+    public Email email;
+    public FullName fullname;
+    public Password password;
+    public MobilePhone mobilePhone;
 
 }
 public class UserValidator
