@@ -74,8 +74,7 @@ public static class SignUp
                 u2 = convertBusi_UserToPres_User(u);
                 string otp_code = OTP.GenerateRandomCode();
                 u2.OTPCode = otp_code;
-                Model.User user_ = new Model.User();
-                OTP.send_code(u2);
+                    OTP.send_code(u2);
                 DataAccessLayer.signUp.insertUserToDataBase(u2);
                 return Results.Ok(new
                     {
