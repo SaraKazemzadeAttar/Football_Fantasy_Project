@@ -701,3 +701,23 @@ C:\Users\User\Desktop\finalproject\Football_Fantasy_Project\SignUPAndLoginSectio
 C:\Users\User\Desktop\finalproject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.csproj.CopyComplete
 C:\Users\User\Desktop\finalproject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\SignUPAndLoginSection.genruntimeconfig.cache
 C:\Users\User\Desktop\finalproject\Football_Fantasy_Project\SignUPAndLoginSection\obj\Debug\net7.0\ref\SignUPAndLoginSection.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.Saml.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Microsoft.IdentityModel.Xml.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\NaCl.Core.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\nunit.framework.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\ScottBrady.IdentityModel.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\ScottBrady.IdentityModel.Tokens.Branca.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\ScottBrady.IdentityModel.Tokens.Paseto.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\ServiceStack.Text.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

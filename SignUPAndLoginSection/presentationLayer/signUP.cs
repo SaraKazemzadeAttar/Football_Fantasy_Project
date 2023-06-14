@@ -20,6 +20,8 @@ public class User
     public string userName { get; set; }
     public string OTPCode { get; set; }
     public bool isvalid { get; set; }
+    
+    public double cash { get; set; }
 }
 
 public static class SignUp

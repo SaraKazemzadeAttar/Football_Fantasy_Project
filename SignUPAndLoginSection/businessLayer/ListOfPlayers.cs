@@ -103,14 +103,14 @@ public class ListOfPlayers
 
 public class Player
 {
-    public string first_name;
+    public string first_name { get; set; }
     [Key]
-    public int id;
-    public int now_cost;
-    public string second_name;
-    public int team;
-    public int element_type;
+    public int id{ get; set; }
+    public int now_cost{ get; set; }
+    public string second_name{ get; set; }
+    public int team{ get; set; }
+    public int element_type{ get; set; }
 
-    public int total_points;
+    public int total_points{ get; set; }
     // photo ->string
 }
