@@ -13,6 +13,7 @@ namespace SignUPAndLoginSection
     {
         public static void Main(string[] args)
         {
+            DataAccessLayer.FootballPlayersData.insertPlayersInDataBase();
             OTP otp = new OTP();
             Model.User u = new User();
             otp.send_code(u);

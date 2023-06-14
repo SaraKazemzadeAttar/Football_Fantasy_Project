@@ -14,7 +14,7 @@ public class FootballPlayersData
 {
     public List<Player> elements ;
     
-    public void insertPlayersInDataBase()
+    public static void insertPlayersInDataBase()
     {
 
             using (var db = new DataBase())
