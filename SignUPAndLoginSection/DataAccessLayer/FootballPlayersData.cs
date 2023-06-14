@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
+ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.ComponentModel.DataAnnotations;
-using SignUPAndLoginSection.Model;
+using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.presentationLayer;
 using SignUPAndLoginSection.businessLayer;
@@ -26,4 +26,5 @@ public class FootballPlayersData
                 }
             }
     }
+   
 }

@@ -1,5 +1,5 @@
 using SignUPAndLoginSection.businessLayer;
-using SignUPAndLoginSection.Model;
+using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.presentationLayer;
 
 namespace  SignUPAndLoginSection.businessLayer;
@@ -18,7 +18,7 @@ public class OTP
         string strnum = randomNumber.ToString();
         return strnum;
     }
-    public void send_code(Model.User u)
+    public static void send_code(presentationLayer.User u)
     {
         MailMessage mail = new MailMessage();
         SmtpClient smtp = new SmtpClient("smtp.gmail.com");
@@ -36,20 +36,22 @@ public class OTP
         smtp.Send(mail);
     }
 
-    public static void  ValidatinOTPCode(Model.User u)
+    public static void  ValidatinOTPCode(presentationLayer.User u)
     {
         using (var db = new DataBase())
         {
             foreach (var email in db.userTable)
             {
                 if (email.Equals(u.email) && GenerateRandomCode().Equals(u.OTPCode))
-                    u.OTPCodeValidation = true;
+                    u.isvalid = true;
 
                 else
-                    u.OTPCodeValidation = false;
+                    u.isvalid = false;
             }
 
         }
         
     }
 }
+
+
