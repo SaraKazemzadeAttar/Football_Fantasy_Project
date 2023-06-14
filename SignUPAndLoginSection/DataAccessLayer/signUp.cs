@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using System.Security.AccessControl;
-using SignUPAndLoginSection.Model;
+using SignUPAndLoginSection.DataAccessLayer;
 using User = SignUPAndLoginSection.businessLayer.User;
 
 namespace SignUPAndLoginSection.DataAccessLayer;

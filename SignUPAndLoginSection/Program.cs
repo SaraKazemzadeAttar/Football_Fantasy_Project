@@ -3,9 +3,8 @@ using System.Net;
 using System.Net.Mail;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.businessLayer;
-using SignUPAndLoginSection.Model;
+using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.presentationLayer;
-using User = SignUPAndLoginSection.Model.User;
 
 namespace SignUPAndLoginSection
 {
@@ -13,7 +12,7 @@ namespace SignUPAndLoginSection
     {
         public static void Main(string[] args)
         {
-            
+            DataAccessLayer.FootballPlayersData.insertPlayersInDataBase();
 
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
