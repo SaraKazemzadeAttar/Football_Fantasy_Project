@@ -4140,34 +4140,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {}
+    "C:\\Users\\asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpValidationTest\\SignUpValidationTest.csproj",
+      "projectUniqueName": "C:\\Users\\asus\\Desktop\\projectInGIthub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpValidationTest\\SignUpValidationTest.csproj",
       "projectName": "SignUpValidationTest",
-      "projectPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpValidationTest\\SignUpValidationTest.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpValidationTest\\obj\\",
+      "projectPath": "C:\\Users\\asus\\Desktop\\projectInGIthub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpValidationTest\\SignUpValidationTest.csproj",
+      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\asus\\Desktop\\projectInGIthub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUpValidationTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
-              "projectPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj"
+            "C:\\Users\\asus\\Desktop\\projectInGIthub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
+              "projectPath": "C:\\Users\\asus\\Desktop\\projectInGIthub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj"
             }
           }
         }
