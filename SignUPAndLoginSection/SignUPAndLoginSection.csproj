@@ -35,6 +35,9 @@
       <_ContentIncludedByDefault Remove="SignUpTest\obj\project.assets.json" />
       <_ContentIncludedByDefault Remove="SignUpTest\obj\project.packagespec.json" />
       <_ContentIncludedByDefault Remove="SignUpTest\obj\SignUpTest.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="SignUpValidationTest\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="SignUpValidationTest\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="SignUpValidationTest\obj\SignUpValidationTest.csproj.nuget.dgspec.json" />
     </ItemGroup>
 
 </Project>

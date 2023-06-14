@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using System.Security.AccessControl;
 using SignUPAndLoginSection.DataAccessLayer;
-using SignUPAndLoginSection.Model;
+using SignUPAndLoginSection.DataAccessLayer;
 
 public class logIn
 {

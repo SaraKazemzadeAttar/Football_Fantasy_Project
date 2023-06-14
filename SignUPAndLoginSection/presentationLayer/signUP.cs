@@ -19,9 +19,10 @@ public class User
     public string mobilePhone { get; set; }
     public string userName { get; set; }
     public string OTPCode { get; set; }
+    public bool isvalid { get; set; }
 }
 
-public class SignUp
+public static class SignUp
 {
     public static businessLayer.User convertPres_UserToBusi_User(presentationLayer.User PU)
     {
@@ -71,12 +72,16 @@ public class SignUp
             {
                 presentationLayer.User u2 = new presentationLayer.User();
                 u2 = convertBusi_UserToPres_User(u);
+                string otp_code = OTP.GenerateRandomCode();
+                u2.OTPCode = otp_code;
+                    OTP.send_code(u2);
                 DataAccessLayer.signUp.insertUserToDataBase(u2);
                 return Results.Ok(new
                     {
                         message = "signUp was successful!"
                     }
                 );
+                
             }
             else
             {
