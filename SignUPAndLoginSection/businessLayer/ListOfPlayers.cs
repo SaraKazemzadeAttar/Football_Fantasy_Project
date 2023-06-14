@@ -28,13 +28,13 @@ public class ListOfPlayers
         players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
-            for (int j = 0; j < players.Count;j++)
+            for (int j = i; j < players.Count;j++)
             {
-                if (players[j].total_points > players[j + 1].total_points)
+                if (players[i].total_points > players[j].total_points)
                 {
-                    var temp = players[j];
-                    players[j] = players[j + 1];
-                    players[j + 1] = temp;
+                    var temp = players[i];
+                    players[i] = players[j ];
+                    players[j ] = temp;
                 }
             }
         }
@@ -46,13 +46,13 @@ public class ListOfPlayers
         players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
-            for (int j = 0; j < players.Count;j++)
+            for (int j = i; j < players.Count;j++)
             {
-                if (players[j].total_points < players[j + 1].total_points)
+                if (players[i].total_points < players[j ].total_points)
                 {
-                    var temp = players[j];
-                    players[j] = players[j + 1];
-                    players[j + 1] = temp;
+                    var temp = players[i];
+                    players[i] = players[j ];
+                    players[j ] = temp;
                 }
             }
         }
@@ -64,13 +64,13 @@ public class ListOfPlayers
         players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
-            for (int j = 0; j < players.Count;j++)
+            for (int j = i; j < players.Count;j++)
             {
-                if (players[j].now_cost > players[j + 1].now_cost)
+                if (players[i].now_cost > players[j].now_cost)
                 {
-                    var temp = players[j];
-                    players[j] = players[j + 1];
-                    players[j + 1] = temp;
+                    var temp = players[i];
+                    players[i] = players[j];
+                    players[j] = temp;
                 }
             }
         }
@@ -82,19 +82,21 @@ public class ListOfPlayers
         players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
-            for (int j = 0; j < players.Count;j++)
+            for (int j = i; j < players.Count;j++)
             {
-                if (players[j].now_cost < players[j + 1].now_cost)
+                if (players[i].now_cost < players[j].now_cost)
                 {
-                    var temp = players[j];
-                    players[j] = players[j + 1];
-                    players[j + 1] = temp;
+                    var temp = players[i];
+                    players[i] = players[j];
+                    players[j] = temp;
                 }
             }
         }
 
         return players;
     }
+    
+    
 
     
 }
