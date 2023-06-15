@@ -96,6 +96,27 @@ public class ListOfPlayers
         return players;
     }
     
+    public enum Post
+    {
+        Goalkeeper,
+        Defender,
+        Midfielder,
+        Forward
+    }
+    public static List<Player> FilterByPost(Post post)
+    {
+        List <Player> players = getListOfPlayers();
+        List <Player> posts= null;
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (post.Equals(players[i].element_type))
+            {
+                posts.Add(players[i]);
+            }
+        }
+
+        return posts;
+    }
     
 
     
