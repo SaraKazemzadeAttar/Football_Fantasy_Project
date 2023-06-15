@@ -10,17 +10,21 @@ using SignUPAndLoginSection.businessLayer;
 namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class SearchInPlayersList
-{
-    public static List<string> Searchingmethod(string entry)
+{    public List<string> fullName = new List<string>();
+    public List<string> FullNameOfPlayers()
     {
-        List<string> fullName = new List<string>();
-        List<string> foundNames = new List<string>();
-
         foreach (var player in ListOfPlayers.getListOfPlayers())
         {
             fullName.Add(player.first_name + player.second_name);
         }
 
+        return fullName;
+    }
+    public  List<string> Searchingmethod(string entry)
+    {
+        
+        List<string> foundNames = new List<string>();
+        
         foreach (var playerFullName in fullName)
         {
             if (playerFullName.Contains(entry))
