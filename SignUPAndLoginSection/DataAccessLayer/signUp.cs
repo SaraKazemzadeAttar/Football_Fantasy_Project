@@ -61,6 +61,11 @@ public class signUp
         return false;
     }
 
+
+    public static void setInitialCashForUser(presentationLayer.User u)
+    {
+        u.cash = 100;
+    }
     public static void insertUserToDataBase(presentationLayer.User u)
     {
         using (var db = new DataBase())
@@ -68,5 +73,8 @@ public class signUp
             db.userTable.Add(u);
             db.SaveChanges();
         }
+
+        setInitialCashForUser(u);
+        
     }
 }
