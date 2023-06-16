@@ -9,6 +9,8 @@ using System.Text.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.JSInterop.Implementation;
+using System.Threading;
+using CronNET;
 
 namespace SignUPAndLoginSection.businessLayer;
 
@@ -21,6 +23,35 @@ public class ListOfPlayers
         FootballPlayersData response = url.GetJsonFromUrl().FromJson<FootballPlayersData>();
 
         return response.elements;
+    }
+    
+    
+    
+    public List<string> fullName = new List<string>();
+    public List<string> FullNameOfPlayers()
+    {
+        foreach (var player in ListOfPlayers.getListOfPlayers())
+        {
+            fullName.Add(player.first_name + player.second_name);
+        }
+
+        return fullName;
+    }
+    public  List<string> Searchingmethod(string entry)
+    {
+        
+        List<string> foundNames = new List<string>();
+        
+        foreach (var playerFullName in fullName)
+        {
+            if (playerFullName.Contains(entry))
+            {
+                foundNames.Add(playerFullName);
+            }
+        }
+
+        return foundNames;
+
     }
 
     public static List<Player> sortedDesendingListOfPlayersByPoint(List<Player> players)
@@ -111,8 +142,7 @@ public class ListOfPlayers
         return posts;
     }
     
-
-    
+   
 }
 
 public class Player

@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "CronNET/1.1.4939.24773": {
+        "type": "package",
+        "compile": {
+          "lib/net40/CronNET.dll": {}
+        },
+        "runtime": {
+          "lib/net40/CronNET.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -960,6 +969,19 @@
           "lib/net6.0/NaCl.Core.dll": {}
         }
       },
+      "NCrontab.Signed/3.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NCrontab.Signed.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/NCrontab.Signed.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "NETStandard.Library/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -1408,6 +1430,18 @@
     }
   },
   "libraries": {
+    "CronNET/1.1.4939.24773": {
+      "sha512": "FXVnKOQaSfVG9O/B8RtdAUllp0QVm/wBDpz0jr48ce+Dz/I88t5w9wtFLI5KB/Xn4Dx7aML6iW6OAZlXykMSog==",
+      "type": "package",
+      "path": "cronnet/1.1.4939.24773",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "cronnet.1.1.4939.24773.nupkg.sha512",
+        "cronnet.nuspec",
+        "lib/net40/CronNET.dll"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -2529,6 +2563,24 @@
         "nacl.core.nuspec"
       ]
     },
+    "NCrontab.Signed/3.3.2": {
+      "sha512": "Ef9nJs/iIkM3hAcAEDD5dZy0cDFfmmPlhRAt/IPYcsWdMUHZ6MQLuqv5oA6TZrpvO6Sj8lq/B5njbJUMnxedLg==",
+      "type": "package",
+      "path": "ncrontab.signed/3.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "COPYING.txt",
+        "lib/net35/NCrontab.Signed.dll",
+        "lib/net35/NCrontab.Signed.pdb",
+        "lib/netstandard1.0/NCrontab.Signed.dll",
+        "lib/netstandard1.0/NCrontab.Signed.pdb",
+        "lib/netstandard2.0/NCrontab.Signed.dll",
+        "lib/netstandard2.0/NCrontab.Signed.pdb",
+        "ncrontab.signed.3.3.2.nupkg.sha512",
+        "ncrontab.signed.nuspec"
+      ]
+    },
     "NETStandard.Library/2.0.0": {
       "sha512": "7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
       "type": "package",
@@ -3459,6 +3511,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "CronNET >= 1.1.4939.24773",
       "Microsoft.AspNetCore.Mvc.DataAnnotations >= 2.2.0",
       "Microsoft.EntityFrameworkCore >= 8.0.0-preview.4.23259.3",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
@@ -3472,6 +3525,7 @@
       "Microsoft.IdentityModel.Tokens >= 6.30.1",
       "Microsoft.IdentityModel.Tokens.Saml >= 6.30.1",
       "Microsoft.NETCore.Platforms >= 8.0.0-preview.4.23259.5",
+      "NCrontab.Signed >= 3.3.2",
       "NUnit >= 3.13.3",
       "ScottBrady.IdentityModel.Tokens.Branca >= 3.0.0",
       "ScottBrady.IdentityModel.Tokens.Paseto >= 3.0.0",
@@ -3481,26 +3535,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
       "projectName": "SignUPAndLoginSection",
-      "projectPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3519,6 +3571,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "CronNET": {
+            "target": "Package",
+            "version": "[1.1.4939.24773, )"
+          },
           "Microsoft.AspNetCore.Mvc.DataAnnotations": {
             "target": "Package",
             "version": "[2.2.0, )"
@@ -3573,6 +3629,10 @@
             "target": "Package",
             "version": "[8.0.0-preview.4.23259.5, )"
           },
+          "NCrontab.Signed": {
+            "target": "Package",
+            "version": "[3.3.2, )"
+          },
           "NUnit": {
             "target": "Package",
             "version": "[3.13.3, )"
@@ -3620,5 +3680,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CronNET 1.1.4939.24773' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "CronNET",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

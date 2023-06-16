@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="CronNET" Version="1.1.4939.24773" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0-preview.4.23259.3" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
@@ -23,6 +24,7 @@
       <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.30.1" />
       <PackageReference Include="Microsoft.IdentityModel.Tokens.Saml" Version="6.30.1" />
       <PackageReference Include="Microsoft.NETCore.Platforms" Version="8.0.0-preview.4.23259.5" />
+      <PackageReference Include="NCrontab.Signed" Version="3.3.2" />
       <PackageReference Include="NUnit" Version="3.13.3" />
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Branca" Version="3.0.0" />
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Paseto" Version="3.0.0" />
