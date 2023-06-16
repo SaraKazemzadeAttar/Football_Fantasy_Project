@@ -2,7 +2,7 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class MyTeamPlayers
 {
-    public bool isMailPlayers;
+    public bool isMainPlayer;
 
     public void changeRoleOfPlayers()
     {

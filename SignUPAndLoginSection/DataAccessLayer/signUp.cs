@@ -70,11 +70,10 @@ public class signUp
     {
         using (var db = new DataBase())
         {
+            setInitialCashForUser(u);
             db.userTable.Add(u);
             db.SaveChanges();
         }
 
-        setInitialCashForUser(u);
-        
     }
 }

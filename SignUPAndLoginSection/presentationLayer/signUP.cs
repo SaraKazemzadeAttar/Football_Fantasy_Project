@@ -23,7 +23,6 @@ public class User
     
     public double cash {get; set; }
     
-    public List<MyTeamPlayers> myTeam = new List<MyTeamPlayers>();
 }
 
 public static class SignUp

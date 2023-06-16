@@ -152,8 +152,8 @@ public class Player
     public int id{ get; set; }
     public int now_cost{ get; set; }
     public string second_name{ get; set; }
-    public int team{ get; set; }
-    public int element_type{ get; set; }
+    public Team team{ get; set; }
+    public Post element_type{ get; set; }
 
     public int total_points{ get; set; }
 
@@ -165,5 +165,30 @@ public class Player
         Defender,
         Midfielder,
         Forward
+    }
+
+    public enum Team
+    {
+        Arsenal,
+        AstonVilla,
+        Bournemouth,
+        Brentford,
+        Brighton,
+        Chelsea,
+        CrystalPalace,
+        Everton,
+        Fulham,
+        Leicester,
+        Leeds,
+        Liverpool,
+        ManCity,
+        ManUtd,
+        Newcastle,
+        Nott_m_Forest,
+        Southampton,
+        Spurs,
+        WestHam,
+        Wolves,
+        
     }
 }
