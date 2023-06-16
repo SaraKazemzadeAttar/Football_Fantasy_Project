@@ -96,14 +96,7 @@ public class ListOfPlayers
         return players;
     }
     
-    public enum Post
-    {
-        Goalkeeper,
-        Defender,
-        Midfielder,
-        Forward
-    }
-    public static List<Player> FilterByPost(Post post)
+    public static List<Player> FilterByPost(Player.Post post)
     {
         List <Player> players = getListOfPlayers();
         List <Player> posts= null;
@@ -133,5 +126,14 @@ public class Player
     public int element_type{ get; set; }
 
     public int total_points{ get; set; }
-    // photo ->string
+
+    //public string photo { get; set; } 
+
+    public enum Post
+    {
+        Goalkeeper,
+        Defender,
+        Midfielder,
+        Forward
+    }
 }
