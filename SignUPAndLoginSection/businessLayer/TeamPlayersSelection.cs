@@ -17,10 +17,24 @@ public class TeamPlayersSelection
 
     }
 
-    // public bool AreSelectedPlayersInCorrectArrange(Player selectedPlayer)
-    // {
-    //     
-    // }
+    public bool AreSelectedPlayerInCorrectArrange(Player selectedPlayer)
+    {
+        var intendedPost = selectedPlayer.element_type;
+        Player.Post intFormOfPost = (Player.Post)Convert.ToInt16(intendedPost);
+        switch (intendedPost) 
+        {
+            case Player.Post.Goalkeeper:
+                 return UsersTeamPlayers.hasTeamUnderTwoGoalKeepers();
+            case Player.Post.Defender:
+                   return UsersTeamPlayers.hasTeamUnderFiveDefenders();
+                    case Player.Post.Midfielder:
+                        return UsersTeamPlayers.hasTeamUnderFiveMidfielders();
+                    case Player.Post.Forward:
+                        return UsersTeamPlayers.hasTeamUnderThreeForwards();
+                    default:
+                        return false;
+        }
+    }
 
     public bool hasUserEnoughMoney(string token ,Player selectedPlayer)
     {
@@ -48,7 +62,7 @@ public class TeamPlayersSelection
     {
         Player selectedPlayer = FootballPlayersData.findPLayerByTheirId(id);
         bool MoneyCondition =hasUserEnoughMoney(token, selectedPlayer);
-        bool ArrangeCondition = false;//=AreSelectedPlayersInCorrectArrange( selectedPlayer);
+        bool ArrangeCondition =AreSelectedPlayerInCorrectArrange( selectedPlayer);
         bool TeamCondition=AreUnderThreePlayersFromOneTeam( selectedPlayer);
 
         if (MoneyCondition && ArrangeCondition && TeamCondition)
