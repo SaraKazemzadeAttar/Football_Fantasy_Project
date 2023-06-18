@@ -8,7 +8,7 @@ namespace SignUPAndLoginSection.presentationLayer
         {
             if (businessLayer.login.isUserRegistered(password, email_username))//&& u.isvalid)
             {
-                businessLayer.login.generateToken(password, email_username);
+                businessLayer.TokenAccess.generateToken(password, email_username);
                 return Results.Ok(new
                     {
                         message = "login was successful!"

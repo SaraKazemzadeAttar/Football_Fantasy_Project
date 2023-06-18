@@ -13,7 +13,7 @@ using User = SignUPAndLoginSection.businessLayer.User;
 
 namespace SignUPAndLoginSection.DataAccessLayer;
 
-public class signUp
+public class UsersData
 {
     public static bool doesEmailExistBefore(Email email_)
     {
@@ -75,5 +75,21 @@ public class signUp
             db.SaveChanges();
         }
 
+    }
+
+    public static presentationLayer.User FindUserByTheirEmail_Username(string e_un)
+    {
+        using (var db = new DataBase())
+        {
+            foreach (var user in db.userTable)
+            {
+                if (e_un== user.userName|| e_un==user.email)
+                {
+                    return user;
+                }
+            }
+        }
+
+        return null;
     }
 }

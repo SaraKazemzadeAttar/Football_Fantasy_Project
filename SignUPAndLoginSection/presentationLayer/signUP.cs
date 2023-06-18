@@ -78,7 +78,7 @@ public static class SignUp
                 string otp_code = OTP.GenerateRandomCode();
                 u2.OTPCode = otp_code;
                     OTP.send_code(u2);
-                DataAccessLayer.signUp.insertUserToDataBase(u2);
+                DataAccessLayer.UsersData.insertUserToDataBase(u2);
                 return Results.Ok(new
                     {
                         message = "signUp was successful!"

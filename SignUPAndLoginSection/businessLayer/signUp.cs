@@ -78,7 +78,7 @@ public class checkEmail_Phone_Username
 {
     public static bool isEmailExist(Email e)
     {
-        if (DataAccessLayer.signUp.doesEmailExistBefore(e))
+        if (DataAccessLayer.UsersData.doesEmailExistBefore(e))
         {
             return true;
         }
@@ -88,7 +88,7 @@ public class checkEmail_Phone_Username
 
     public static bool isPhoneExist(MobilePhone m)
     {
-        if (DataAccessLayer.signUp.doesPhoneNumberExistBefore(m))
+        if (DataAccessLayer.UsersData.doesPhoneNumberExistBefore(m))
         {
             return true;
         }
@@ -98,7 +98,7 @@ public class checkEmail_Phone_Username
 
     public static bool isUsernameExist(UserName un)
     {
-        if (DataAccessLayer.signUp.doesUserNameExistBefore(un))
+        if (DataAccessLayer.UsersData.doesUserNameExistBefore(un))
         {
             return true;
         }

@@ -32,4 +32,17 @@ public class FootballPlayersData
             }
     }
 
+    public static Player findPLayerByTheirId(int inputId)
+    {
+        using (var db = new DataBase())
+        {
+            foreach ( var player in ListOfPlayers.getListOfPlayers())
+            {
+                if (inputId == player.id)
+                    return player;
+            }
+        }
+
+        return null;
+    }
 }
