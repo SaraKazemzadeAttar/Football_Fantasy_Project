@@ -32,4 +32,29 @@ public class UsersTeamPlayers
      public bool isMainPLayer;
      public static string selectionPlayerErrorMessage = "";
 
+     public static void insertSelectedPlayerInUserTeam(Player player)
+     {
+          using (var db = new DataBase())
+          {
+               db.playerTable.Add(player);
+               db.SaveChanges();
+          }
+     }
+     
+     
+     public static int numberOfPlayersFromThisTeam(Player selectedPlayer)
+     {
+          var counterPlayersOfIntendedTeam = 0;
+          var intendedTeam = selectedPlayer.team;
+          using (var db = new DataBase())
+          {
+               foreach ( var player in db.UsersTeamPlayersTable)
+               {
+                    if (selectedPlayer.team == intendedTeam) 
+                         counterPlayersOfIntendedTeam++;
+               }
+          }
+
+          return counterPlayersOfIntendedTeam;
+     }
 }

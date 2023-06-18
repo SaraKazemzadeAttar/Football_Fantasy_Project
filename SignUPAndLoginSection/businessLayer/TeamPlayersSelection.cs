@@ -28,18 +28,33 @@ public class TeamPlayersSelection
         var user=UsersData.FindUserByTheirEmail_Username(email_username);
         if (user.cash < selectedPlayer.now_cost)
         {
-            UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy the player";
+            UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy the player!";
             return false;
         }
         return true;
     }
-    
-    public void playerSelection(string token , int id) // Q :is this id the field which I want?
+
+    public bool AreUnderThreePlayersFromOneTeam(Player selectedPlayer)
+    {
+        if (UsersTeamPlayers.numberOfPlayersFromThisTeam(selectedPlayer) >= 3)
+        {
+            UsersTeamPlayers.selectionPlayerErrorMessage = "You have selected two players from this team before!";
+            return false;
+        }
+
+        return true;
+    }
+    public void playerSelection(string token , int id) // Q :is this id the field which I want? ----- should be IResult and in presentaion
     {
         Player selectedPlayer = FootballPlayersData.findPLayerByTheirId(id);
-        hasUserEnoughMoney(token, selectedPlayer);
-        // AreSelectedPlayersInCorrectArrange( selectedPlayer);
-        // AreLessThanThreeSelectedPlayersFromATeam( selectedPlayer);// bad name
+        bool MoneyCondition =hasUserEnoughMoney(token, selectedPlayer);
+        bool ArrangeCondition = false;//=AreSelectedPlayersInCorrectArrange( selectedPlayer);
+        bool TeamCondition=AreUnderThreePlayersFromOneTeam( selectedPlayer);
+
+        if (MoneyCondition && ArrangeCondition && TeamCondition)
+        {
+            UsersTeamPlayers.insertSelectedPlayerInUserTeam(selectedPlayer);
+        }
 
     }
         
