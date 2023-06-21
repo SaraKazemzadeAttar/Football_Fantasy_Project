@@ -40,15 +40,10 @@ public class UsersTeamPlayers
 
         using (var db = new DataBase())
         {
-            Player selectedPlayer = new Player() { id = player.id };
+            Player selectedPlayer = new Player() { id= player.id};
             db.playerTable.Attach(selectedPlayer);
 
             UsersTeamPlayers selectedPlayerInsertingMyTeam = db.UsersTeamPlayersTable.SingleOrDefault();
-            if (selectedPlayerInsertingMyTeam == null)
-            {
-                selectedPlayerInsertingMyTeam = new UsersTeamPlayers();
-                db.UsersTeamPlayersTable.Add(selectedPlayerInsertingMyTeam);
-            }
             selectedPlayerInsertingMyTeam = new UsersTeamPlayers();
             db.UsersTeamPlayersTable.Add(selectedPlayerInsertingMyTeam);
             db.SaveChanges();
