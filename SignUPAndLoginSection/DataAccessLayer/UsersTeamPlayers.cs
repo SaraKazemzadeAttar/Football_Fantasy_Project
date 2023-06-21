@@ -4,6 +4,7 @@ using ServiceStack;
 using SignUPAndLoginSection.presentationLayer;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.businessLayer;
+using Ubiety.Dns.Core.Records;
 using User = SignUPAndLoginSection.businessLayer.User;
 
 
@@ -21,9 +22,11 @@ public class UsersTeamPlayers
     [Display(Name = "playerTable")] public int id { get; set; }
 
     [ForeignKey("id")] public Player playerTable { get; set; }
+    public   ICollection<Player> PlayersCollection  { get; set; }
+    public ICollection<User> UsersCollectiom{get; set;}
 
 
-    //--------------------------------------------------------------- other fields
+//--------------------------------------------------------------- other fields
 
     public bool isMainPLayer;
     public static string selectionPlayerErrorMessage = "";
@@ -34,14 +37,24 @@ public class UsersTeamPlayers
 
     public static void insertSelectedPlayerInUserTeam(Player player)
     {
+
         using (var db = new DataBase())
         {
-            db.playerTable.Add(player);
+            Player selectedPlayer = new Player() { id = player.id };
+            db.playerTable.Attach(selectedPlayer);
+
+            UsersTeamPlayers selectedPlayerInsertingMyTeam = db.UsersTeamPlayersTable.SingleOrDefault();
+            if (selectedPlayerInsertingMyTeam == null)
+            {
+                selectedPlayerInsertingMyTeam = new UsersTeamPlayers();
+                db.UsersTeamPlayersTable.Add(selectedPlayerInsertingMyTeam);
+            }
+            selectedPlayerInsertingMyTeam = new UsersTeamPlayers();
+            db.UsersTeamPlayersTable.Add(selectedPlayerInsertingMyTeam);
             db.SaveChanges();
         }
     }
-
-
+    
     public static int numberOfPlayersFromThisTeam(Player selectedPlayer)
     {
         var counterPlayersOfIntendedTeam = 0;
