@@ -16,6 +16,7 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class ListOfPlayers
 {
+    
     public static List<Player> getListOfPlayers()
     {
         string url = "https://fantasy.premierleague.com/api/bootstrap-static/";
@@ -74,7 +75,6 @@ public class ListOfPlayers
     }
     public static List<Player> sortedAsecendingListOfPlayersByPoint(List<Player> players)
     {
-        players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
             for (int j = i; j < players.Count;j++)
@@ -92,7 +92,6 @@ public class ListOfPlayers
     }
     public static List<Player> sortedAsecendingListOfPlayersByPrice(List<Player> players)
     {
-        players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
             for (int j = i; j < players.Count;j++)
@@ -110,7 +109,6 @@ public class ListOfPlayers
     }
     public static List<Player> sortedDesendingListOfPlayersByPrice(List<Player> players)
     {
-        players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
             for (int j = i; j < players.Count;j++)
@@ -127,9 +125,8 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> FilterByPost(Player.Post post)
+    public static List<Player> FilterByPost(Player.Post post,List <Player> players)
     {
-        List <Player> players = getListOfPlayers();
         List <Player> posts= null;
         for (int i = 0; i < players.Count; i++)
         {
@@ -142,7 +139,28 @@ public class ListOfPlayers
         return posts;
     }
     
-   
+    public static List<Player> FilterPlayers(int filter, Player.Post post)
+    {
+        List<Player> players = getListOfPlayers();
+       
+        if (filter == 0)
+            return Searchingmethod();
+        if (filter == 1)
+            return sortedDesendingListOfPlayersByPoint(players);
+        if (filter == 2)
+            return sortedAsecendingListOfPlayersByPoint(players);
+        if (filter == 3)
+            return sortedAsecendingListOfPlayersByPrice(players);
+        if (filter == 4)
+            return sortedDesendingListOfPlayersByPrice(players);
+        if (filter == 5)
+            return FilterByPost(post ,players);
+        else
+        {
+            return null;
+        }
+    }
+
 }
 
 public class Player
