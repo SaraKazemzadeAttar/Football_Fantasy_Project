@@ -29,6 +29,8 @@
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Branca" Version="3.0.0" />
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Paseto" Version="3.0.0" />
       <PackageReference Include="ServiceStack.Text" Version="6.8.0" />
+      <PackageReference Include="Sjzy.Core.Model" Version="1.0.45" />
+      <PackageReference Include="Sjzy.Core.Repository" Version="1.0.45" />
       <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
     </ItemGroup>

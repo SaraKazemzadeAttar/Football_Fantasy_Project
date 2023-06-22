@@ -174,6 +174,9 @@ public class Player
     public Post element_type{ get; set; }
 
     public int total_points{ get; set; }
+    
+    public   ICollection<UsersTeamPlayers>  UsersTeamPlayersCollection{ get; set; }
+
 
     //public string photo { get; set; } 
 

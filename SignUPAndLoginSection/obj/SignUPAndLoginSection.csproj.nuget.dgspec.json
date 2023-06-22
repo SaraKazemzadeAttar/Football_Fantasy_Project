@@ -116,6 +116,14 @@
               "target": "Package",
               "version": "[6.8.0, )"
             },
+            "Sjzy.Core.Model": {
+              "target": "Package",
+              "version": "[1.0.45, )"
+            },
+            "Sjzy.Core.Repository": {
+              "target": "Package",
+              "version": "[1.0.45, )"
+            },
             "System.ComponentModel.Annotations": {
               "target": "Package",
               "version": "[5.0.0, )"
