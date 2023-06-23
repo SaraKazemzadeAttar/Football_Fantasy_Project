@@ -6,13 +6,14 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class TeamPlayersSelection
 {
-    public void changeRoleOfPlayers()
+    public void changeRoleOfPlayers(UsersTeamPlayers up)
     {
+        UsersTeamPlayers.changingRoleOfPlayer(up);
     }
 
-    public void omitPlayers(
-    )
+    public void omitPlayers()
     {
+        
     }
 
     public bool AreSelectedPlayerInCorrectArrange(Player selectedPlayer)
@@ -40,7 +41,7 @@ public class TeamPlayersSelection
         var user = UsersData.FindUserByTheirEmail_Username(email_username);
         if (user.cash < selectedPlayer.now_cost)
         {
-            UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy the player!";
+            UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy this player!";
             return false;
         }
 
@@ -58,8 +59,7 @@ public class TeamPlayersSelection
         return true;
     }
 
-    public void
-        playerSelection(string token, int id) // Q :is this id the field which I want? ----- should be IResult and in presentaion
+    public void playerSelection(string token, int id) // Q :is this id the field which I want? ----- should be IResult and in presentaion
     {
         Player selectedPlayer = FootballPlayersData.findPLayerByTheirId(id);
         bool MoneyCondition = hasUserEnoughMoney(token, selectedPlayer);

@@ -22,7 +22,8 @@ namespace SignUPAndLoginSection
             var app = builder.Build();
             app.MapPost("/login", presentationLayer.login.loginApi);
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
-            app.MapPost("/otp", businessLayer.OTP.ValidatinOTPCode);
+            app.MapPost("/otp", businessLayer.OTP
+                .ValidatinOTPCode);
             app.MapPost(businessLayer.ListOfPlayers.FilterPlayers());
 
 

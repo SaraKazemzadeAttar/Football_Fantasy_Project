@@ -12,22 +12,25 @@ namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class UsersTeamPlayers
 {
-    [Key] public int UsersTeamPlayersId { get; set; }
+    [Key]
+    public int UsersTeamPlayersId { get; set; }
+    
+    [Display(Name = "userTable")]
+    public static int userId { get; set; }
 
+    [ForeignKey("userId")]
+    public User userTable { get; set; }
+    
+    [Display(Name = "playerTable")]
+    public int id { get; set; }
 
-    [Display(Name = "userTable")] public static int userId { get; set; }
-
-    [ForeignKey("userId")] public User userTable { get; set; }
-
-    [Display(Name = "playerTable")] public int id { get; set; }
-
-    [ForeignKey("id")] public Player playerTable { get; set; }
+    [ForeignKey("id")]
+    public Player playerTable { get; set; }
+    
     public   ICollection<Player> PlayersCollection  { get; set; }
+    
     public ICollection<User> UsersCollectiom{get; set;}
-
-
-//--------------------------------------------------------------- other fields
-
+    
     public bool isMainPLayer;
     public static string selectionPlayerErrorMessage = "";
     public static int counterOfGoalKeepers;
@@ -52,20 +55,20 @@ public class UsersTeamPlayers
     
     public static int numberOfPlayersFromThisTeam(Player selectedPlayer)
     {
-        var counterPlayersOfIntendedTeam = 0;
+        int counterOfPlayersOfIntendedTeam = 0;
         var intendedTeam = selectedPlayer.team;
         using (var db = new DataBase())
         {
             foreach (var player in db.UsersTeamPlayersTable)
             {
-                if (selectedPlayer.team == intendedTeam)
+                if (selectedPlayer.team == intendedTeam) // should be player.team; but this class doesn't have team field!
                 {
-                    counterPlayersOfIntendedTeam++;
+                    counterOfPlayersOfIntendedTeam++;
                 }
             }
         }
 
-        return counterPlayersOfIntendedTeam;
+        return counterOfPlayersOfIntendedTeam;
     }
 
     public static bool hasTeamUnderTwoGoalKeepers()
@@ -154,5 +157,23 @@ public class UsersTeamPlayers
         }
 
         return false;
+    }
+
+    public static void changingRoleOfPlayer(UsersTeamPlayers uPlayer)
+    {
+        using (var db = new DataBase())
+        {
+            switch (uPlayer.isMainPLayer)
+            {
+                case true:
+                    uPlayer.isMainPLayer = false;
+                    db.SaveChanges();
+                    break;
+                case false:
+                    uPlayer.isMainPLayer = true;
+                    db.SaveChanges();
+                    break;
+            }
+        }
     }
 }

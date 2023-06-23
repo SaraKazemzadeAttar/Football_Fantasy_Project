@@ -16,6 +16,7 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class ListOfPlayers
 {
+    public List<string> fullName = new List<string>();
     
     public static List<Player> getListOfPlayers()
     {
@@ -26,9 +27,6 @@ public class ListOfPlayers
         return response.elements;
     }
     
-    
-    
-    public List<string> fullName = new List<string>();
     public List<string> FullNameOfPlayers()
     {
         foreach (var player in ListOfPlayers.getListOfPlayers())
@@ -38,6 +36,7 @@ public class ListOfPlayers
 
         return fullName;
     }
+    
     public  List<string> Searchingmethod(string entry)
     {
         
@@ -55,7 +54,7 @@ public class ListOfPlayers
 
     }
 
-    public static List<Player> sortedDesendingListOfPlayersByPoint(List<Player> players)
+    public static List<Player> sortedDescendingListOfPlayersByPoint(List<Player> players)
     {
         players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
@@ -73,7 +72,8 @@ public class ListOfPlayers
 
         return players;
     }
-    public static List<Player> sortedAsecendingListOfPlayersByPoint(List<Player> players)
+    
+    public static List<Player> sortedAscendingListOfPlayersByPoint(List<Player> players)
     {
         for (int i = 0; i < players.Count;i++)
         {
@@ -90,7 +90,8 @@ public class ListOfPlayers
 
         return players;
     }
-    public static List<Player> sortedAsecendingListOfPlayersByPrice(List<Player> players)
+    
+    public static List<Player> sortedAscendingListOfPlayersByPrice(List<Player> players)
     {
         for (int i = 0; i < players.Count;i++)
         {
@@ -107,7 +108,8 @@ public class ListOfPlayers
 
         return players;
     }
-    public static List<Player> sortedDesendingListOfPlayersByPrice(List<Player> players)
+    
+    public static List<Player> sortedDescendingListOfPlayersByPrice(List<Player> players)
     {
         for (int i = 0; i < players.Count;i++)
         {
@@ -146,13 +148,13 @@ public class ListOfPlayers
         if (filter == 0)
             return Searchingmethod();
         if (filter == 1)
-            return sortedDesendingListOfPlayersByPoint(players);
+            return sortedDescendingListOfPlayersByPoint(players);
         if (filter == 2)
-            return sortedAsecendingListOfPlayersByPoint(players);
+            return sortedAscendingListOfPlayersByPoint(players);
         if (filter == 3)
-            return sortedAsecendingListOfPlayersByPrice(players);
+            return sortedAscendingListOfPlayersByPrice(players);
         if (filter == 4)
-            return sortedDesendingListOfPlayersByPrice(players);
+            return sortedDescendingListOfPlayersByPrice(players);
         if (filter == 5)
             return FilterByPost(post ,players);
         else
@@ -168,15 +170,13 @@ public class Player
     public string first_name { get; set; }
     [Key]
     public int id{ get; set; }
-    public int now_cost{ get; set; }
+    public double now_cost{ get; set; }
     public string second_name{ get; set; }
     public Team team{ get; set; }
     public Post element_type{ get; set; }
-
-    public int total_points{ get; set; }
+    public double total_points{ get; set; }
     
-    public   ICollection<UsersTeamPlayers>  UsersTeamPlayersCollection{ get; set; }
-
+    public ICollection<UsersTeamPlayers>  UsersTeamPlayersCollection{ get; set; }
 
     //public string photo { get; set; } 
 
@@ -209,7 +209,6 @@ public class Player
         Southampton,
         Spurs,
         WestHam,
-        Wolves,
-        
+        Wolves
     }
 }
