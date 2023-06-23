@@ -176,4 +176,14 @@ public class UsersTeamPlayers
             }
         }
     }
+
+    public static void RemovePlayer(UsersTeamPlayers uPlayer, User u)
+    {
+        using (var db = new DataBase())
+        {
+            
+            
+        }
+
+    }
 }

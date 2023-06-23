@@ -6,13 +6,14 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class TeamPlayersSelection
 {
-    public void changeRoleOfPlayers(UsersTeamPlayers up)
+    public void changeRoleOfPlayer(UsersTeamPlayers up)
     {
         UsersTeamPlayers.changingRoleOfPlayer(up);
     }
 
-    public void omitPlayers()
+    public void omitPlayers(UsersTeamPlayers up, User u)
     {
+        
         
     }
 
