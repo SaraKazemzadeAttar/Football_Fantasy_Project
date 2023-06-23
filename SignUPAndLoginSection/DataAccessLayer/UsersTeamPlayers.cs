@@ -27,9 +27,9 @@ public class UsersTeamPlayers
     [ForeignKey("id")]
     public Player playerTable { get; set; }
     
-    public   ICollection<Player> PlayersCollection  { get; set; }
+    public ICollection<Player> PlayersCollection  { get; set; }
     
-    public ICollection<User> UsersCollectiom{get; set;}
+    public ICollection<User> UsersCollection{get; set;}
     
     public bool isMainPLayer;
     public static string selectionPlayerErrorMessage = "";

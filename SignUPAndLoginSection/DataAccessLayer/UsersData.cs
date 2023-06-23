@@ -4,10 +4,12 @@ using SignUPAndLoginSection.presentationLayer;
 using SignUPAndLoginSection.DataAccessLayer;
 using System;
 using System.Security.Principal;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using System.Security.AccessControl;
+using System.Security.Policy;
 using SignUPAndLoginSection.DataAccessLayer;
 using User = SignUPAndLoginSection.businessLayer.User;
 
@@ -60,12 +62,12 @@ public class UsersData
 
         return false;
     }
-    
+
     public static void setInitialCashForUser(presentationLayer.User u)
     {
         u.cash = 100;
     }
-    
+
     public static void insertUserToDataBase(presentationLayer.User u)
     {
         using (var db = new DataBase())
@@ -74,7 +76,6 @@ public class UsersData
             db.userTable.Add(u);
             db.SaveChanges();
         }
-
     }
 
     public static presentationLayer.User FindUserByTheirEmail_Username(string e_un)
@@ -83,7 +84,7 @@ public class UsersData
         {
             foreach (var user in db.userTable)
             {
-                if (e_un== user.userName|| e_un==user.email)
+                if (e_un == user.userName || e_un == user.email)
                 {
                     return user;
                 }
@@ -91,5 +92,20 @@ public class UsersData
         }
 
         return null;
+    }
+
+    public static List<string> createListOfUsernames()
+    { 
+        List<string> userNamesList = new List<string>();
+        using (var db = new DataBase())
+        {
+            foreach (var user in db.userTable)
+            {
+                string u = user.userName;
+                userNamesList.Add(u);
+            }
+        }
+
+        return userNamesList;
     }
 }
