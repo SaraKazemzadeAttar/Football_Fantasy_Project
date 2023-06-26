@@ -27,6 +27,7 @@ public class UsersTeamPlayers
     [ForeignKey("id")]
     public Player playerTable { get; set; }
     
+    
     public ICollection<Player> PlayersCollection  { get; set; }
     
     public ICollection<User> UsersCollection{get; set;}
@@ -38,22 +39,25 @@ public class UsersTeamPlayers
     public static int counterOfMidfielders;
     public static int counterOfForwards;
 
-    public static void insertSelectedPlayerInUserTeam(Player player)
+    public string firstName { get; set; }
+    public double nowCost{ get; set; }
+    public string secondName{ get; set; }
+    public Player.Team team{ get; set; }
+    public Player.Post post{ get; set; }
+    public double totalPoints{ get; set; }
+    public UsersTeamPlayers(Player player)
     {
-
-        using (var db = new DataBase())
-        {
-            Player selectedPlayer = new Player() { id= player.id};
-            db.playerTable.Attach(selectedPlayer);
-
-            UsersTeamPlayers selectedPlayerInsertingMyTeam = db.UsersTeamPlayersTable.SingleOrDefault();
-            selectedPlayerInsertingMyTeam = new UsersTeamPlayers();
-            db.UsersTeamPlayersTable.Add(selectedPlayerInsertingMyTeam);
-            db.SaveChanges();
-        }
+        this.id = player.id;
+        this.firstName = player.first_name;
+        this.nowCost = player.now_cost;
+        this.secondName = player.second_name;
+        this.team = player.team;
+        this.post = player.element_type;
+        this.totalPoints = player.total_points;
     }
     
-    public static int numberOfPlayersFromThisTeam(Player selectedPlayer)
+
+    public static int numberOfPlayersFromThisTeam(UsersTeamPlayers selectedPlayer)
     {
         int counterOfPlayersOfIntendedTeam = 0;
         var intendedTeam = selectedPlayer.team;
@@ -61,7 +65,7 @@ public class UsersTeamPlayers
         {
             foreach (var player in db.UsersTeamPlayersTable)
             {
-                if (selectedPlayer.team == intendedTeam) // should be player.team; but this class doesn't have team field!
+                if (selectedPlayer.team == intendedTeam) 
                 {
                     counterOfPlayersOfIntendedTeam++;
                 }
@@ -71,14 +75,22 @@ public class UsersTeamPlayers
         return counterOfPlayersOfIntendedTeam;
     }
 
+    public static void insertSelectedPlayerInUserTeam(UsersTeamPlayers selectedPlayer)
+    {
+        using (var db = new DataBase())
+        {
+            db.UsersTeamPlayersTable.Add(selectedPlayer);
+                db.SaveChanges();
+        }
+    }
+
     public static bool hasTeamUnderTwoGoalKeepers()
     {
         using (var db = new DataBase())
         {
             foreach (var player in db.UsersTeamPlayersTable)
             {
-                var post = FootballPlayersData.findPLayerByTheirId(player.id).element_type;
-                if (Convert.ToInt16(post) == 0)
+                if (Convert.ToInt16(player.post) == 0)
                 {
                     counterOfGoalKeepers++;
                 }
@@ -121,8 +133,7 @@ public class UsersTeamPlayers
         {
             foreach (var player in db.UsersTeamPlayersTable)
             {
-                var post = FootballPlayersData.findPLayerByTheirId(player.id).element_type;
-                if (Convert.ToInt16(post) == 2)
+                if (Convert.ToInt16(player.post) == 2)
                 {
                     counterOfMidfielders++;
                 }
@@ -143,8 +154,7 @@ public class UsersTeamPlayers
         {
             foreach (var player in db.UsersTeamPlayersTable)
             {
-                var post = FootballPlayersData.findPLayerByTheirId(player.id).element_type;
-                if (Convert.ToInt16(post) == 3)
+                if (Convert.ToInt16(player.post) == 3)
                 {
                     counterOfForwards++;
                 }

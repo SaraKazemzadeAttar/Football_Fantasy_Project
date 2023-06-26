@@ -17,10 +17,9 @@ public class TeamPlayersSelection
         
     }
 
-    public bool AreSelectedPlayerInCorrectArrange(Player selectedPlayer)
+    public bool AreSelectedPlayerInCorrectArrange(UsersTeamPlayers selectedPlayer)
     {
-        var intendedPost = selectedPlayer.element_type;
-        Player.Post intFormOfPost = (Player.Post)Convert.ToInt16(intendedPost);
+        var intendedPost = selectedPlayer.post;
         switch (intendedPost)
         {
             case Player.Post.Goalkeeper:
@@ -36,11 +35,11 @@ public class TeamPlayersSelection
         }
     }
 
-    public bool hasUserEnoughMoney(string token, Player selectedPlayer)
+    public bool hasUserEnoughMoney(string token, UsersTeamPlayers selctedPlayer)
     {
         var email_username = TokenAccess.getEmailOrUsernameFromToken(token);
         var user = UsersData.FindUserByTheirEmail_Username(email_username);
-        if (user.cash < selectedPlayer.now_cost)
+        if (user.cash < selctedPlayer.nowCost)
         {
             UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy this player!";
             return false;
@@ -49,7 +48,7 @@ public class TeamPlayersSelection
         return true;
     }
 
-    public bool AreUnderFourPlayersFromOneTeam(Player selectedPlayer)
+    public bool AreUnderFourPlayersFromOneTeam(UsersTeamPlayers selectedPlayer)
     {
         if (UsersTeamPlayers.numberOfPlayersFromThisTeam(selectedPlayer) > 4)
         {
@@ -60,9 +59,8 @@ public class TeamPlayersSelection
         return true;
     }
 
-    public void playerSelection(string token, int id) // Q :is this id the field which I want? ----- should be IResult and in presentaion
+    public void playerSelection(string token, UsersTeamPlayers selectedPlayer) // Q :should be IResult and in presentaion?
     {
-        Player selectedPlayer = FootballPlayersData.findPLayerByTheirId(id);
         bool MoneyCondition = hasUserEnoughMoney(token, selectedPlayer);
         bool ArrangeCondition = AreSelectedPlayerInCorrectArrange(selectedPlayer);
         bool TeamCondition = AreUnderFourPlayersFromOneTeam(selectedPlayer);
