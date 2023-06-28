@@ -6,15 +6,16 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class TeamPlayersSelection
 {
-    public void changeRoleOfPlayer(UsersTeamPlayers up)
+    public void changeRoleOfPlayer(UsersTeamPlayers selectedPlayer)
     {
-        UsersTeamPlayers.changingRoleOfPlayer(up);
+        UsersTeamPlayers.changingRoleOfPlayer(selectedPlayer);
     }
 
-    public void omitPlayers(UsersTeamPlayers up, User u)
+    public void omitPlayer(UsersTeamPlayers selectedPlayer, string token)  // I doubt so much... !!!???
     {
-        
-        
+        presentationLayer.User user = UsersData.FindUserByTheirToken(token);
+        int targetId = user.userId;
+        UsersTeamPlayers.RemovePlayer(selectedPlayer, targetId);
     }
 
     public static bool AreSelectedPlayerInCorrectArrange(UsersTeamPlayers selectedPlayer)
@@ -37,8 +38,7 @@ public class TeamPlayersSelection
 
     public static bool hasUserEnoughMoney(string token, UsersTeamPlayers selctedPlayer)
     {
-        var email_username = TokenAccess.getEmailOrUsernameFromToken(token);
-        var user = UsersData.FindUserByTheirEmail_Username(email_username);
+        var user = UsersData.FindUserByTheirToken(token);
         if (user.cash < selctedPlayer.nowCost)
         {
             UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy this player!";

@@ -16,7 +16,7 @@ public class UsersTeamPlayers
     public int UsersTeamPlayersId { get; set; }
     
     [Display(Name = "userTable")]
-    public static int userId { get; set; }
+    public int userId { get; set; }
 
     [ForeignKey("userId")]
     public User userTable { get; set; }
@@ -46,7 +46,7 @@ public class UsersTeamPlayers
     public Player.Team team{ get; set; }
     public Player.Post post{ get; set; }
     public double totalPoints{ get; set; }
-    public UsersTeamPlayers(Player player)
+    public UsersTeamPlayers(Player player )
     {
         this.id = player.id;
         this.firstName = player.first_name;
@@ -75,15 +75,7 @@ public class UsersTeamPlayers
 
         return counterOfPlayersOfIntendedTeam;
     }
-
-    public static void insertSelectedPlayerInUserTeam(UsersTeamPlayers selectedPlayer)
-    {
-        using (var db = new DataBase())
-        {
-            db.UsersTeamPlayersTable.Add(selectedPlayer);
-                db.SaveChanges();
-        }
-    }
+    
 
     public static bool hasTeamUnderTwoGoalKeepers()
     {
@@ -187,12 +179,29 @@ public class UsersTeamPlayers
             }
         }
     }
-
-    public static void RemovePlayer(UsersTeamPlayers uPlayer, User u)
+    
+    public static void insertSelectedPlayerInUserTeam(UsersTeamPlayers selectedPlayer)
     {
         using (var db = new DataBase())
         {
-            
+            db.UsersTeamPlayersTable.Add(selectedPlayer);
+            db.SaveChanges();
+        }
+    }
+
+    public static void RemovePlayer(UsersTeamPlayers selectedplayer, int targetId)
+    {
+        using (var db = new DataBase())
+        {
+            foreach (var user in db.UsersTeamPlayersTable )
+            {
+                if (user.userId == targetId)
+                {
+                    db.UsersTeamPlayersTable.Remove(selectedplayer);
+                    db.SaveChanges();
+                }
+            }
+
             
         }
 

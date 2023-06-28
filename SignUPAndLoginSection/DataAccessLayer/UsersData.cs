@@ -78,8 +78,9 @@ public class UsersData
         }
     }
 
-    public static presentationLayer.User FindUserByTheirEmail_Username(string e_un)
+    public static presentationLayer.User FindUserByTheirToken(string token)
     {
+        var e_un = TokenAccess.getEmailOrUsernameFromToken(token);
         using (var db = new DataBase())
         {
             foreach (var user in db.userTable)
