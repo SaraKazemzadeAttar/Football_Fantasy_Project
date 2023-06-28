@@ -5,10 +5,9 @@ namespace SignUPAndLoginSection.presentationLayer;
 
 public class TeamPlayerSelection
 {
-    public static IResult SelectionPlayerAPI(string token, Player player)
-    {
-
-    // public UsersTeamPlayers selectedPlayer = new UsersTeamPlayers(player);
+    public static IResult SelectionPlayerAPI(string token, string playerName)
+    { 
+        var player = FootballPlayersData.findPlayerByTheirName(playerName);
+       public UsersTeamPlayers selectedPlayer = new UsersTeamPlayers(new);
     // businessLayer.TeamPlayersSelection.playerSelection(token, selectedPlayer);
-}
 }

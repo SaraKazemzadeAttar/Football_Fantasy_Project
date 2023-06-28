@@ -45,5 +45,19 @@ public class FootballPlayersData
 
         return null;
     }
+
+    public static Player findPlayerByTheirName(string name)
+    {
+        using (var db = new DataBase())
+        {
+            foreach ( var player in ListOfPlayers.getListOfPlayers())
+            {
+                if (name == player.first_name|| name==player.second_name)
+                    return player;
+            }
+        }
+
+        return null;
+    }
     
 }
