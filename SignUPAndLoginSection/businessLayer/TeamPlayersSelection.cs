@@ -17,7 +17,7 @@ public class TeamPlayersSelection
         
     }
 
-    public bool AreSelectedPlayerInCorrectArrange(UsersTeamPlayers selectedPlayer)
+    public static bool AreSelectedPlayerInCorrectArrange(UsersTeamPlayers selectedPlayer)
     {
         var intendedPost = selectedPlayer.post;
         switch (intendedPost)
@@ -35,7 +35,7 @@ public class TeamPlayersSelection
         }
     }
 
-    public bool hasUserEnoughMoney(string token, UsersTeamPlayers selctedPlayer)
+    public static bool hasUserEnoughMoney(string token, UsersTeamPlayers selctedPlayer)
     {
         var email_username = TokenAccess.getEmailOrUsernameFromToken(token);
         var user = UsersData.FindUserByTheirEmail_Username(email_username);
@@ -48,7 +48,7 @@ public class TeamPlayersSelection
         return true;
     }
 
-    public bool AreUnderFourPlayersFromOneTeam(UsersTeamPlayers selectedPlayer)
+    public static bool AreUnderFourPlayersFromOneTeam(UsersTeamPlayers selectedPlayer)
     {
         if (UsersTeamPlayers.numberOfPlayersFromThisTeam(selectedPlayer) > 4)
         {
@@ -59,7 +59,12 @@ public class TeamPlayersSelection
         return true;
     }
 
-    public void playerSelection(string token, UsersTeamPlayers selectedPlayer) // Q :should be IResult and in presentaion?
+    public static void playerSelection (UsersTeamPlayers selectedPlayer)
+    {
+        UsersTeamPlayers.insertSelectedPlayerInUserTeam(selectedPlayer);
+    }
+    
+    public static bool isSelectionSuccessful(string token, UsersTeamPlayers selectedPlayer)
     {
         bool MoneyCondition = hasUserEnoughMoney(token, selectedPlayer);
         bool ArrangeCondition = AreSelectedPlayerInCorrectArrange(selectedPlayer);
@@ -67,7 +72,14 @@ public class TeamPlayersSelection
 
         if (MoneyCondition && ArrangeCondition && TeamCondition)
         {
-            UsersTeamPlayers.insertSelectedPlayerInUserTeam(selectedPlayer);
+            selectedPlayer.hasPlayerSelectionConditions = true;
+            playerSelection(selectedPlayer);
+            return true;
+        }
+        else
+        {
+            selectedPlayer.hasPlayerSelectionConditions = false;
+            return false;
         }
     }
 }

@@ -7,7 +7,23 @@ public class TeamPlayerSelection
 {
     public static IResult SelectionPlayerAPI(string token, string playerName)
     { 
-        var player = FootballPlayersData.findPlayerByTheirName(playerName);
-       public UsersTeamPlayers selectedPlayer = new UsersTeamPlayers(new);
-    // businessLayer.TeamPlayersSelection.playerSelection(token, selectedPlayer);
+        Player player = FootballPlayersData.findPlayerByTheirName(playerName);
+        UsersTeamPlayers selectedPlayer = new UsersTeamPlayers(player);
+        if(businessLayer.TeamPlayersSelection.isSelectionSuccessful(token, selectedPlayer))
+        {
+            return Results.Ok(new
+                {
+                    message = "Selection was successful!"
+                }
+            );
+        }
+        else
+        {
+            return Results.BadRequest(new
+                {
+                    message = "Selection was not successful!"
+                }
+            );
+        }
+    }
 }

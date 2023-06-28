@@ -32,7 +32,8 @@ public class UsersTeamPlayers
     
     public ICollection<User> UsersCollection{get; set;}
     
-    public bool isMainPLayer;
+    public bool isMainPLayer =false ;
+    public bool hasPlayerSelectionConditions = false;
     public static string selectionPlayerErrorMessage = "";
     public static int counterOfGoalKeepers;
     public static int counterOfDefenders;
