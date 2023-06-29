@@ -58,17 +58,23 @@ public class UsersTeamPlayers
     }
     
 
-    public static int numberOfPlayersFromThisTeam(UsersTeamPlayers selectedPlayer)
+    public static int numberOfPlayersFromThisTeam(int targetUserId,UsersTeamPlayers selectedPlayer)
     {
         int counterOfPlayersOfIntendedTeam = 0;
         var intendedTeam = selectedPlayer.team;
         using (var db = new DataBase())
         {
-            foreach (var player in db.UsersTeamPlayersTable)
+            foreach (var record in db.UsersTeamPlayersTable)
             {
-                if (selectedPlayer.team == intendedTeam) 
+                if (record.userId == targetUserId)
                 {
-                    counterOfPlayersOfIntendedTeam++;
+                    foreach (var player in db.UsersTeamPlayersTable)
+                    {
+                        if (selectedPlayer.team == intendedTeam)
+                        {
+                            counterOfPlayersOfIntendedTeam++;
+                        }
+                    }
                 }
             }
         }
@@ -77,15 +83,21 @@ public class UsersTeamPlayers
     }
     
 
-    public static bool hasTeamUnderTwoGoalKeepers()
+    public static bool hasTeamUnderTwoGoalKeepers(int targetUserId)
     {
         using (var db = new DataBase())
         {
-            foreach (var player in db.UsersTeamPlayersTable)
+            foreach (var record in db.UsersTeamPlayersTable)
             {
-                if (Convert.ToInt16(player.post) == 0)
+                if (record.userId == targetUserId)
                 {
-                    counterOfGoalKeepers++;
+                    foreach (var player in db.UsersTeamPlayersTable)
+                    {
+                        if (Convert.ToInt16(player.post) == 0)
+                        {
+                            counterOfGoalKeepers++;
+                        }
+                    }
                 }
             }
         }
@@ -98,16 +110,22 @@ public class UsersTeamPlayers
         return false;
     }
 
-    public static bool hasTeamUnderFiveDefenders()
+    public static bool hasTeamUnderFiveDefenders(int targetUserId)
     {
         using (var db = new DataBase())
         {
-            foreach (var player in db.UsersTeamPlayersTable)
+            foreach (var record in db.UsersTeamPlayersTable)
             {
-                var post = FootballPlayersData.findPLayerByTheirId(player.id).element_type;
-                if (Convert.ToInt16(post) == 1)
+                if (record.userId == targetUserId)
                 {
-                    counterOfDefenders++;
+                    foreach (var player in db.UsersTeamPlayersTable)
+                    {
+                        var post = FootballPlayersData.findPLayerByTheirId(player.id).element_type;
+                        if (Convert.ToInt16(post) == 1)
+                        {
+                            counterOfDefenders++;
+                        }
+                    }
                 }
             }
         }
@@ -120,15 +138,21 @@ public class UsersTeamPlayers
         return false;
     }
 
-    public static bool hasTeamUnderFiveMidfielders()
+    public static bool hasTeamUnderFiveMidfielders(int targetUserId)
     {
         using (var db = new DataBase())
         {
-            foreach (var player in db.UsersTeamPlayersTable)
+            foreach (var record in db.UsersTeamPlayersTable)
             {
-                if (Convert.ToInt16(player.post) == 2)
+                if (record.userId == targetUserId)
                 {
-                    counterOfMidfielders++;
+                    foreach (var player in db.UsersTeamPlayersTable)
+                    {
+                        if (Convert.ToInt16(player.post) == 2)
+                        {
+                            counterOfMidfielders++;
+                        }
+                    }
                 }
             }
         }
@@ -141,15 +165,21 @@ public class UsersTeamPlayers
         return false;
     }
 
-    public static bool hasTeamUnderThreeForwards()
+    public static bool hasTeamUnderThreeForwards(int targetUserId)
     {
         using (var db = new DataBase())
         {
-            foreach (var player in db.UsersTeamPlayersTable)
+            foreach (var record in db.UsersTeamPlayersTable)
             {
-                if (Convert.ToInt16(player.post) == 3)
+                if (record.userId == targetUserId)
                 {
-                    counterOfForwards++;
+                    foreach (var player in db.UsersTeamPlayersTable)
+                    {
+                        if (Convert.ToInt16(player.post) == 3)
+                        {
+                            counterOfForwards++;
+                        }
+                    }
                 }
             }
         }
@@ -161,49 +191,52 @@ public class UsersTeamPlayers
 
         return false;
     }
+    
 
-    public static void changingRoleOfPlayer(UsersTeamPlayers uPlayer)
+    public static void insertSelectedPlayerInUserTeam(int targetUserId , UsersTeamPlayers selectedPlayer)
     {
         using (var db = new DataBase())
         {
-            switch (uPlayer.isMainPLayer)
+            foreach (var record in db.UsersTeamPlayersTable)
             {
-                case true:
-                    uPlayer.isMainPLayer = false;
+                if (record.userId == targetUserId)
+                {
+                    db.UsersTeamPlayersTable.Add(selectedPlayer);
                     db.SaveChanges();
-                    break;
-                case false:
-                    uPlayer.isMainPLayer = true;
-                    db.SaveChanges();
-                    break;
+                }
             }
         }
     }
-    
-    public static void insertSelectedPlayerInUserTeam(UsersTeamPlayers selectedPlayer)
-    {
-        using (var db = new DataBase())
-        {
-            db.UsersTeamPlayersTable.Add(selectedPlayer);
-            db.SaveChanges();
-        }
-    }
 
-    public static void RemovePlayer(UsersTeamPlayers selectedplayer, int targetId)
+    public static void RemovePlayer(int targetUserId,UsersTeamPlayers selectedplayer)
     {
         using (var db = new DataBase())
         {
-            foreach (var user in db.UsersTeamPlayersTable )
+            foreach (var record in db.UsersTeamPlayersTable )
             {
-                if (user.userId == targetId)
+                if (record.userId == targetUserId)
                 {
                     db.UsersTeamPlayersTable.Remove(selectedplayer);
                     db.SaveChanges();
                 }
             }
-
-            
         }
-
+    }
+    public static void changingRoleOfPlayer(UsersTeamPlayers selectedPlayer)
+    {
+        using (var db = new DataBase())
+        {
+            switch (selectedPlayer.isMainPLayer)
+            {
+                case true:
+                    selectedPlayer.isMainPLayer = false;
+                    db.SaveChanges();
+                    break;
+                case false:
+                    selectedPlayer.isMainPLayer = true;
+                    db.SaveChanges();
+                    break;
+            }
+        }
     }
 }

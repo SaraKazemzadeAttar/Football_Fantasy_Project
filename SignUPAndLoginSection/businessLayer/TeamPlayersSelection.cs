@@ -6,39 +6,58 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class TeamPlayersSelection
 {
-    public void changeRoleOfPlayer(UsersTeamPlayers selectedPlayer)
+    public static void changeRoleOfPlayer(string token ,UsersTeamPlayers selectedPlayer)
     {
         UsersTeamPlayers.changingRoleOfPlayer(selectedPlayer);
     }
 
-    public void omitPlayer(UsersTeamPlayers selectedPlayer, string token)  // I doubt so much... !!!???
+    public static void omitPlayer(string token ,UsersTeamPlayers selectedPlayer) 
     {
-        presentationLayer.User user = UsersData.FindUserByTheirToken(token);
-        int targetId = user.userId;
-        UsersTeamPlayers.RemovePlayer(selectedPlayer, targetId);
+        var user = UsersData.FindUserByTheirToken(token);
+        int targetUserId = user.userId;
+        UsersTeamPlayers.RemovePlayer(targetUserId,selectedPlayer);
     }
 
-    public static bool AreSelectedPlayerInCorrectArrange(UsersTeamPlayers selectedPlayer)
+    public static bool isSelectionSuccessful(string token, UsersTeamPlayers selectedPlayer)
+    {
+        var user = UsersData.FindUserByTheirToken(token);
+        int targetUserId = user.userId;  // I doubt so much... !!!???
+        bool MoneyCondition = hasUserEnoughMoney(user, selectedPlayer);
+        bool ArrangeCondition = AreSelectedPlayerInCorrectArrange( targetUserId ,selectedPlayer);
+        bool TeamCondition = AreUnderFourPlayersFromOneTeam(targetUserId ,selectedPlayer);
+
+        if (MoneyCondition && ArrangeCondition && TeamCondition)
+        {
+            selectedPlayer.hasPlayerSelectionConditions = true;
+            playerSelection(targetUserId,selectedPlayer);
+            return true;
+        }
+        else
+        {
+            selectedPlayer.hasPlayerSelectionConditions = false;
+            return false;
+        }
+    }
+    public static bool AreSelectedPlayerInCorrectArrange(int targetUserId , UsersTeamPlayers selectedPlayer)
     {
         var intendedPost = selectedPlayer.post;
         switch (intendedPost)
         {
             case Player.Post.Goalkeeper:
-                return UsersTeamPlayers.hasTeamUnderTwoGoalKeepers();
+                return UsersTeamPlayers.hasTeamUnderTwoGoalKeepers(targetUserId);
             case Player.Post.Defender:
-                return UsersTeamPlayers.hasTeamUnderFiveDefenders();
+                return UsersTeamPlayers.hasTeamUnderFiveDefenders(targetUserId);
             case Player.Post.Midfielder:
-                return UsersTeamPlayers.hasTeamUnderFiveMidfielders();
+                return UsersTeamPlayers.hasTeamUnderFiveMidfielders(targetUserId);
             case Player.Post.Forward:
-                return UsersTeamPlayers.hasTeamUnderThreeForwards();
+                return UsersTeamPlayers.hasTeamUnderThreeForwards(targetUserId);
             default:
                 return false;
         }
     }
 
-    public static bool hasUserEnoughMoney(string token, UsersTeamPlayers selctedPlayer)
+    public static bool hasUserEnoughMoney(presentationLayer.User user, UsersTeamPlayers selctedPlayer)
     {
-        var user = UsersData.FindUserByTheirToken(token);
         if (user.cash < selctedPlayer.nowCost)
         {
             UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy this player!";
@@ -48,9 +67,9 @@ public class TeamPlayersSelection
         return true;
     }
 
-    public static bool AreUnderFourPlayersFromOneTeam(UsersTeamPlayers selectedPlayer)
+    public static bool AreUnderFourPlayersFromOneTeam(int targetUserId,UsersTeamPlayers selectedPlayer)
     {
-        if (UsersTeamPlayers.numberOfPlayersFromThisTeam(selectedPlayer) > 4)
+        if (UsersTeamPlayers.numberOfPlayersFromThisTeam(targetUserId ,selectedPlayer) > 4)
         {
             UsersTeamPlayers.selectionPlayerErrorMessage = "You have selected three players from this team before!";
             return false;
@@ -59,27 +78,9 @@ public class TeamPlayersSelection
         return true;
     }
 
-    public static void playerSelection (UsersTeamPlayers selectedPlayer)
+    public static void playerSelection (int targetUserId,UsersTeamPlayers selectedPlayer)
     {
-        UsersTeamPlayers.insertSelectedPlayerInUserTeam(selectedPlayer);
+        UsersTeamPlayers.insertSelectedPlayerInUserTeam(targetUserId,selectedPlayer);
     }
     
-    public static bool isSelectionSuccessful(string token, UsersTeamPlayers selectedPlayer)
-    {
-        bool MoneyCondition = hasUserEnoughMoney(token, selectedPlayer);
-        bool ArrangeCondition = AreSelectedPlayerInCorrectArrange(selectedPlayer);
-        bool TeamCondition = AreUnderFourPlayersFromOneTeam(selectedPlayer);
-
-        if (MoneyCondition && ArrangeCondition && TeamCondition)
-        {
-            selectedPlayer.hasPlayerSelectionConditions = true;
-            playerSelection(selectedPlayer);
-            return true;
-        }
-        else
-        {
-            selectedPlayer.hasPlayerSelectionConditions = false;
-            return false;
-        }
-    }
 }

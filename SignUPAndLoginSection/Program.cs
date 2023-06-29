@@ -25,7 +25,9 @@ namespace SignUPAndLoginSection
             app.MapPost("/otp", businessLayer.OTP
                 .ValidatinOTPCode);
             app.MapPost(businessLayer.ListOfPlayers.FilterPlayers());
-            app.MapGet("/ChangeRoleOfPlayer", TeamPlayersSelection.changeRoleOfPlayer);
+            app.MapGet("/selectPlayer", presentationLayer.TeamPlayerSelection.SelectionPlayerAPI);
+            app.MapGet("/omitPlayer", presentationLayer.TeamPlayerSelection.omitPlayerAPI);
+            app.MapGet("/changePlayerRole", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
 
 
 
