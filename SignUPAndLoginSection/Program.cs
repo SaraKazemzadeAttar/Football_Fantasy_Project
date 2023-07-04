@@ -28,7 +28,7 @@ namespace SignUPAndLoginSection
                 (filterByPost, ));
             app.MapPost("ListOfPlayersName", (int? filterByName) => businessLayer.ListOfPlayers.FilterPlayersByName
                 (filterByName,));
-
+ 
            // app.MapGet("/ChangeRoleOfPlayer", TeamPlayersSelection.changeRoleOfPlayer);
 
 
