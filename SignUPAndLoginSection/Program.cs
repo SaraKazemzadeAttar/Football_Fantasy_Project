@@ -24,10 +24,10 @@ namespace SignUPAndLoginSection
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
             app.MapPost("/otp", businessLayer.OTP
                 .ValidatinOTPCode);
-            app.MapPost(businessLayer.ListOfPlayers.FilterPlayers());
-            app.MapGet("/selectPlayer", presentationLayer.TeamPlayerSelection.SelectionPlayerAPI);
-            app.MapGet("/omitPlayer", presentationLayer.TeamPlayerSelection.omitPlayerAPI);
-            app.MapGet("/changePlayerRole", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
+            //app.MapPost(businessLayer.ListOfPlayers.FilterPlayers());   // has error
+            // app.MapGet("/selectPlayer", presentationLayer.TeamPlayerSelection.SelectionPlayerAPI);
+            // app.MapGet("/omitPlayer", presentationLayer.TeamPlayerSelection.omitPlayerAPI);
+            // app.MapGet("/changePlayerRole", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
 
 
 

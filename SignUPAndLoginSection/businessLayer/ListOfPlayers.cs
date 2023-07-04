@@ -141,6 +141,7 @@ public class ListOfPlayers
         return posts;
     }
     
+    /* has erorr
     public static List<Player> FilterPlayers(int filter, Player.Post post)
     {
         List<Player> players = getListOfPlayers();
@@ -162,6 +163,7 @@ public class ListOfPlayers
             return null;
         }
     }
+    */ 
 
 }
 
@@ -175,10 +177,8 @@ public class Player
     public Team team{ get; set; }
     public Post element_type{ get; set; }
     public double total_points{ get; set; }
-    
-    public ICollection<UsersTeamPlayers>  UsersTeamPlayersCollection{ get; set; }
 
-    //public string photo { get; set; } 
+    public string photo { get; set; } 
 
     public enum Post
     {
