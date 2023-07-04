@@ -27,7 +27,7 @@ public class ListOfPlayers
         return response.elements;
     }
     
-    public List<string> FullNameOfPlayers()
+    public  List<string> FullNameOfPlayers()
     {
         foreach (var player in ListOfPlayers.getListOfPlayers())
         {
@@ -141,13 +141,10 @@ public class ListOfPlayers
         return posts;
     }
     
-    /* has erorr
-    public static List<Player> FilterPlayers(int filter, Player.Post post)
+    public static List<Player> FilterPlayers(int? filter)
     {
         List<Player> players = getListOfPlayers();
        
-        //if (filter == 0)
-           // return Searchingmethod();
         if (filter == 1)
             return sortedDescendingListOfPlayersByPoint(players);
         if (filter == 2)
@@ -156,15 +153,33 @@ public class ListOfPlayers
             return sortedAscendingListOfPlayersByPrice(players);
         if (filter == 4)
             return sortedDescendingListOfPlayersByPrice(players);
-        if (filter == 5)
+        else
+        {
+            return null;
+        }
+    }
+
+    public static List<Player> FilterPlayersByPost(int? filterByPost, Player.Post post )
+    {
+        List<Player> players = getListOfPlayers();
+
+        if (filterByPost == 5)
             return FilterByPost(post ,players);
         else
         {
             return null;
         }
     }
-    */ 
 
+    public  List<string> FilterPlayersByName(int? filfilterByNameter,string playerName)
+    {
+        if (filfilterByNameter == 0) 
+            return Searchingmethod(playerName);
+        else
+        {
+            return null;
+        }
+    }
 }
 
 public class Player

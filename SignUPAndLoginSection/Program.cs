@@ -1,4 +1,3 @@
-
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -24,7 +23,12 @@ namespace SignUPAndLoginSection
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
             app.MapPost("/otp", businessLayer.OTP
                 .ValidatinOTPCode);
-           // app.MapPost(businessLayer.ListOfPlayers.FilterPlayers());
+            app.MapPost("ListOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
+            app.MapPost("ListOfPlayersPost",(int? filterByPost)=>businessLayer.ListOfPlayers.FilterPlayersByPost
+                (filterByPost, ));
+            app.MapPost("ListOfPlayersName", (int? filterByName) => businessLayer.ListOfPlayers.FilterPlayersByName
+                (filterByName,));
+
            // app.MapGet("/ChangeRoleOfPlayer", TeamPlayersSelection.changeRoleOfPlayer);
 
 
