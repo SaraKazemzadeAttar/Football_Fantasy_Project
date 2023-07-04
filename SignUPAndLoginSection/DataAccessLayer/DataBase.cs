@@ -13,7 +13,7 @@ public class DataBase : DbContext
     public DbSet<presentationLayer.User> userTable { get; set; }
     public DbSet<businessLayer.Player> playerTable { get; set; }
     
-    public DbSet<DataAccessLayer.UsersTeamPlayers> UsersTeamPlayersTable { get; set; }
+    //public DbSet<DataAccessLayer.UsersTeamPlayers> UsersTeamPlayersTable { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)
     {
