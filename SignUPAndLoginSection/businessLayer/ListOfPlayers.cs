@@ -145,8 +145,8 @@ public class ListOfPlayers
     {
         List<Player> players = getListOfPlayers();
        
-        if (filter == 0)
-            return Searchingmethod();
+        //if (filter == 0)
+           // return Searchingmethod();
         if (filter == 1)
             return sortedDescendingListOfPlayersByPoint(players);
         if (filter == 2)
