@@ -16,7 +16,7 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class ListOfPlayers
 {
-    public List<string> fullName = new List<string>();
+    public static List<string> fullName = new List<string>();
     
     public static List<Player> getListOfPlayers()
     {
@@ -27,7 +27,7 @@ public class ListOfPlayers
         return response.elements;
     }
     
-    public  List<string> FullNameOfPlayers()
+    public static List<string> FullNameOfPlayers()
     {
         foreach (var player in ListOfPlayers.getListOfPlayers())
         {
@@ -37,7 +37,7 @@ public class ListOfPlayers
         return fullName;
     }
     
-    public  List<string> Searchingmethod(string entry)
+    public static List<string> Searchingmethod(string entry)
     {
         
         List<string> foundNames = new List<string>();
@@ -159,27 +159,15 @@ public class ListOfPlayers
         }
     }
 
-    public static List<Player> FilterPlayersByPost(int? filterByPost, Player.Post post )
+    public static List<Player> FilterPlayersByPost(int? post )
     {
         List<Player> players = getListOfPlayers();
-
-        if (filterByPost == 5)
-            return FilterByPost(post ,players);
-        else
-        {
-            return null;
-        }
+        Player.Post playersPost=(Player.Post)post;
+        
+            return FilterByPost(playersPost ,players);
+       
     }
-
-    public  List<string> FilterPlayersByName(int? filfilterByNameter,string playerName)
-    {
-        if (filfilterByNameter == 0) 
-            return Searchingmethod(playerName);
-        else
-        {
-            return null;
-        }
-    }
+    
 }
 
 public class Player
