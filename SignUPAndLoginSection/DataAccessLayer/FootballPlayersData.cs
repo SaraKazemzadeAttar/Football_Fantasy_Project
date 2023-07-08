@@ -66,7 +66,7 @@ public class FootballPlayersData
 
     public static Dictionary<string, string>  getInfoOfTeamPlayers(int userId)
     {
-        List<int> listOfPlIds = UsersTeamPlayers.listOfUserTeamPlayerIds(userId);
+        List<int> listOfPlIds = CreationTeam.listOfUserTeamPlayerIds(userId);
         Dictionary<string, string> PlayerList = new Dictionary<string, string>();
         foreach (var teamPlayerId in listOfPlIds) // players who the user selected
         {

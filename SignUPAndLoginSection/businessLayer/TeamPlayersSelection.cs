@@ -11,11 +11,11 @@ public class TeamPlayersSelection
     {
         var user = UsersData.FindUserByTheirToken(token);
         int targetUserId = user.userId;
-        UsersTeamPlayers.changingRoleOfPlayer(targetUserId,selectedPlayerId);
+        CreationTeam.changingRoleOfPlayer(targetUserId,selectedPlayerId);
     }
     public static void buySelectedPlayer(presentationLayer.User user, int playerId)
     {
-        UsersTeamPlayers.insertSelectedPlayerInUserTeam(user.userId,playerId);
+        CreationTeam.insertSelectedPlayerInUserTeam(user.userId,playerId);
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(playerId);
         user.cash = user.cash - convertedPl.now_cost;
     }
@@ -23,7 +23,7 @@ public class TeamPlayersSelection
     {
         var user = UsersData.FindUserByTheirToken(token);
         int targetUserId = user.userId;
-        UsersTeamPlayers.RemovePlayer(targetUserId,playerId);
+        CreationTeam.RemovePlayer(targetUserId,playerId);
         returnMoneyToUser(user, playerId);
     }
 
@@ -69,13 +69,13 @@ public class TeamPlayersSelection
         switch (intendedPost)
         {
             case Player.Post.Goalkeeper:
-                return UsersTeamPlayers.hasTeamUnderTwoGoalKeepers(targetUserId);
+                return CreationTeam.hasTeamUnderTwoGoalKeepers(targetUserId);
             case Player.Post.Defender:
-                return UsersTeamPlayers.hasTeamUnderFiveDefenders(targetUserId);
+                return CreationTeam.hasTeamUnderFiveDefenders(targetUserId);
             case Player.Post.Midfielder:
-                return UsersTeamPlayers.hasTeamUnderFiveMidfielders(targetUserId);
+                return CreationTeam.hasTeamUnderFiveMidfielders(targetUserId);
             case Player.Post.Forward:
-                return UsersTeamPlayers.hasTeamUnderThreeForwards(targetUserId);
+                return CreationTeam.hasTeamUnderThreeForwards(targetUserId);
             default:
                 return false;
         }
@@ -84,7 +84,7 @@ public class TeamPlayersSelection
     public static bool AreUnderFourPlayersFromOneTeam(int targetUserId,Player selectedPlayer)
     {
         var playerTeam = selectedPlayer.team.ToString();
-        if (UsersTeamPlayers.numberOfPlayersFromThisTeam(targetUserId ,playerTeam) > 4)
+        if (CreationTeam.numberOfPlayersFromThisTeam(targetUserId ,playerTeam) > 4)
         {
             //UsersTeamPlayers.selectionPlayerErrorMessage = "You have selected three players from this team before!";
             return false;

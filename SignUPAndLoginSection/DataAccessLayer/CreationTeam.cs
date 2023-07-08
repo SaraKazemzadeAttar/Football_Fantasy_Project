@@ -9,26 +9,27 @@ using Ubiety.Dns.Core.Records;
 
 using SignUPAndLoginSection.DataAccessLayer;
 
-public class UsersTeamPlayers
+    public class UsersTeamPlayers
+    {
+        [Key] public int UsersTeamPlayersId { get; set; }
+
+        public static int userId { get; set; }
+
+        public static int playerId { get; set; }
+
+        public static bool isMainPlayer { get; set; }
+    }
+public class CreationTeam
 {
-    [Key] 
-    public int UsersTeamPlayersId { get; set; }
-
-    public static int userId { get; set; }
-
-    public static int playerId { get; set; }
-
-    public static bool isMainPlayer { get; set; }
-    
     public static void insertSelectedPlayerInUserTeam(int targetUserId, int selectedPlayerId)
     {
         using (var db = new DataBase())
         {
-            db.UsersTeamPlayersTable.Add(new (userId=targetUserId, playerId=selectedPlayerId));
+            db.UsersTeamPlayersTable.Add(new(UsersTeamPlayers.userId = targetUserId, UsersTeamPlayers.playerId = selectedPlayerId));
             db.SaveChanges();
         }
     }
-    
+
     public static void RemovePlayer(int targetUserId, int selectedPlayerId)
     {
         using (var db = new DataBase())
@@ -37,10 +38,10 @@ public class UsersTeamPlayers
             {
                 if (record.userId == targetUserId)
                 {
-                    if (playerId == selectedPlayerId)
+                    if (UsersTeamPlayers.playerId == selectedPlayerId)
                     {
-                            db.UsersTeamPlayersTable.Remove(record);
-                            db.SaveChanges();
+                        db.UsersTeamPlayersTable.Remove(record);
+                        db.SaveChanges();
                     }
                 }
 
@@ -50,7 +51,7 @@ public class UsersTeamPlayers
 
     public static void changingRoleOfPlayer(int targetUserId, int selectedPlayerId)
     {
-        List<int> teamPlayerIds = listOfUserTeamPlayerIds(userId);
+        List<int> teamPlayerIds = listOfUserTeamPlayerIds(UsersTeamPlayers.userId);
         using (var db = new DataBase())
         {
             foreach (var record in db.UsersTeamPlayersTable)
@@ -93,7 +94,7 @@ public class UsersTeamPlayers
     public static List<int> listOfUserTeamPlayerIds(int targetUserId)
     {
         List<int> listOfSelectedPlayersIds = new List<int>();
-        using (var db=new DataBase())
+        using (var db = new DataBase())
         {
             foreach (var record in db.UsersTeamPlayersTable)
             {
@@ -106,6 +107,7 @@ public class UsersTeamPlayers
 
         return listOfSelectedPlayersIds;
     }
+
     public static int numberOfPlayersFromThisTeam(int targetUserId, string playerTeam)
     {
         int counterOfPlayersOfIntendedTeam = 0;
