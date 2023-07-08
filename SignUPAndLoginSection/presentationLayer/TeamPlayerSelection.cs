@@ -5,11 +5,25 @@ namespace SignUPAndLoginSection.presentationLayer;
 
 public class TeamPlayerSelection
 {
-   // public static IResult SelectionPlayerAPI(string token, Player player)
-   // {
+    public static IResult SelectionPlayerAPI(string token, int playerId)
+    {
 
-        // public UsersTeamPlayers selectedPlayer = new UsersTeamPlayers(player);
-        // businessLayer.TeamPlayersSelection.playerSelection(token, selectedPlayer);
+         UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
+         if (businessLayer.TeamPlayersSelection.isSelectionSuccessful(token, playerId))
+         {
+             return Results.Ok(new
+                 {
+                     message = "selection was successful!"
+                 }
+             );
+         }
+         else
+         {
+             return Results.BadRequest(new
+             {
+                 message= "selection was not successful!"
+             });
+         }
 
-    //}
+    }
 }

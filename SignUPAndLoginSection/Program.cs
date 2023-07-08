@@ -23,10 +23,12 @@ namespace SignUPAndLoginSection
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
             app.MapPost("/otp", businessLayer.OTP
                 .ValidatinOTPCode);
-            app.MapPost("ListOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
-            app.MapPost("ListOfPlayersPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
-            app.MapPost("ListOfPlayersName", businessLayer.ListOfPlayers.Searchingmethod);
-            app.MapPost("TableScore",DataAccessLayer.ScorTable.usersTable);
+            app.MapPost("/ListOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
+            app.MapPost("/ListOfPlayersPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
+            app.MapPost("/ListOfPlayersName", businessLayer.ListOfPlayers.Searchingmethod);
+            app.MapPost("/TableScore",DataAccessLayer.ScorTable.usersTable);
+            app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.SelectionPlayerAPI);
+            
 
            // app.MapGet("/ChangeRoleOfPlayer", TeamPlayersSelection.changeRoleOfPlayer);
 

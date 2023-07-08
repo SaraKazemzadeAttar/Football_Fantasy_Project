@@ -1,13 +1,11 @@
  using SignUPAndLoginSection.businessLayer;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.presentationLayer;
-
-namespace  SignUPAndLoginSection.businessLayer;
-
-
-using System;
+ using System;
 using System.Net;
 using System.Net.Mail;
+ 
+ namespace  SignUPAndLoginSection.businessLayer;
 
 public class OTP
 {

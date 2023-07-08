@@ -48,45 +48,46 @@ public class FootballPlayersData
         return null;
     }
 
-    public static Player findPlayerByTheirName(string name)
-    {
-        using (var db = new DataBase())
-        {
-            foreach ( var player in db.playerTable )
-            {
-                if (name == player.first_name|| name==player.second_name)
-                    return player;
-            }
-        }
-
-        return null;
-    }
-
-
-
-    public static Dictionary<string, string>  getInfoOfTeamPlayers(int userId)
+    public static List<Player> selectedPlayersTeamList(int userId , Player.Team targetTeam)
     {
         List<int> listOfPlIds = CreationTeam.listOfUserTeamPlayerIds(userId);
-        Dictionary<string, string> PlayerList = new Dictionary<string, string>();
-        foreach (var teamPlayerId in listOfPlIds) // players who the user selected
+        List<Player> TeamList = new List<Player>();
+        using (var db = new DataBase())
         {
-            using (var db = new DataBase())
+            foreach (var player in db.playerTable )
             {
-                foreach (var player in db.playerTable) // find player in player table to get their info
+                foreach (var id in listOfPlIds)
                 {
-                    if (player.id == teamPlayerId)
+                    if (player.id == id) // find user team players 
                     {
-                        PlayerList.Add("Team",player.team.ToString() );
-                        PlayerList.Add("Post",player.element_type.ToString());
-                        PlayerList.Add("NowCost",player.now_cost.ToString() );
-                        PlayerList.Add("FullName",player.first_name+player.second_name);
-                        PlayerList.Add("TotalPoints" , player.total_points.ToString());
+                        if(targetTeam==player.team)
+                        TeamList.Add(player);
                     }
                 }
             }
         }
-        return PlayerList;
-    }
 
-   
+        return TeamList;
+    }
+    
+    public static List<Player> selectedPlayersPostList(int userId , Player.Post targetPost )
+    {
+        List<int> listOfPlIds =CreationTeam.listOfUserTeamPlayerIds(userId);
+        List<Player> postList = new List<Player>();
+        using (var db = new DataBase())
+        {
+            foreach (var player in db.playerTable )
+            {
+                foreach (var id in listOfPlIds)
+                {
+                    if (player.id == id)
+                    {
+                        postList.Add(player);
+                    }
+                }
+            }
+        }
+
+        return postList;
+    }
 }

@@ -17,7 +17,7 @@ public class TeamPlayersSelection
     {
         CreationTeam.insertSelectedPlayerInUserTeam(user.userId,playerId);
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(playerId);
-        user.cash = user.cash - convertedPl.now_cost;
+        user.cash =- convertedPl.now_cost;
     }
     public static void omitPlayer(string token ,int playerId) 
     {
@@ -30,7 +30,7 @@ public class TeamPlayersSelection
     public static void returnMoneyToUser(presentationLayer.User user, int playerId)
     {
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(playerId);
-        user.cash = user.cash + convertedPl.now_cost;
+        user.cash =+ convertedPl.now_cost;
     }
 
     public static bool isSelectionSuccessful(string token, int selectedPlayerId)
@@ -54,7 +54,6 @@ public class TeamPlayersSelection
 
     public static bool hasUserEnoughMoney(presentationLayer.User user, Player selectedPlayer)
     {
-        Dictionary<string, string> teamPlayersInfo = FootballPlayersData.getInfoOfTeamPlayers(user.userId);
         if (user.cash <selectedPlayer.now_cost)
         {
             //UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy this player!";
@@ -63,19 +62,20 @@ public class TeamPlayersSelection
     
         return true;
     }
+    
     public static bool AreSelectedPlayerInCorrectArrange( int targetUserId, Player selectedPlayer)
     {
         var intendedPost =selectedPlayer.element_type;
         switch (intendedPost)
         {
             case Player.Post.Goalkeeper:
-                return CreationTeam.hasTeamUnderTwoGoalKeepers(targetUserId);
+                return (FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Goalkeeper).Count < 2);
             case Player.Post.Defender:
-                return CreationTeam.hasTeamUnderFiveDefenders(targetUserId);
+                return (FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Defender).Count < 5);
             case Player.Post.Midfielder:
-                return CreationTeam.hasTeamUnderFiveMidfielders(targetUserId);
+                return FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Midfielder).Count < 5;
             case Player.Post.Forward:
-                return CreationTeam.hasTeamUnderThreeForwards(targetUserId);
+                return FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Forward).Count < 3;
             default:
                 return false;
         }
@@ -83,8 +83,9 @@ public class TeamPlayersSelection
     
     public static bool AreUnderFourPlayersFromOneTeam(int targetUserId,Player selectedPlayer)
     {
-        var playerTeam = selectedPlayer.team.ToString();
-        if (CreationTeam.numberOfPlayersFromThisTeam(targetUserId ,playerTeam) > 4)
+        var playerTeam = selectedPlayer.team;
+        
+        if (FootballPlayersData.selectedPlayersTeamList(targetUserId ,playerTeam).Count > 4)
         {
             //UsersTeamPlayers.selectionPlayerErrorMessage = "You have selected three players from this team before!";
             return false;

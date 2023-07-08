@@ -22,7 +22,6 @@ namespace SignUPAndLoginSection.presentationLayer
                         message = "login was not successful"
                     }
                 );
-                // print main page of site (front)
             }
         }
     }

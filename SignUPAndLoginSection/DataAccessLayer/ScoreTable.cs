@@ -5,7 +5,7 @@ using SignUPAndLoginSection.presentationLayer;
 
 namespace SignUPAndLoginSection.DataAccessLayer;
 
-public class ScorTable
+public class ScoreTable
 {
     public static List<int> mainTaemPlayersIds(int targetUserId)
     {
