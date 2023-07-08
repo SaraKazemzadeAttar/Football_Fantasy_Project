@@ -65,7 +65,7 @@ public class UsersData
 
     public static void setInitialCashForUser(presentationLayer.User u)
     {
-        u.cash = 100;
+        u.cash = 1000;
     }
 
     public static void insertUserToDataBase(presentationLayer.User u)

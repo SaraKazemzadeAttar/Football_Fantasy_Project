@@ -1,6 +1,7 @@
 using SignUPAndLoginSection.presentationLayer;
 using System;
 using SignUPAndLoginSection.DataAccessLayer;
+using SignUPAndLoginSection.businessLayer;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ public class DataBase : DbContext
     public DbSet<presentationLayer.User> userTable { get; set; }
     public DbSet<businessLayer.Player> playerTable { get; set; }
     
-    //public DbSet<DataAccessLayer.UsersTeamPlayers> UsersTeamPlayersTable { get; set; }
+    public DbSet<DataAccessLayer.UsersTeamPLayers> UsersTeamPlayersTable { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)
     {
