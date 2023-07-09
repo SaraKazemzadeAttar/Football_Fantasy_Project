@@ -37,7 +37,7 @@ public class ListOfPlayers
         return fullName;
     }
     
-    public static List<string> Searchingmethod(string entry)
+    public static List<string> searchingMethod(string entry)
     {
         
         List<string> foundNames = new List<string>();

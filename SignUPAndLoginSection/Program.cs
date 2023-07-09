@@ -25,13 +25,11 @@ namespace SignUPAndLoginSection
                 .ValidatinOTPCode);
             app.MapPost("/ListOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
             app.MapPost("/ListOfPlayersPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
-            app.MapPost("/ListOfPlayersName", businessLayer.ListOfPlayers.Searchingmethod);
+            app.MapPost("/ListOfPlayersName", businessLayer.ListOfPlayers.searchingMethod);
             app.MapPost("/TableScore",DataAccessLayer.ScoreTable.usersTable);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("/RemovePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
-            
-
-           // app.MapGet("/ChangeRoleOfPlayer", TeamPlayersSelection.changeRoleOfPlayer);
+            app.MapGet("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
 
 
 

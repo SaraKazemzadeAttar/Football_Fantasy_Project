@@ -36,5 +36,16 @@ public class TeamPlayerSelection
             }
         );
     }
+
+    public static IResult changeRoleOfPlayerAPI(string token, int playerId)
+    {
+        UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
+        businessLayer.TeamPlayersSelection.changeRoleOfPlayer(token, playerId);
+        return Results.Ok(new
+            {
+                message = "selection was successful!"
+            }
+        );
+    }
 }
 
