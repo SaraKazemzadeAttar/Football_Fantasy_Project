@@ -13,7 +13,6 @@
           "Microsoft.EntityFrameworkCore": "8.0.0-preview.5.23280.1",
           "Microsoft.EntityFrameworkCore.Design": "8.0.0-preview.5.23280.1",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.0-preview.5.23280.1",
-          "Microsoft.EntityFrameworkCore.Sqlite.Design": "2.0.0-preview1-final",
           "Microsoft.IdentityModel.JsonWebTokens": "6.30.1",
           "Microsoft.IdentityModel.Logging": "6.30.1",
           "Microsoft.IdentityModel.Protocols": "6.30.1",
@@ -457,18 +456,6 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational.Design/2.0.0-preview1-final": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "8.0.0-preview.5.23280.1",
-          "NETStandard.Library": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.17128"
-          }
-        }
-      },
       "Microsoft.EntityFrameworkCore.Sqlite/8.0.0-preview.5.23280.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "8.0.0-preview.5.23280.1",
@@ -485,19 +472,6 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.23.28001"
-          }
-        }
-      },
-      "Microsoft.EntityFrameworkCore.Sqlite.Design/2.0.0-preview1-final": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational.Design": "2.0.0-preview1-final",
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "8.0.0-preview.5.23280.1",
-          "NETStandard.Library": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Sqlite.Design.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.17128"
           }
         }
       },
@@ -2925,13 +2899,6 @@
       "path": "microsoft.entityframeworkcore.relational/8.0.0-preview.5.23280.1",
       "hashPath": "microsoft.entityframeworkcore.relational.8.0.0-preview.5.23280.1.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational.Design/2.0.0-preview1-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3BtBHSgNJaUrj+r5ARBTeRxjMq/og8NdzzdfuyYjwLT6QCX79mCAQ44/MMl5NfwRmPRIerCTUifunQmEZtMQ/w==",
-      "path": "microsoft.entityframeworkcore.relational.design/2.0.0-preview1-final",
-      "hashPath": "microsoft.entityframeworkcore.relational.design.2.0.0-preview1-final.nupkg.sha512"
-    },
     "Microsoft.EntityFrameworkCore.Sqlite/8.0.0-preview.5.23280.1": {
       "type": "package",
       "serviceable": true,
@@ -2945,13 +2912,6 @@
       "sha512": "sha512-4M4K5U5+XW8SmuEt5tXJmyn3yXRWUwMSQPm6B4uLx0WU2KB3S1OE0IlO0hIVi1c+LzGtiAl1lx+TC4ekMYdjjg==",
       "path": "microsoft.entityframeworkcore.sqlite.core/8.0.0-preview.5.23280.1",
       "hashPath": "microsoft.entityframeworkcore.sqlite.core.8.0.0-preview.5.23280.1.nupkg.sha512"
-    },
-    "Microsoft.EntityFrameworkCore.Sqlite.Design/2.0.0-preview1-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-mhNMzaMRYI3vwpSXCUnRabAwqtK/VVNOCWZe1VMaOmtaLQ9AmUZdLcwM1NRncDlzWssRN9by6ebLVlvBjImGog==",
-      "path": "microsoft.entityframeworkcore.sqlite.design/2.0.0-preview1-final",
-      "hashPath": "microsoft.entityframeworkcore.sqlite.design.2.0.0-preview1-final.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/8.0.0-preview.5.23280.8": {
       "type": "package",

@@ -27,7 +27,7 @@ public class CreationTeam
     {
         using (var db = new DataBase())
         {
-            db.UsersTeamPlayersTable.Add(new(UsersTeamPlayers.userId = targetUserId,UsersTeamPlayers.playerId = selectedPlayerId));
+            db.UsersTeamPlayersTable.Add(new UsersTeamPlayers() { userId = targetUserId, playerId = selectedPlayerId });
             db.SaveChanges();
         }
     }
@@ -51,36 +51,42 @@ public class CreationTeam
         }
     }
 
-    public static void changingRoleOfPlayer(int targetUserId, int selectedPlayerId)
+    public static void changingRoleOfPlayer(int targetUserId, int selectedPlayerId) // the owner of playerId is a main player
     {
         List<int> teamPlayerIds = listOfUserTeamPlayerIds(targetUserId);
         using (var db = new DataBase())
         {
-            foreach (var id in teamPlayerIds)
+            foreach (var id in teamPlayerIds) // user team players
             {
-                foreach (var record in db.UsersTeamPlayersTable)
+                if (id == selectedPlayerId) // find player
                 {
-                    if (record.playerId == selectedPlayerId)
+                    Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
+                    var intendedPost = convertedPl.element_type;
+                    List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId, intendedPost);
+                    foreach(var sPostPlayer in intendedPostPlayers) // players of same post in user team
                     {
-                        if (record.isMainPlayer)
+                        foreach (var utPlayer in db.UsersTeamPlayersTable) // to access field isMainPlayer
                         {
-                            record.isMainPlayer = false;
-                            db.SaveChanges();
-                            break;
-                        }
+                            if (sPostPlayer.id == utPlayer.playerId)
+                            {
+                                if (!utPlayer.isMainPlayer)
+                                {
+                                    utPlayer.isMainPlayer = true;
+                                }
+                            }
 
-                        if (!record.isMainPlayer)
-                        {
-                            record.isMainPlayer = true;
-                            db.SaveChanges();
-                            break;
+                            if (utPlayer.playerId == convertedPl.id)
+                            {
+                                utPlayer.isMainPlayer = false;
+                            }
                         }
                     }
                 }
             }
         }
     }
-    public static List<int> listOfUserTeamPlayerIds(int targetUserId)
+
+public static List<int> listOfUserTeamPlayerIds(int targetUserId)
     {
         List<int> listOfSelectedPlayersIds = new List<int>();
         using (var db = new DataBase())
