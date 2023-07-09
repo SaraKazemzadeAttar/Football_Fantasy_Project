@@ -26,7 +26,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/ListOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
             app.MapPost("/ListOfPlayersPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
             app.MapPost("/ListOfPlayersName", businessLayer.ListOfPlayers.Searchingmethod);
-            app.MapPost("/TableScore",DataAccessLayer.ScorTable.usersTable);
+            app.MapPost("/TableScore",DataAccessLayer.ScoreTable.usersTable);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.SelectionPlayerAPI);
             
 

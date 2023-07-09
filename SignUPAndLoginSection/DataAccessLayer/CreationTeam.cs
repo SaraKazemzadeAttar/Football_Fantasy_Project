@@ -7,25 +7,27 @@ using SignUPAndLoginSection.businessLayer;
 using Ubiety.Dns.Core.Records;
 
 
-using SignUPAndLoginSection.DataAccessLayer;
+namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class UsersTeamPlayers
 {
-    [Key] public static int UsersTeamPlayersId { get; set; }
 
-    public static int userId { get; set; }
+    [Key] public int UsersTeamPlayersId { get; set; }
 
-    public static int playerId { get; set; }
+    public int userId { get; set; }
 
-    public static bool isMainPlayer { get; set; }
+    public int playerId { get; set; }
+
+    public bool isMainPlayer { get; set; }
 }
 public class CreationTeam
 {
+
     public static void insertSelectedPlayerInUserTeam(int targetUserId, int selectedPlayerId)
     {
         using (var db = new DataBase())
         {
-            db.UsersTeamPlayersTable.Add(new(UsersTeamPlayers.userId = targetUserId, UsersTeamPlayers.playerId = selectedPlayerId));
+            db.UsersTeamPlayersTable.Add(new(UsersTeamPlayers.userId = targetUserId,UsersTeamPlayers.playerId = selectedPlayerId));
             db.SaveChanges();
         }
     }
@@ -38,7 +40,7 @@ public class CreationTeam
             {
                 if (record.userId == targetUserId)
                 {
-                    if (UsersTeamPlayers.playerId == selectedPlayerId)
+                    if (record.playerId == selectedPlayerId)
                     {
                         db.UsersTeamPlayersTable.Remove(record);
                         db.SaveChanges();
@@ -51,39 +53,25 @@ public class CreationTeam
 
     public static void changingRoleOfPlayer(int targetUserId, int selectedPlayerId)
     {
-        List<int> teamPlayerIds = listOfUserTeamPlayerIds(UsersTeamPlayers.userId);
+        List<int> teamPlayerIds = listOfUserTeamPlayerIds(targetUserId);
         using (var db = new DataBase())
         {
-            foreach (var record in db.UsersTeamPlayersTable)
+            foreach (var id in teamPlayerIds)
             {
-                if (record.userId == targetUserId)
+                foreach (var record in db.UsersTeamPlayersTable)
                 {
-                    foreach (var id in teamPlayerIds)
+                    if (record.playerId == selectedPlayerId)
                     {
-                        if (record.isMainPLayer)
+                        if (record.isMainPlayer)
                         {
-                            record.isMainPLayer = false;
+                            record.isMainPlayer = false;
                             db.SaveChanges();
                             break;
                         }
 
-                        if (!record.isMainPLayer)
+                        if (!record.isMainPlayer)
                         {
-                            record.isMainPLayer = true;
-                            db.SaveChanges();
-                            break;
-                        }
-                    }
-                        if (record.isMainPLayer)
-                        {
-                            record.isMainPLayer = false;
-                            db.SaveChanges();
-                            break;
-                        }
-
-                        if (!record.isMainPLayer)
-                        {
-                            record.isMainPLayer = true;
+                            record.isMainPlayer = true;
                             db.SaveChanges();
                             break;
                         }
@@ -91,6 +79,7 @@ public class CreationTeam
                 }
             }
         }
+    }
     public static List<int> listOfUserTeamPlayerIds(int targetUserId)
     {
         List<int> listOfSelectedPlayersIds = new List<int>();
