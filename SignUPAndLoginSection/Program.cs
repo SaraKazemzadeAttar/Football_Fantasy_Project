@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Cryptography.X509Certificates;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.businessLayer;
 using SignUPAndLoginSection.DataAccessLayer;
@@ -31,11 +32,16 @@ namespace SignUPAndLoginSection
             app.MapPost("/RemovePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
             app.MapGet("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
             app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
-
+            app.MapPost("ShowListOfPlayers", updateListOfPlayers);
 
 
             app.Run("http://localhost:3001");
+            
+        }
 
+        public static void updateListOfPlayers()
+        {
+            
             // Calculate the delay until the next weekly occurrence
             DateTime now = DateTime.Now;
             DateTime nextRun = CalculateNextWeeklyRun(now);
@@ -53,7 +59,6 @@ namespace SignUPAndLoginSection
                 Thread.Sleep(Timeout.Infinite);
             }
         }
-
         public static DateTime CalculateNextWeeklyRun(DateTime now)
         {
             // Get the current day of the week
