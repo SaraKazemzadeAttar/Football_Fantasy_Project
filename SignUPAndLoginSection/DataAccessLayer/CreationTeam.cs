@@ -53,37 +53,30 @@ public class CreationTeam
 
     public static void changingRoleOfPlayer(int targetUserId, int selectedPlayerId) // the owner of playerId is a main player
     {
-        List<int> teamPlayerIds = listOfUserTeamPlayerIds(targetUserId);
+        Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
+        var intendedPost = convertedPl.element_type;
+        List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId, intendedPost);
         using (var db = new DataBase())
         {
-            foreach (var id in teamPlayerIds) // user team players
+            foreach (var sPostPlayer in intendedPostPlayers) // players of same post in user team
             {
-                if (id == selectedPlayerId) // find player
+                foreach (var utPlayer in db.UsersTeamPlayersTable) // to access field isMainPlayer
                 {
-                    Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
-                    var intendedPost = convertedPl.element_type;
-                    List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId, intendedPost);
-                    foreach(var sPostPlayer in intendedPostPlayers) // players of same post in user team
+                    if (sPostPlayer.id == utPlayer.playerId) // to match obj of utp and player
                     {
-                        foreach (var utPlayer in db.UsersTeamPlayersTable) // to access field isMainPlayer
+                        if (!utPlayer.isMainPlayer)
                         {
-                            if (sPostPlayer.id == utPlayer.playerId)
-                            {
-                                if (!utPlayer.isMainPlayer)
-                                {
-                                    utPlayer.isMainPlayer = true;
-                                }
-                            }
+                            utPlayer.isMainPlayer = true;
+                        }
+                    }
 
-                            if (utPlayer.playerId == convertedPl.id)
-                            {
-                                utPlayer.isMainPlayer = false;
-                            }
+                    if (utPlayer.playerId == selectedPlayerId)
+                        {
+                            utPlayer.isMainPlayer = false;
                         }
                     }
                 }
             }
-        }
     }
 
 public static List<int> listOfUserTeamPlayerIds(int targetUserId)
