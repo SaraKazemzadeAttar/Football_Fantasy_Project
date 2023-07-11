@@ -11,7 +11,8 @@ public class TeamPlayersSelection
     {
         var user = UsersData.FindUserByTheirToken(token);
         int targetUserId = user.userId;
-        CreationTeam.changingRoleOfPlayer(targetUserId,selectedPlayerId);
+        CreationTeam.changingRoleOfMainPlayer(targetUserId,selectedPlayerId);
+        CreationTeam.changingRoleOfSubstitutePlayer(targetUserId,selectedPlayerId);
     }
     public static void buySelectedPlayer(presentationLayer.User user, int playerId)
     {

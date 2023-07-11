@@ -7,7 +7,7 @@
     &lt;TestId&gt;NUnit3x::B2FA6B48-9FCF-4939-87B1-C63A0DAC0F2B::net7.0::SignUpTest.program+FullNameTest.ChekingLetters_ValidFullNameWithOnlyLetters_ReturnsTrue&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7ff8b35a_002D64b2_002D456a_002Da176_002D8f903af3a2c4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UsernameProblemsHandler_InvalidUsername_ReturnsErrorMessage" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7ff8b35a_002D64b2_002D456a_002Da176_002D8f903af3a2c4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UsernameProblemsHandler_InvalidUsername_ReturnsErrorMessage" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::B2FA6B48-9FCF-4939-87B1-C63A0DAC0F2B::net7.0::SignUpTest.program+UserNameTest.UsernameProblemsHandler_InvalidUsername_ReturnsErrorMessage&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;

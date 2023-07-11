@@ -5,6 +5,7 @@ using SignUPAndLoginSection.presentationLayer;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.businessLayer;
 using Ubiety.Dns.Core.Records;
+using User = SignUPAndLoginSection.presentationLayer.User;
 
 
 namespace SignUPAndLoginSection.DataAccessLayer;
@@ -51,35 +52,64 @@ public class CreationTeam
         }
     }
 
-    public static void changingRoleOfPlayer(int targetUserId, int selectedPlayerId) // the owner of playerId is a main player
+    public static Player.Post getPostOfChangingRole(int selectedPlayerId)
     {
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
-        var intendedPost = convertedPl.element_type;
-        List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId, intendedPost);
+        return convertedPl.element_type;
+    }
+    public static UsersTeamPlayers getSubstitutePlayerOfSelectedPost(int targetUserId,int  selectedPlayerId)
+    {
+        List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId,getPostOfChangingRole(selectedPlayerId));
         using (var db = new DataBase())
         {
-            foreach (var sPostPlayer in intendedPostPlayers) // players of same post in user team
+            foreach (var sPostPlayer in intendedPostPlayers) 
             {
-                foreach (var utPlayer in db.UsersTeamPlayersTable) // to access field isMainPlayer
+                foreach (var utPlayer in db.UsersTeamPlayersTable) 
                 {
-                    if (sPostPlayer.id == utPlayer.playerId) // to match obj of utp and player
+                    if (sPostPlayer.id == utPlayer.playerId) 
                     {
                         if (!utPlayer.isMainPlayer)
                         {
-                            utPlayer.isMainPlayer = true;
-                        }
-                    }
-
-                    if (utPlayer.playerId == selectedPlayerId)
-                        {
-                            utPlayer.isMainPlayer = false;
+                            return utPlayer;
                         }
                     }
                 }
             }
+        }
+
+        return null;
     }
 
-public static List<int> listOfUserTeamPlayerIds(int targetUserId)
+    public static UsersTeamPlayers getMainPlayerOfSelectedPost(int targetUserId, int selectedPlayerId)
+    {
+        List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId,getPostOfChangingRole(selectedPlayerId));
+        using (var db = new DataBase())
+        {
+            foreach (var utPlayer in db.UsersTeamPlayersTable)
+            {
+                if (utPlayer.playerId == selectedPlayerId)
+                {
+                    return utPlayer;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static void changingRoleOfSubstitutePlayer(int targetUserId,int  selectedPlayerId)
+    {
+        UsersTeamPlayers substitutePlayer = getSubstitutePlayerOfSelectedPost(targetUserId,selectedPlayerId);
+        substitutePlayer.isMainPlayer = false;
+    }
+    
+    public static void changingRoleOfMainPlayer(int targetUserId, int selectedPlayerId)
+    {
+        UsersTeamPlayers MainPlayer = getMainPlayerOfSelectedPost(targetUserId, selectedPlayerId);
+        MainPlayer.isMainPlayer = false;
+    }
+
+    public static List<int> listOfUserTeamPlayerIds(int targetUserId)
     {
         List<int> listOfSelectedPlayersIds = new List<int>();
         using (var db = new DataBase())

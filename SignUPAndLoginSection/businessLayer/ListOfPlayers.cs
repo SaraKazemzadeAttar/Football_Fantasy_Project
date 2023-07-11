@@ -8,6 +8,7 @@ using ServiceStack.Text;
 using System.Text.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using Microsoft.JSInterop.Implementation;
 using System.Threading;
 using CronNET;
@@ -129,7 +130,7 @@ public class ListOfPlayers
     
     public static List<Player> FilterByPost(Player.Post post,List <Player> players)
     {
-        List <Player> posts= null;
+        List <Player> posts= new List<Player>();
         for (int i = 0; i < players.Count; i++)
         {
             if (post.Equals(players[i].element_type))
@@ -140,22 +141,22 @@ public class ListOfPlayers
 
         return posts;
     }
-    
+
     public static List<Player> FilterPlayers(int? filter)
     {
         List<Player> players = getListOfPlayers();
-       
-        if (filter == 1)
-            return sortedDescendingListOfPlayersByPoint(players);
-        if (filter == 2)
-            return sortedAscendingListOfPlayersByPoint(players);
-        if (filter == 3)
-            return sortedAscendingListOfPlayersByPrice(players);
-        if (filter == 4)
-            return sortedDescendingListOfPlayersByPrice(players);
-        else
+        switch (filter)
         {
-            return null;
+            case 1:
+                return sortedDescendingListOfPlayersByPoint(players);
+            case 2:
+                return sortedAscendingListOfPlayersByPoint(players);
+            case 3:
+                return sortedAscendingListOfPlayersByPrice(players);
+            case 4:
+                return sortedDescendingListOfPlayersByPrice(players);
+            default:
+                return null;
         }
     }
 
