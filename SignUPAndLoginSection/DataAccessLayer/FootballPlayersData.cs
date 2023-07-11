@@ -23,8 +23,8 @@ public class FootballPlayersData
     
     public static void insertPlayersInDataBase()
     {
-
-            using (var db = new DataBase())
+        
+           using (var db = new DataBase())
             {
                 foreach ( var player in ListOfPlayers.getListOfPlayers())
                 {

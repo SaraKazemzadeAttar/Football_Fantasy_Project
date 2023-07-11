@@ -9,6 +9,7 @@ using SignUPAndLoginSection.presentationLayer;
 using System.Threading;
 using CronNET;
 using NCrontab;
+using ServiceStack;
 
 namespace SignUPAndLoginSection
 {
@@ -16,8 +17,8 @@ namespace SignUPAndLoginSection
     {
         public static void Main(string[] args)
         {
-            DataAccessLayer.FootballPlayersData.insertPlayersInDataBase();
-
+            string url = "https://fantasy.premierleague.com/api/bootstrap-static/";
+            var response = url.GetJsonFromUrl().FromJson<FootballPlayersData>();
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
             app.MapPost("/login", presentationLayer.login.loginApi);
