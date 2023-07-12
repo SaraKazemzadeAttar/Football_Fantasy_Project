@@ -31,11 +31,11 @@ namespace SignUPAndLoginSection
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("/RemovePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
             app.MapGet("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
-            app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
-            app.MapPost("ShowListOfPlayers", updateListOfPlayers);
+           // app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
+            app.MapPost("/ShowListOfPlayers", updateListOfPlayers);
 
 
-            app.Run("http://localhost:3001");
+            app.Run("http://localhost:7005");
             
         }
 

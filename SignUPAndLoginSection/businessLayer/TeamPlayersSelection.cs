@@ -38,11 +38,11 @@ public class TeamPlayersSelection
     {
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
         var user = UsersData.FindUserByTheirToken(token);
-        bool MoneyCondition = hasUserEnoughMoney(user, convertedPl );
-        bool ArrangeCondition = AreSelectedPlayerInCorrectArrange( user.userId,convertedPl);
-        bool TeamCondition = AreUnderFourPlayersFromOneTeam(user.userId,convertedPl);
+        bool moneyCondition = hasUserEnoughMoney(user, convertedPl );
+        bool arrangeCondition = AreSelectedPlayerInCorrectArrange( user.userId,convertedPl);
+        bool teamCondition = AreUnderFourPlayersFromOneTeam(user.userId,convertedPl);
     
-        if (MoneyCondition && ArrangeCondition && TeamCondition)
+        if (moneyCondition && arrangeCondition && teamCondition)
         {
             buySelectedPlayer(user, selectedPlayerId);
             return true;

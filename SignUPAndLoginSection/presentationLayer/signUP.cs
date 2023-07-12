@@ -10,6 +10,15 @@ using System.Security.AccessControl;
 
 namespace SignUPAndLoginSection.presentationLayer;
 
+public class UserInputs
+{
+    public string password { get; set; }
+    public string fullName { get; set; }
+    public string email { get; set; }
+    public string mobilePhone { get; set; }
+    public string userName { get; set; }
+}
+
 public class User
 {
     public string password { get; set; }
@@ -22,7 +31,17 @@ public class User
     public bool isvalid { get; set; }
     
     public double cash {get; set; }
-    
+
+    // public static User assignUserSignUpInputs(UserInputs signupedUser)
+    // {
+    //     User newUser = new User();
+    //     newUser.password = signupedUser.password;
+    //     newUser.userName = signupedUser.userName;
+    //     newUser.email = signupedUser.email;
+    //     newUser.fullName = signupedUser.fullName;
+    //     newUser.mobilePhone = signupedUser.mobilePhone;
+    //     return ne
+    // }
 }
 
 public static class SignUp
@@ -67,7 +86,7 @@ public static class SignUp
 
         if (user.isValidUser)
         {
-            bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(u.email) ;
+            bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(u.email);
             bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(u.mobilePhone);
             bool userNameExistence = businessLayer.checkEmail_Phone_Username.isUsernameExist(u.userName);
 
@@ -77,14 +96,13 @@ public static class SignUp
                 u2 = convertBusi_UserToPres_User(u);
                 string otp_code = OTP.GenerateRandomCode();
                 u2.OTPCode = otp_code;
-                    OTP.send_code(u2);
+                OTP.send_code(u2);
                 DataAccessLayer.UsersData.insertUserToDataBase(u2);
                 return Results.Ok(new
                     {
                         message = "signUp was successful!"
                     }
                 );
-                
             }
             else
             {
@@ -96,14 +114,14 @@ public static class SignUp
             }
         }
         else
-        {
-            return Results.BadRequest(new
-                {
-                    message = "SignUp was not successful"
-                }
-            );
+            {
+                return Results.BadRequest(new
+                    {
+                        message = "SignUp was not successful"
+                    }
+                );
+            }
         }
-    }
 }
 
 public class UserName
@@ -430,7 +448,7 @@ public class Password
             }
         }
 
-        return isContainSpecialCharacters;
+        return false;
     }
 
     public bool checkingLength(string pw)
