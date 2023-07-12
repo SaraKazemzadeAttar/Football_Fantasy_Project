@@ -28,8 +28,8 @@ public class UserValidator
 
     public void userValidating()
     {
-        if (u.userName.isValidUsername && u.email.isValidEmail && u.fullname.isValidFullName &&
-            u.password.isValidPassword && u.mobilePhone.isValidMobilePhone)
+        if (u.userName.usernameValidator(u.userName.ToString()) && u.email.emailValidator(u.email.ToString())&& u.fullname.fullNameValidator(u.fullname.ToString()) &&
+            u.password.passwordValidator(u.password.ToString()) && u.mobilePhone.mobilePhoneValidator(u.mobilePhone.ToString()))
         {
             isValidUser = true;
         }
@@ -41,31 +41,31 @@ public class UserValidator
 
     public void userValidationProblemsHandler()
     {
-        if (!u.userName.isValidUsername)
+        if (!u.userName.usernameValidator(u.userName.ToString()))
         {
             validationErrorMessage = u.userName.userNameErrorMessage;
             return;
         }
 
-        if (!u.email.isValidEmail)
+        if (!u.email.emailValidator(u.email.ToString()))
         {
             validationErrorMessage = u.email.emailErrorMassage;
             return;
         }
 
-        if (!u.mobilePhone.isValidMobilePhone)
+        if (!u.mobilePhone.mobilePhoneValidator(u.mobilePhone.ToString()))
         {
-            validationErrorMessage = u.mobilePhone.moibleErrorMessage;
+            validationErrorMessage = u.mobilePhone.mobileErrorMessage;
             return;
         }
 
-        if (!u.password.isValidPassword)
+        if (!u.password.passwordValidator(u.password.ToString()))
         {
             validationErrorMessage = u.password.passwordErrorMessage;
             return;
         }
 
-        if (!u.fullname.isValidFullName)
+        if (!u.fullname.fullNameValidator(u.fullname.ToString()))
         {
             validationErrorMessage = u.fullname.fullNameErrorMassage;
             return;

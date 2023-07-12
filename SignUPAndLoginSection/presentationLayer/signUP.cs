@@ -10,15 +10,6 @@ using System.Security.AccessControl;
 
 namespace SignUPAndLoginSection.presentationLayer;
 
-public class UserInputs
-{
-    public string password { get; set; }
-    public string fullName { get; set; }
-    public string email { get; set; }
-    public string mobilePhone { get; set; }
-    public string userName { get; set; }
-}
-
 public class User
 {
     public string password { get; set; }
@@ -29,19 +20,7 @@ public class User
     public string userName { get; set; }
     public string OTPCode { get; set; }
     public bool isvalid { get; set; }
-    
-    public double cash {get; set; }
-
-    // public static User assignUserSignUpInputs(UserInputs signupedUser)
-    // {
-    //     User newUser = new User();
-    //     newUser.password = signupedUser.password;
-    //     newUser.userName = signupedUser.userName;
-    //     newUser.email = signupedUser.email;
-    //     newUser.fullName = signupedUser.fullName;
-    //     newUser.mobilePhone = signupedUser.mobilePhone;
-    //     return ne
-    // }
+    public double cash { get; set; }
 }
 
 public static class SignUp
@@ -108,27 +87,72 @@ public static class SignUp
             {
                 return Results.BadRequest(new
                     {
-                        message = "SignUp was not successful"
+                        message = "information is not unique!"
                     }
                 );
             }
         }
         else
+        {
+            if (!u.email.emailValidator(u.email.ToString()))
             {
                 return Results.BadRequest(new
                     {
-                        message = "SignUp was not successful"
+                        message = "emailErrorMassage"
                     }
                 );
             }
+
+            if (!u.userName.usernameValidator(u.userName.ToString()))
+            {
+                return Results.BadRequest(new
+                    {
+                        message = "userNameErrorMessage"
+                    }
+                );
+            }
+
+            if (!u.mobilePhone.mobilePhoneValidator(u.mobilePhone.ToString()))
+            {
+                return Results.BadRequest(new
+                    {
+                        message = "mobileErrorMessage"
+                    }
+                );
+            }
+
+            if (!u.password.passwordValidator(u.password.ToString()))
+            {
+                return Results.BadRequest(new
+                    {
+                        message = "passwordErrorMessage"
+                    }
+                );
+            }
+
+            if (!u.fullname.fullNameValidator(u.fullname.ToString()))
+            {
+                return Results.BadRequest(new
+                    {
+                        message = "fullNameErrorMassage"
+                    }
+                );
+            }
+
+            return Results.BadRequest(new
+                {
+                    message = "information is not valid that can not be found !"
+                }
+            );
         }
+    }
 }
 
 public class UserName
 {
-    public bool isValidUsername = false;
+    // public bool isValidUsername = false;
     public string userNameContext;
-    public string userNameErrorMessage;
+    public string userNameErrorMessage = "";
     public bool isContainLetters = true;
     private bool isContainDigits = false;
     private bool isContainDashOrUnderscore = false;
@@ -206,7 +230,6 @@ public class UserName
         return;
     }
 
-
     public bool checkingDashOrUnderscoreInStart(string un)
     {
         if (isContainDashOrUnderscore)
@@ -283,21 +306,20 @@ public class UserName
             (!checkingDashOrUnderscoreInStart(un)))
         {
             userNameContext = un;
-            isValidUsername = true;
-            return isValidUsername;
+            // isValidUsername = true;
+            return true;
         }
         else
         {
-            isValidUsername = false;
             usernameProblemsHandler();
-            return isValidUsername;
+            return false;
         }
     }
 }
 
 public class Email
 {
-    public bool isValidEmail = false;
+    //public bool isValidEmail = false;
     public string emailErrorMassage = "";
 
     public Email(string e)
@@ -312,7 +334,7 @@ public class Email
         if (string.IsNullOrEmpty(email))
         {
             emailErrorMassage = "Invalid email!";
-            return isValidEmail;
+            return false;
         }
 
         Regex regex = new Regex(emailPattern);
@@ -323,7 +345,8 @@ public class Email
 public class FullName
 {
     public string nameContext;
-    public bool isValidFullName = false;
+
+    //  public bool isValidFullName = false;
     private bool isContainLetters = false;
     public string fullNameErrorMassage = "";
 
@@ -347,21 +370,21 @@ public class FullName
 
     public FullName(string fn)
     {
-        fullNAmeValidator(fn);
+        fullNameValidator(fn);
     }
 
-    public bool fullNAmeValidator(string fn)
+    public bool fullNameValidator(string fn)
     {
         if (checkingLetters(fn))
         {
             nameContext = fn;
-            isValidFullName = true;
-            return isValidFullName;
+            // isValidFullName = true;
+            return true;
         }
         else
         {
             fullNameErrorMassage = "inValid fullName!";
-            return isValidFullName;
+            return false;
         }
     }
 }
@@ -369,8 +392,9 @@ public class FullName
 public class Password
 {
     public string passwordContext;
-    public bool isValidPassword = false;
-    public string passwordErrorMessage;
+
+    //public bool isValidPassword = false;
+    public string passwordErrorMessage = "";
     private bool isContainUpperCaseLetters = false;
     private bool isContainLowerCaseLetters = false;
     private bool isContainLetters = false;
@@ -380,7 +404,7 @@ public class Password
 
     public Password(string pw)
     {
-        passwordValidation(pw);
+        passwordValidator(pw);
     }
 
     public bool checkingUpperCaseLetters(string pw)
@@ -501,7 +525,7 @@ public class Password
         }
     }
 
-    public bool passwordValidation(string pw)
+    public bool passwordValidator(string pw)
     {
         checkingUpperCaseLetters(pw);
         checkingLowerCaseLetters(pw);
@@ -514,14 +538,14 @@ public class Password
             (isContainSpecialCharacters) && (isLengthEqualToEight))
         {
             passwordContext = pw;
-            isValidPassword = true;
-            return isValidPassword;
+            // isValidPassword = true;
+            return true;
         }
         else
         {
-            isValidPassword = false;
+            // isValidPassword = false;
             passwordProblemsHandler();
-            return isValidPassword;
+            return false;
         }
     }
 }
@@ -529,8 +553,10 @@ public class Password
 public class MobilePhone
 {
     public string mobilePhoneContext;
-    public string moibleErrorMessage;
-    public bool isValidMobilePhone = false;
+
+    public string mobileErrorMessage = "";
+
+    // public bool isValidMobilePhone = false;
     public bool isContainDigits = true;
     public bool isStartsWithZeroAndNine = false;
     public bool isLengthEqualsToEleven = false;
@@ -580,19 +606,19 @@ public class MobilePhone
     {
         if (!isContainDigits)
         {
-            moibleErrorMessage = "phone number must contain numbers!";
+            mobileErrorMessage = "phone number must contain numbers!";
             return;
         }
 
         if (!isStartsWithZeroAndNine)
         {
-            moibleErrorMessage = "phone number must start with 09 !";
+            mobileErrorMessage = "phone number must start with 09 !";
             return;
         }
 
         if (!isLengthEqualsToEleven)
         {
-            moibleErrorMessage = "phone number must have 11 digits!";
+            mobileErrorMessage = "phone number must have 11 digits!";
             return;
         }
     }
@@ -606,14 +632,14 @@ public class MobilePhone
         if ((isStartsWithZeroAndNine) && (isLengthEqualsToEleven) && (isContainDigits))
         {
             mobilePhoneContext = pn;
-            isValidMobilePhone = true;
-            return isValidMobilePhone;
+            // isValidMobilePhone = true;
+            return true;
         }
         else
         {
-            isValidMobilePhone = false;
+            // isValidMobilePhone = false;
             mobilePhoneProblemsHandler();
-            return isValidMobilePhone;
+            return false;
         }
     }
 }
