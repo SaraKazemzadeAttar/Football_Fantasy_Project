@@ -61,9 +61,11 @@ public static class SignUp
     {
         businessLayer.User u = new businessLayer.User();
         u = convertPres_UserToBusi_User(input);
-        UserValidator user = new UserValidator();
+       // UserValidator user = new UserValidator();
 
-        if (user.userValidating(u))
+        if (u.mobilePhone.mobilePhoneValidator(input.mobilePhone) && u.password.passwordValidator(input.password) &&
+            u.userName.usernameValidator(input.userName) && u.fullname.fullNameValidator(input.fullName) 
+            && u.email.emailValidator(input.email))
         {
             bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(u.email);
             bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(u.mobilePhone);
