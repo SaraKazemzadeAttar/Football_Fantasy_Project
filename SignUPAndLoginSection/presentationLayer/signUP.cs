@@ -61,9 +61,9 @@ public static class SignUp
     {
         businessLayer.User u = new businessLayer.User();
         u = convertPres_UserToBusi_User(input);
-        UserValidator user = new UserValidator(u);
+        UserValidator user = new UserValidator();
 
-        if (user.isValidUser)
+        if (user.userValidating(u))
         {
             bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(u.email);
             bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(u.mobilePhone);
@@ -71,12 +71,10 @@ public static class SignUp
 
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
-                presentationLayer.User u2 = new presentationLayer.User();
-                u2 = convertBusi_UserToPres_User(u);
                 string otp_code = OTP.GenerateRandomCode();
-                u2.OTPCode = otp_code;
-                OTP.send_code(u2);
-                DataAccessLayer.UsersData.insertUserToDataBase(u2);
+                input.OTPCode = otp_code;
+                OTP.send_code(input);
+                DataAccessLayer.UsersData.insertUserToDataBase(input);
                 return Results.Ok(new
                     {
                         message = "signUp was successful!"
@@ -94,25 +92,7 @@ public static class SignUp
         }
         else
         {
-            if (!u.email.emailValidator(u.email.ToString()))
-            {
-                return Results.BadRequest(new
-                    {
-                        message = "emailErrorMassage"
-                    }
-                );
-            }
-
-            if (!u.userName.usernameValidator(u.userName.ToString()))
-            {
-                return Results.BadRequest(new
-                    {
-                        message = "userNameErrorMessage"
-                    }
-                );
-            }
-
-            if (!u.mobilePhone.mobilePhoneValidator(u.mobilePhone.ToString()))
+            if (!u.mobilePhone.mobilePhoneValidator(input.mobilePhone))
             {
                 return Results.BadRequest(new
                     {
@@ -120,8 +100,8 @@ public static class SignUp
                     }
                 );
             }
-
-            if (!u.password.passwordValidator(u.password.ToString()))
+            
+            if (!u.password.passwordValidator(input.password))
             {
                 return Results.BadRequest(new
                     {
@@ -130,7 +110,16 @@ public static class SignUp
                 );
             }
 
-            if (!u.fullname.fullNameValidator(u.fullname.ToString()))
+            if (!u.userName.usernameValidator(input.userName))
+            {
+                return Results.BadRequest(new
+                    {
+                        message = "userNameErrorMessage"
+                    }
+                );
+            }
+
+            if (!u.fullname.fullNameValidator(input.fullName))
             {
                 return Results.BadRequest(new
                     {
@@ -138,7 +127,16 @@ public static class SignUp
                     }
                 );
             }
-
+            
+            if (!u.email.emailValidator(input.email))
+            {
+                return Results.BadRequest(new
+                    {
+                        message = "emailErrorMassage"
+                    }
+                );
+            }
+            
             return Results.BadRequest(new
                 {
                     message = "information is not valid that can not be found !"
@@ -329,14 +327,11 @@ public class Email
 
     public bool emailValidator(string email)
     {
-        string emailPattern = @"^[a-zA-Z0-9._%+-]+(@gmail|@email|@yahoo)\.(com|co|ir)\b";
-
+        string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+		
         if (string.IsNullOrEmpty(email))
-        {
-            emailErrorMassage = "Invalid email!";
             return false;
-        }
-
+		
         Regex regex = new Regex(emailPattern);
         return regex.IsMatch(email);
     }
