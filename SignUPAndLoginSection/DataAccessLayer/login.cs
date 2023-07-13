@@ -27,14 +27,14 @@ public class logIn
         return false;
     }
 
-    public static bool arePasswordAndEmailSync(string userName_, string email_)
+    public static bool arePasswordAndEmailSync(string email_, string password)
     {
         using (var db = new DataBase())
         {
             foreach (var user in db.userTable)
             {
                 if (email_.Equals(user.email))
-                    if (userName_.Equals(user.userName))
+                    if (password.Equals(user.password))
                         return true;
             }
         }
