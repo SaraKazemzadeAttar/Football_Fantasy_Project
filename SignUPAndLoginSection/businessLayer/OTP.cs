@@ -24,7 +24,7 @@ public class OTP
         mail.From = new MailAddress("shahedap.footballfantasy@gmail.com");
         mail.Subject = "Fotball Fantasy";
         mail.To.Add(u.email);
-        mail.Body = "1234";
+        mail.Body = GenerateRandomCode();
 
         smtp.Port = 587;
         smtp.Credentials =
