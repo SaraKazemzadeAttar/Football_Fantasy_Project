@@ -35,6 +35,19 @@ public class FootballPlayersData
             }
     }
 
+    public static void clearRecordsOfPlayerTable()
+    {
+
+        using (var db = new DataBase())
+        {
+            foreach ( var player in db.playerTable)
+            {
+                db.playerTable.Remove(player);
+                db.SaveChanges();
+            }
+        }
+    }
+    
     public static Player findPLayerByTheirId(int inputId)
     {
         using (var db = new DataBase())

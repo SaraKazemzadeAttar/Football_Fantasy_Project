@@ -28,6 +28,7 @@ public class ListOfPlayers
         return response.elements;
     }
     
+    
     public static List<string> FullNameOfPlayers()
     {
         foreach (var player in ListOfPlayers.getListOfPlayers())
