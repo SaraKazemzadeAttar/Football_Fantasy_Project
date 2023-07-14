@@ -52,7 +52,7 @@ public class CreationTeam
         }
     }
 
-    public static Player.Post getPostOfChangingRole(int selectedPlayerId)
+    public static Post getPostOfChangingRole(int selectedPlayerId)
     {
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
         return convertedPl.element_type;

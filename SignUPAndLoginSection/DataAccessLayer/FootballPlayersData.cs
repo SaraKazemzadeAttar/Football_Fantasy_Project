@@ -14,13 +14,14 @@ using Player = SignUPAndLoginSection.businessLayer.Player;
 
 namespace SignUPAndLoginSection.DataAccessLayer;
 
+public class FootballFanatasyAPIResponse
+{
+    public List<Player> elements { get; set; }
+}
 
 public class FootballPlayersData
 {
 
-    
-    public List<Player> elements ;
-    
     public static void insertPlayersInDataBase()
     {
         
@@ -48,7 +49,7 @@ public class FootballPlayersData
         return null;
     }
 
-    public static List<Player> selectedPlayersTeamList(int userId , Player.Team targetTeam)
+    public static List<Player> selectedPlayersTeamList(int userId , Team targetTeam)
     {
         List<int> listOfPlIds = CreationTeam.listOfUserTeamPlayerIds(userId);
         List<Player> TeamList = new List<Player>();
@@ -70,7 +71,7 @@ public class FootballPlayersData
         return TeamList;
     }
     
-    public static List<Player> selectedPlayersPostList(int userId , Player.Post targetPost )
+    public static List<Player> selectedPlayersPostList(int userId , Post targetPost )
     {
         List<int> listOfPlIds =CreationTeam.listOfUserTeamPlayerIds(userId);
         List<Player> postList = new List<Player>();

@@ -10,8 +10,8 @@ using SignUPAndLoginSection.DataAccessLayer;
 namespace SignUPAndLoginSection.Migrations
 {
     [DbContext(typeof(DataBase))]
-    [Migration("20230710193031_InitialMigration1")]
-    partial class InitialMigration1
+    [Migration("20230714162808_InitialMigration010")]
+    partial class InitialMigration010
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

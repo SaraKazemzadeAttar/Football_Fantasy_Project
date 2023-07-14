@@ -23,7 +23,7 @@ public class ListOfPlayers
     {
         string url = "https://fantasy.premierleague.com/api/bootstrap-static/";
 
-        FootballPlayersData response = url.GetJsonFromUrl().FromJson<FootballPlayersData>();
+        FootballFanatasyAPIResponse response = url.GetJsonFromUrl().FromJson<FootballFanatasyAPIResponse>();
 
         return response.elements;
     }
@@ -128,7 +128,7 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> FilterByPost(Player.Post post,List <Player> players)
+    public static List<Player> FilterByPost(Post post,List <Player> players)
     {
         List <Player> posts= new List<Player>();
         for (int i = 0; i < players.Count; i++)
@@ -163,7 +163,7 @@ public class ListOfPlayers
     public static List<Player> FilterPlayersByPost(int? post )
     {
         List<Player> players = getListOfPlayers();
-        Player.Post playersPost=(Player.Post)post;
+        Post playersPost=(Post)post;
         
             return FilterByPost(playersPost ,players);
        
@@ -183,36 +183,36 @@ public class Player
     public double total_points{ get; set; }
 
     public string photo { get; set; } 
+    
+}
+public enum Post
+{
+    Goalkeeper,
+    Defender,
+    Midfielder,
+    Forward
+}
 
-    public enum Post
-    {
-        Goalkeeper,
-        Defender,
-        Midfielder,
-        Forward
-    }
-
-    public enum Team
-    {
-        Arsenal,
-        AstonVilla,
-        Bournemouth,
-        Brentford,
-        Brighton,
-        Chelsea,
-        CrystalPalace,
-        Everton,
-        Fulham,
-        Leicester,
-        Leeds,
-        Liverpool,
-        ManCity,
-        ManUtd,
-        Newcastle,
-        Nott_m_Forest,
-        Southampton,
-        Spurs,
-        WestHam,
-        Wolves
-    }
+public enum Team
+{
+    Arsenal,
+    AstonVilla,
+    Bournemouth,
+    Brentford,
+    Brighton,
+    Chelsea,
+    CrystalPalace,
+    Everton,
+    Fulham,
+    Leicester,
+    Leeds,
+    Liverpool,
+    ManCity,
+    ManUtd,
+    Newcastle,
+    Nott_m_Forest,
+    Southampton,
+    Spurs,
+    WestHam,
+    Wolves
 }

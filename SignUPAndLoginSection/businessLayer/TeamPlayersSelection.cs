@@ -69,14 +69,14 @@ public class TeamPlayersSelection
         var intendedPost =selectedPlayer.element_type;
         switch (intendedPost)
         {
-            case Player.Post.Goalkeeper:
-                return (FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Goalkeeper).Count < 2);
-            case Player.Post.Defender:
-                return (FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Defender).Count < 5);
-            case Player.Post.Midfielder:
-                return FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Midfielder).Count < 5;
-            case Player.Post.Forward:
-                return FootballPlayersData.selectedPlayersPostList(targetUserId, Player.Post.Forward).Count < 3;
+            case Post.Goalkeeper:
+                return (FootballPlayersData.selectedPlayersPostList(targetUserId, Post.Goalkeeper).Count < 2);
+            case Post.Defender:
+                return (FootballPlayersData.selectedPlayersPostList(targetUserId, Post.Defender).Count < 5);
+            case Post.Midfielder:
+                return FootballPlayersData.selectedPlayersPostList(targetUserId, Post.Midfielder).Count < 5;
+            case Post.Forward:
+                return FootballPlayersData.selectedPlayersPostList(targetUserId, Post.Forward).Count < 3;
             default:
                 return false;
         }
