@@ -39,12 +39,12 @@ public class UsersData
             {
                 if (num_.Equals(user.mobilePhone))
                 {
-                    return false;
+                    return true;
                 }
             }
         }
 
-        return true;
+        return false;
     }
 
     public static bool doesUserNameExistBefore(UserName userName_)
@@ -55,12 +55,12 @@ public class UsersData
             {
                 if (userName_.Equals(user.userName))
                 {
-                    return false;
+                    return true;
                 }
             }
         }
 
-        return true;
+        return false;
     }
 
     public static void setInitialCashForUser(presentationLayer.User u)
