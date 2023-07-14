@@ -1,7 +1,6 @@
 using System.Collections;
 using SignUPAndLoginSection.DataAccessLayer;
 using SignUPAndLoginSection.presentationLayer;
-//using User = SignUPAndLoginSection.businessLayer.User;
 
 namespace SignUPAndLoginSection.DataAccessLayer;
 

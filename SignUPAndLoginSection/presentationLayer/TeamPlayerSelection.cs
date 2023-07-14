@@ -32,7 +32,7 @@ public class TeamPlayerSelection
         businessLayer.TeamPlayersSelection.omitPlayer(token, playerId);
         return Results.Ok(new
             {
-                message = "selection was successful!"
+                message = "omitting was successful!"
             }
         );
     }
@@ -43,7 +43,7 @@ public class TeamPlayerSelection
         businessLayer.TeamPlayersSelection.changeRoleOfPlayer(token, playerId);
         return Results.Ok(new
             {
-                message = "selection was successful!"
+                message = "changing role was successful!"
             }
         );
     }
