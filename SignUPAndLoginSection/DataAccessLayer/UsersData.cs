@@ -39,12 +39,12 @@ public class UsersData
             {
                 if (num_.Equals(user.mobilePhone))
                 {
-                    return true;
+                    return false;
                 }
             }
         }
 
-        return false;
+        return true;
     }
 
     public static bool doesUserNameExistBefore(UserName userName_)
@@ -55,12 +55,12 @@ public class UsersData
             {
                 if (userName_.Equals(user.userName))
                 {
-                    return true;
+                    return false;
                 }
             }
         }
 
-        return false;
+        return true;
     }
 
     public static void setInitialCashForUser(presentationLayer.User u)
@@ -81,6 +81,11 @@ public class UsersData
     public static presentationLayer.User FindUserByTheirToken(string token)
     {
         var e_un = TokenAccess.getEmailOrUsernameFromToken(token);
+        return findUserByTheirEmailOrUsername(e_un);
+    }
+
+    public static presentationLayer.User findUserByTheirEmailOrUsername(string e_un)
+    {
         using (var db = new DataBase())
         {
             foreach (var user in db.userTable)
@@ -94,7 +99,6 @@ public class UsersData
 
         return null;
     }
-
     public static List<string> createListOfUsernames()
     { 
         List<string> userNamesList = new List<string>();
