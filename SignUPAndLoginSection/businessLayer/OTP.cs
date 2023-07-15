@@ -36,23 +36,31 @@ public class OTP
         return mail.Body;
     }
 
-    public static string  ValidatinOTPCode(presentationLayer.User u)
+    public static IResult  ValidatinOTPCode(presentationLayer.User u)
     {
         using (var db = new DataBase())
         {
             foreach (var email in db.userTable)
             {
-                if (email.Equals(u.email) && GenerateRandomCode().Equals(u.OTPCode))
+                if (email.Equals(u.email) )
                     u.isvalid = true;
                 else
                     u.isvalid = false;
             }
-
         }
 
         if (u.isvalid)
-            return "your otp code is true!";
-        return "your otp code is false!";
+            return Results.Ok(new
+                {
+                    message = "signUp was successful"
+                }
+            );
+        else 
+            return Results.BadRequest(new
+                {
+                    message = "signUp was not successful"
+                }
+            );
     }
 }
 

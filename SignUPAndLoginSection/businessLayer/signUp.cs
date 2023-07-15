@@ -12,6 +12,7 @@ public class User
     public FullName fullname;
     public Password password;
     public MobilePhone mobilePhone;
+    public static bool isvalid;
 }
 
 public class UserValidator

@@ -78,11 +78,13 @@ public static class SignUp
                 input.OTPCode = otp_code;
               
                 DataAccessLayer.UsersData.insertUserToDataBase(input);
-                return Results.Ok(new
-                    {
-                        message = "signUp was successful!"
-                    }
-                );
+               
+                    return Results.Ok(new
+                        {
+                            message = "Let's go to Verification phase!"
+                        }
+                    );
+                
             }
             else
             {
