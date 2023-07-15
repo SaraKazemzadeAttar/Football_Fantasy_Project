@@ -67,9 +67,9 @@ public static class SignUp
             u.userName.usernameValidator(input.userName) && u.fullname.fullNameValidator(input.fullName) 
             && u.email.emailValidator(input.email))
         {
-            bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(u.email);
-            bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(u.mobilePhone);
-            bool userNameExistence = businessLayer.checkEmail_Phone_Username.isUsernameExist(u.userName);
+            bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(input.email);
+            bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(input.mobilePhone);
+            bool userNameExistence = businessLayer.checkEmail_Phone_Username.isUsernameExist(input.userName);
 
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
