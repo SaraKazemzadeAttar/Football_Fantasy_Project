@@ -16,8 +16,10 @@ public class OTP
         string strnum = randomNumber.ToString();
         return strnum;
     }
-    public static void send_code(presentationLayer.User u)
+    public static string send_code(presentationLayer.User u)
     {
+        
+        
         MailMessage mail = new MailMessage();
         SmtpClient smtp = new SmtpClient("smtp.gmail.com");
 
@@ -27,28 +29,43 @@ public class OTP
         mail.Body = GenerateRandomCode();
 
         smtp.Port = 587;
-        smtp.Credentials =
-            new System.Net.NetworkCredential("shahedap.footballfantasy@gmail.com", "vfecuirpkbwojjkj");
+        smtp.Credentials = new System.Net.NetworkCredential("shahedap.footballfantasy@gmail.com", "vfecuirpkbwojjkj");
         smtp.EnableSsl = true;
-
+       
         smtp.Send(mail);
+        return mail.Body;
     }
 
-    public static void  ValidatinOTPCode(presentationLayer.User u)
+    public static IResult  ValidatinOTPCode(presentationLayer.User u)
     {
+        int counter=0;
         using (var db = new DataBase())
         {
-            foreach (var email in db.userTable)
+            foreach (var user in db.userTable)
             {
-                if (email.Equals(u.email) && GenerateRandomCode().Equals(u.OTPCode))
-                    u.isvalid = true;
-
-                else
-                    u.isvalid = false;
+                if (user.email.Equals(u.email) && user.OTPCode.Equals(u.OTPCode))
+                    counter++;
             }
-
         }
+
+        if (counter == 1)
         
+            u.isvalid = true;
+        else
+            u.isvalid = false;
+
+        if (u.isvalid)
+            return Results.Ok(new
+                {
+                    message = "signUp was successful"
+                }
+            );
+        else 
+            return Results.BadRequest(new
+                {
+                    message = "signUp was not successful"
+                }
+            );
     }
 }
 

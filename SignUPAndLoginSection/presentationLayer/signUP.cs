@@ -18,7 +18,7 @@ public class User
     public string email { get; set; }
     public string mobilePhone { get; set; }
     public string userName { get; set; }
-    public string OTPCode { get; set; }
+    public string OTPCode{ get; set; }
     public bool isvalid { get; set; }
     public double cash { get; set; }
 }
@@ -67,21 +67,24 @@ public static class SignUp
             u.userName.usernameValidator(input.userName) && u.fullname.fullNameValidator(input.fullName) 
             && u.email.emailValidator(input.email))
         {
-            bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(u.email);
-            bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(u.mobilePhone);
-            bool userNameExistence = businessLayer.checkEmail_Phone_Username.isUsernameExist(u.userName);
+            bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(input.email);
+            bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(input.mobilePhone);
+            bool userNameExistence = businessLayer.checkEmail_Phone_Username.isUsernameExist(input.userName);
 
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
-                string otp_code = OTP.GenerateRandomCode();
+                
+                string otp_code = businessLayer.OTP.send_code(input);
                 input.OTPCode = otp_code;
-                OTP.send_code(input);
+              
                 DataAccessLayer.UsersData.insertUserToDataBase(input);
-                return Results.Ok(new
-                    {
-                        message = "signUp was successful!"
-                    }
-                );
+               
+                    return Results.Ok(new
+                        {
+                            message = "Let's go to Verification phase!"
+                        }
+                    );
+                
             }
             else
             {

@@ -12,66 +12,13 @@ public class User
     public FullName fullname;
     public Password password;
     public MobilePhone mobilePhone;
+    public static bool isvalid;
 }
 
-public class UserValidator
-{
-   // public bool isValidUser;
-    public string validationErrorMessage = "";
-
-    public bool userValidating(businessLayer.User u)
-    {
-        presentationLayer.User pu = new presentationLayer.User();
-        pu = SignUp.convertBusi_UserToPres_User(u);
-        if (u.userName.usernameValidator(pu.userName) && u.email.emailValidator(pu.email) &&
-            u.fullname.fullNameValidator(pu.fullName) &&
-            u.password.passwordValidator(pu.password) && u.mobilePhone.mobilePhoneValidator(pu.mobilePhone))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    // public void userValidationProblemsHandler()
-    // {
-    //     if (!u.userName.usernameValidator(u.userName.ToString()))
-    //     {
-    //         validationErrorMessage = u.userName.userNameErrorMessage;
-    //         return;
-    //     }
-    //
-    //     if (!u.email.emailValidator(u.email.ToString()))
-    //     {
-    //         validationErrorMessage = u.email.emailErrorMassage;
-    //         return;
-    //     }
-    //
-    //     if (!u.mobilePhone.mobilePhoneValidator(u.mobilePhone.ToString()))
-    //     {
-    //         validationErrorMessage = u.mobilePhone.mobileErrorMessage;
-    //         return;
-    //     }
-    //
-    //     if (!u.password.passwordValidator(u.password.ToString()))
-    //     {
-    //         validationErrorMessage = u.password.passwordErrorMessage;
-    //         return;
-    //     }
-    //
-    //     if (!u.fullname.fullNameValidator(u.fullname.ToString()))
-    //     {
-    //         validationErrorMessage = u.fullname.fullNameErrorMassage;
-    //         return;
-    //     }
-    // }
-}
 
 public class checkEmail_Phone_Username
 {
-    public static bool isEmailExist(Email e)
+    public static bool isEmailExist(string e)
     {
         if (DataAccessLayer.UsersData.doesEmailExistBefore(e))
         {
@@ -81,7 +28,7 @@ public class checkEmail_Phone_Username
         return false;
     }
 
-    public static bool isPhoneExist(MobilePhone m)
+    public static bool isPhoneExist(string m)
     {
         if (DataAccessLayer.UsersData.doesPhoneNumberExistBefore(m))
         {
@@ -91,7 +38,7 @@ public class checkEmail_Phone_Username
         return false;
     }
 
-    public static bool isUsernameExist(UserName un)
+    public static bool isUsernameExist(string un)
     {
         if (DataAccessLayer.UsersData.doesUserNameExistBefore(un))
         {
