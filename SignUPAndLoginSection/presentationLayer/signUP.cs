@@ -18,7 +18,7 @@ public class User
     public string email { get; set; }
     public string mobilePhone { get; set; }
     public string userName { get; set; }
-    public string OTPCode { get; set; }
+    public string OTPCode{ get; set; }
     public bool isvalid { get; set; }
     public double cash { get; set; }
 }
@@ -73,9 +73,10 @@ public static class SignUp
 
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
-                string otp_code = OTP.GenerateRandomCode();
+                
+                string otp_code = businessLayer.OTP.send_code(input);
                 input.OTPCode = otp_code;
-                OTP.send_code(input);
+              
                 DataAccessLayer.UsersData.insertUserToDataBase(input);
                 return Results.Ok(new
                     {

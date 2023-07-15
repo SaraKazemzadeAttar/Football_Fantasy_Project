@@ -16,8 +16,10 @@ public class OTP
         string strnum = randomNumber.ToString();
         return strnum;
     }
-    public static void send_code(presentationLayer.User u)
+    public static string send_code(presentationLayer.User u)
     {
+        
+        
         MailMessage mail = new MailMessage();
         SmtpClient smtp = new SmtpClient("smtp.gmail.com");
 
@@ -27,14 +29,14 @@ public class OTP
         mail.Body = GenerateRandomCode();
 
         smtp.Port = 587;
-        smtp.Credentials =
-            new System.Net.NetworkCredential("shahedap.footballfantasy@gmail.com", "vfecuirpkbwojjkj");
+        smtp.Credentials = new System.Net.NetworkCredential("shahedap.footballfantasy@gmail.com", "vfecuirpkbwojjkj");
         smtp.EnableSsl = true;
-
+       
         smtp.Send(mail);
+        return mail.Body;
     }
 
-    public static void  ValidatinOTPCode(presentationLayer.User u)
+    public static string  ValidatinOTPCode(presentationLayer.User u)
     {
         using (var db = new DataBase())
         {
@@ -42,13 +44,15 @@ public class OTP
             {
                 if (email.Equals(u.email) && GenerateRandomCode().Equals(u.OTPCode))
                     u.isvalid = true;
-
                 else
                     u.isvalid = false;
             }
 
         }
-        
+
+        if (u.isvalid)
+            return "your otp code is true!";
+        return "your otp code is false!";
     }
 }
 
