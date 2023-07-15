@@ -38,16 +38,21 @@ public class OTP
 
     public static IResult  ValidatinOTPCode(presentationLayer.User u)
     {
+        int counter=0;
         using (var db = new DataBase())
         {
-            foreach (var email in db.userTable)
+            foreach (var user in db.userTable)
             {
-                if (email.Equals(u.email) )
-                    u.isvalid = true;
-                else
-                    u.isvalid = false;
+                if (user.email.Equals(u.email) && user.OTPCode.Equals(u.OTPCode))
+                    counter++;
             }
         }
+
+        if (counter == 1)
+        
+            u.isvalid = true;
+        else
+            u.isvalid = false;
 
         if (u.isvalid)
             return Results.Ok(new
