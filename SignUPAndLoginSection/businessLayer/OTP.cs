@@ -36,36 +36,34 @@ public class OTP
         return mail.Body;
     }
 
-    public static IResult  ValidatinOTPCode(presentationLayer.User u)
+    public static IResult ValidatinOTPCode(presentationLayer.User u)
     {
-        int counter=0;
+        int counter = 0;
         using (var db = new DataBase())
         {
             foreach (var user in db.userTable)
             {
                 if (user.email.Equals(u.email) && user.OTPCode.Equals(u.OTPCode))
                     counter++;
+
+                if (counter == 1)
+
+                {
+                    user.isvalid = true;
+                    db.SaveChanges();
+                    return Results.Ok(new
+                        {
+                            message = "signUp was successful"
+                        }
+                    );
+                }
             }
         }
-
-        if (counter == 1)
-        
-            u.isvalid = true;
-        else
-            u.isvalid = false;
-
-        if (u.isvalid)
-            return Results.Ok(new
-                {
-                    message = "signUp was successful"
-                }
-            );
-        else 
-            return Results.BadRequest(new
-                {
-                    message = "signUp was not successful"
-                }
-            );
+        return Results.BadRequest(new
+            {
+                message = "signUp was not successful"
+            }
+        ); 
     }
 }
 

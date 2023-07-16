@@ -13,10 +13,15 @@ namespace SignUPAndLoginSection.presentationLayer
         public static IResult loginApi(string password, string email_username)
         {
             presentationLayer.User u = UsersData.findUserByTheirEmailOrUsername(email_username);
-            if (businessLayer.login.isUserRegistered(password, email_username))// && //u.isvalid)
+            if (businessLayer.login.isUserRegistered(password, email_username) && u.isvalid)
             {
-                var result =businessLayer.TokenAccess.generateToken(password, email_username).ToString();
-                return Results.Ok(result);
+               // var result =businessLayer.TokenAccess.generateToken(password, email_username).ToString();
+               // return Results.Ok(result);  //dorost shod sara emtehan kon zogh koni
+               return Results.Ok(new
+                   {
+                       message = "login was successful"
+                   }
+               );
             }
             else
             {
