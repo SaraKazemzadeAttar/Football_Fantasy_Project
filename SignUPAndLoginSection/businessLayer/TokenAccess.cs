@@ -18,8 +18,8 @@ public class TokenAccess
             new Claim("emailOrUsername", email_username),
         };
         var token = new JwtSecurityToken(
-            issuer: "http://localhost:3001",
-            audience: "http://localhost:3001",
+            issuer: "http://localhost:7005",
+            audience: "http://localhost:7005",
             claims,
             signingCredentials: credentials
         );

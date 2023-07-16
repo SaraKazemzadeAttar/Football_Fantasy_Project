@@ -5,11 +5,10 @@ namespace SignUPAndLoginSection.presentationLayer;
 
 public class TeamPlayerSelection
 {
-    public static IResult selectionPlayerAPI(string token, int playerId)
+    public static IResult selectionPlayerAPI(HttpContext token, int playerId)
     {
-
-        UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
-        if (businessLayer.TeamPlayersSelection.isSelectionSuccessful(token, playerId))
+        string strToken = token.ToString();
+        if (businessLayer.TeamPlayersSelection.isSelectionSuccessful(strToken, playerId))
         {
             return Results.Ok(new
                 {
