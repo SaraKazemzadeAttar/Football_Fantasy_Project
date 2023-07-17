@@ -13,41 +13,25 @@ namespace SignUPAndLoginSection.presentationLayer
         public static IResult loginApi(string password, string email_username)
         {
             presentationLayer.User u = UsersData.findUserByTheirEmailOrUsername(email_username);
-            if (businessLayer.login.isUserRegistered(password, email_username) && u.isvalid)
+            if (businessLayer.login.isUserRegistered(password, email_username)&& u.isvalid)
             {
-               // var result =businessLayer.TokenAccess.generateToken(password, email_username).ToString();
-               // return Results.Ok(result);  //dorost shod sara emtehan kon zogh koni
+                var token =businessLayer.TokenAccess.generateToken(password, email_username).EncodedPayload;
+                businessLayer.TokenAccess.token = token;
+
                return Results.Ok(new
                    {
-                       message = "login was successful"
+                       token=token
                    }
                );
             }
             else
             {
-                return Results.BadRequest();
+                return Results.BadRequest(new
+                {
+                    message="login failed!"
+                }
+                );
             }
         }
     }
-        // [AllowAnonymous]
-        // [HttpGet("Login")]
-        // public IActionResult Login()
-        // {
-        //     return Challenge(new AuthenticationProperties
-        //     {
-        //         RedirectUri = $"{HttpContext.Request.PathBase.Value}/GetToken"
-        //     }, OpenIdConnectDefaults.AuthenticationScheme);
-        // }
-        //
-        // [Authorize(AuthenticationSchemes = OpenIdConnectDefaults.AuthenticationScheme)]
-        // [HttpGet("GetToken")]
-        // public IActionResult GetToken()
-        // {
-        //     var token = _contextAccessor.HttpContext.GetTokenAsync(OpenIdConnectDefaults.AuthenticationScheme, "id_token").Result;
-        //
-        //     return Ok(new
-        //     {
-        //         Token = token
-        //     });
-        // }
 }

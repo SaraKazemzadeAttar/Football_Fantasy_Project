@@ -7,8 +7,6 @@ public class TeamPlayerSelection
 {
     public static IResult selectionPlayerAPI(string token, int playerId)
     {
-
-        UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
         if (businessLayer.TeamPlayersSelection.isSelectionSuccessful(token, playerId))
         {
             return Results.Ok(new
@@ -47,5 +45,7 @@ public class TeamPlayerSelection
             }
         );
     }
+    
+    
 }
 

@@ -8,6 +8,7 @@ namespace SignUPAndLoginSection.businessLayer;
 public class TokenAccess
 {
     public  static bool isTokenActive = false;
+    public static string token { get; set; }
     public static  JwtSecurityToken generateToken(string password , string email_username)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("userTokenlsjdjsljljnbfkdkdjlhrbdjskfhhdjkkshf"));
@@ -18,15 +19,15 @@ public class TokenAccess
             new Claim("emailOrUsername", email_username),
         };
         var token = new JwtSecurityToken(
-            issuer: "http://localhost:3001",
-            audience: "http://localhost:3001",
+            issuer: "http://localhost:7005",
+            audience: "http://localhost:7005",
             claims,
             signingCredentials: credentials
         );
         setTokenActive();
         return token;
     }
-
+    
     public static  void setTokenActive()
     {
         isTokenActive = true;
