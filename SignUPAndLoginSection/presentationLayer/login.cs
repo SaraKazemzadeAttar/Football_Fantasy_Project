@@ -16,6 +16,7 @@ namespace SignUPAndLoginSection.presentationLayer
             if (businessLayer.login.isUserRegistered(password, email_username)&& u.isvalid)
             {
                 var token =businessLayer.TokenAccess.generateToken(password, email_username).EncodedPayload;
+                businessLayer.TokenAccess.token = token;
 
                return Results.Ok(new
                    {
@@ -33,25 +34,4 @@ namespace SignUPAndLoginSection.presentationLayer
             }
         }
     }
-        // [AllowAnonymous]
-        // [HttpGet("Login")]
-        // public IActionResult Login()
-        // {
-        //     return Challenge(new AuthenticationProperties
-        //     {
-        //         RedirectUri = $"{HttpContext.Request.PathBase.Value}/GetToken"
-        //     }, OpenIdConnectDefaults.AuthenticationScheme);
-        // }
-        //
-        // [Authorize(AuthenticationSchemes = OpenIdConnectDefaults.AuthenticationScheme)]
-        // [HttpGet("GetToken")]
-        // public IActionResult GetToken()
-        // {
-        //     var token = _contextAccessor.HttpContext.GetTokenAsync(OpenIdConnectDefaults.AuthenticationScheme, "id_token").Result;
-        //
-        //     return Ok(new
-        //     {
-        //         Token = token
-        //     });
-        // }
 }

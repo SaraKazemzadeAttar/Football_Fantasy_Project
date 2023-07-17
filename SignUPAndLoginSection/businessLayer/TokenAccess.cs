@@ -8,6 +8,7 @@ namespace SignUPAndLoginSection.businessLayer;
 public class TokenAccess
 {
     public  static bool isTokenActive = false;
+    public static string token { get; set; }
     public static  JwtSecurityToken generateToken(string password , string email_username)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("userTokenlsjdjsljljnbfkdkdjlhrbdjskfhhdjkkshf"));
@@ -26,7 +27,7 @@ public class TokenAccess
         setTokenActive();
         return token;
     }
-
+    
     public static  void setTokenActive()
     {
         isTokenActive = true;
