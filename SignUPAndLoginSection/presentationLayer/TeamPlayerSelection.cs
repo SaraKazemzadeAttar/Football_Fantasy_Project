@@ -6,9 +6,9 @@ namespace SignUPAndLoginSection.presentationLayer;
 
 public class TeamPlayerSelection
 {
-    public static IResult selectionPlayerAPI(string token, int playerId)
+    public static IResult selectionPlayerAPI(string str, int playerId)
     {
-        if (businessLayer.TeamPlayersSelection.isSelectionSuccessful(token, playerId))
+        if (businessLayer.TeamPlayersSelection.isSelectionSuccessful(str, playerId))
         {
             return Results.Ok(new
                 {
