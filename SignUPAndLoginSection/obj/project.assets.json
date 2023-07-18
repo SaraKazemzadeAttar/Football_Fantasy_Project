@@ -3392,6 +3392,22 @@
           }
         }
       },
+      "System.Reflection.Context/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/System.Reflection.Context.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/System.Reflection.Context.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "System.Reflection.Emit/4.7.0": {
         "type": "package",
         "compile": {
@@ -9510,6 +9526,32 @@
         "system.reflection.nuspec"
       ]
     },
+    "System.Reflection.Context/7.0.0": {
+      "sha512": "rVf4vEyGQphXTITF39uXlgTcp8Ekcu2aNwxyVLU7fDyNOk0W+/PPpj9PoC2cFL4wgJZJltiss5eQptE2C4f1Sw==",
+      "type": "package",
+      "path": "system.reflection.context/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Reflection.Context.targets",
+        "lib/net462/_._",
+        "lib/net6.0/System.Reflection.Context.dll",
+        "lib/net6.0/System.Reflection.Context.xml",
+        "lib/net7.0/System.Reflection.Context.dll",
+        "lib/net7.0/System.Reflection.Context.xml",
+        "lib/netstandard2.0/System.Reflection.Context.dll",
+        "lib/netstandard2.0/System.Reflection.Context.xml",
+        "lib/netstandard2.1/System.Reflection.Context.dll",
+        "lib/netstandard2.1/System.Reflection.Context.xml",
+        "system.reflection.context.7.0.0.nupkg.sha512",
+        "system.reflection.context.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Reflection.Emit/4.7.0": {
       "sha512": "VR4kk8XLKebQ4MZuKuIni/7oh+QGFmZW3qORd1GvBq/8026OpW501SzT/oypwiQl4TvT8ErnReh/NzY9u+C6wQ==",
       "type": "package",
@@ -12115,7 +12157,8 @@
       "Sjzy.Core.Model >= 1.0.45",
       "Sjzy.Core.Repository >= 1.0.45",
       "System.ComponentModel.Annotations >= 5.0.0",
-      "System.IdentityModel.Tokens.Jwt >= 6.30.1"
+      "System.IdentityModel.Tokens.Jwt >= 6.30.1",
+      "System.Reflection.Context >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -12246,6 +12289,10 @@
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
             "version": "[6.30.1, )"
+          },
+          "System.Reflection.Context": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           }
         },
         "imports": [

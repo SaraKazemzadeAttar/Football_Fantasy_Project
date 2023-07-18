@@ -30,7 +30,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/TableScore",DataAccessLayer.ScoreTable.usersTable);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("/RemovePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
-            app.MapGet("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
+            app.MapPost("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
            // app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
            // app.MapPost("/ShowListOfPlayers", updateListOfPlayers);
 

@@ -1,12 +1,14 @@
 using SignUPAndLoginSection.businessLayer;
 using SignUPAndLoginSection.DataAccessLayer;
 
+
 namespace SignUPAndLoginSection.presentationLayer;
 
 public class TeamPlayerSelection
 {
-    public static IResult selectionPlayerAPI(string token, int playerId)
+    public static IResult selectionPlayerAPI(HttpContext inputToken, int playerId)
     {
+        var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authentication").Value.ToString();
         if (businessLayer.TeamPlayersSelection.isSelectionSuccessful(token, playerId))
         {
             return Results.Ok(new
@@ -24,8 +26,9 @@ public class TeamPlayerSelection
         }
     }
 
-    public static IResult omittingPlayerAPI(string token, int playerId)
+    public static IResult omittingPlayerAPI(HttpContext inputToken, int playerId)
     {
+        var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authentication").Value.ToString();
         UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
         businessLayer.TeamPlayersSelection.omitPlayer(token, playerId);
         return Results.Ok(new
@@ -35,8 +38,9 @@ public class TeamPlayerSelection
         );
     }
 
-    public static IResult changeRoleOfPlayerAPI(string token, int playerId)
+    public static IResult changeRoleOfPlayerAPI(HttpContext inputToken, int playerId)
     {
+        var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authentication").Value.ToString();
         UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
         businessLayer.TeamPlayersSelection.changeRoleOfPlayer(token, playerId);
         return Results.Ok(new
