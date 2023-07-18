@@ -129,6 +129,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[6.30.1, )"
+            },
+            "System.Reflection.Context": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
