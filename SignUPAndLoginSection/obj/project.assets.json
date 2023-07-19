@@ -1602,6 +1602,28 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         }
       },
+      "mxProject.TokenAuthentication/0.5.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/mxProject.TokenAuthentication.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/mxProject.TokenAuthentication.dll": {}
+        }
+      },
+      "mxProject.TokenAuthentication.MsJwt/0.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.IdentityModel.Tokens.Jwt": "5.4.0",
+          "mxProject.TokenAuthentication": "0.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/mxProject.TokenAuthentication.MsJwt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/mxProject.TokenAuthentication.MsJwt.dll": {}
+        }
+      },
       "MySql.Data/8.0.29": {
         "type": "package",
         "dependencies": {
@@ -6299,6 +6321,32 @@
         "lib/netstandard2.0/Mono.TextTemplating.dll",
         "mono.texttemplating.2.2.1.nupkg.sha512",
         "mono.texttemplating.nuspec"
+      ]
+    },
+    "mxProject.TokenAuthentication/0.5.2": {
+      "sha512": "+/blT+Vgh03MEitGX9KIgiD5Dixdd9ZZxtBSuFJZ4HL6o6Xm6+XHNDjDwWNw3e5axaYL9Mq//JZ1eCyESj61nA==",
+      "type": "package",
+      "path": "mxproject.tokenauthentication/0.5.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/mxProject.TokenAuthentication.dll",
+        "lib/netstandard2.0/mxProject.TokenAuthentication.dll",
+        "mxproject.tokenauthentication.0.5.2.nupkg.sha512",
+        "mxproject.tokenauthentication.nuspec"
+      ]
+    },
+    "mxProject.TokenAuthentication.MsJwt/0.5.2": {
+      "sha512": "gbHC/8PTleRZkThRERO6R0k4BiRpe/qebOV6FYYwhhTJyOGi2D/x7+6xtvFe004DWjYIyOpJcjEeK86XPNWa0A==",
+      "type": "package",
+      "path": "mxproject.tokenauthentication.msjwt/0.5.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/mxProject.TokenAuthentication.MsJwt.dll",
+        "lib/netstandard2.0/mxProject.TokenAuthentication.MsJwt.dll",
+        "mxproject.tokenauthentication.msjwt.0.5.2.nupkg.sha512",
+        "mxproject.tokenauthentication.msjwt.nuspec"
       ]
     },
     "MySql.Data/8.0.29": {
@@ -12158,23 +12206,24 @@
       "Sjzy.Core.Repository >= 1.0.45",
       "System.ComponentModel.Annotations >= 5.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.30.1",
-      "System.Reflection.Context >= 7.0.0"
+      "System.Reflection.Context >= 7.0.0",
+      "mxProject.TokenAuthentication.MsJwt >= 0.5.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus Center\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "projectUniqueName": "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
       "projectName": "SignUPAndLoginSection",
-      "projectPath": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
+      "projectPath": "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+      "packagesPath": "C:\\Users\\Asus Center\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Asus Center\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -12291,6 +12340,10 @@
           "System.Reflection.Context": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "mxProject.TokenAuthentication.MsJwt": {
+            "target": "Package",
+            "version": "[0.5.2, )"
           }
         },
         "imports": [

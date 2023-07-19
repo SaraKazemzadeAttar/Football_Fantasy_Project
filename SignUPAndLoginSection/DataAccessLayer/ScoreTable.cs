@@ -6,7 +6,7 @@ namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class ScoreTable
 {
-    public static List<int> mainTaemPlayersIds(int targetUserId)
+    public static List<int> mainTeamPlayersIds(int targetUserId)
     {
         List<int> mainPlayersList = new List<int>();
         using (var db = new DataBase())
@@ -26,10 +26,10 @@ public class ScoreTable
         return mainPlayersList;
     }
 
-    public static double ListOfMainPlayerCosts(int userId)
+    public static double ListOfMainPlayerScores(int userId)
     {
-        List<int> mainPlayerIds = mainTaemPlayersIds(userId);
-        double mainPlayersListcost = 0;
+        List<int> mainPlayerIds = mainTeamPlayersIds(userId);
+        double mainPlayersScoresList = 0;
         using (var db = new DataBase())
         {
             foreach (var id in mainPlayerIds)
@@ -38,16 +38,16 @@ public class ScoreTable
                 {
                     if (player.id == id)
                     {
-                        mainPlayersListcost = mainPlayersListcost + player.now_cost;
+                        mainPlayersScoresList += player.total_points;
                     }
                 }
             }
         }
 
-        return mainPlayersListcost;
+        return mainPlayersScoresList;
     }
     
-    public static List<int> secondaryTaemPlayersIds(int targetUserId)
+    public static List<int> secondaryTeamPlayersIds(int targetUserId)
     {
         List<int> secondaryPlayersList = new List<int>();
         using (var db = new DataBase())
@@ -56,7 +56,7 @@ public class ScoreTable
             {
                 if (record.userId == targetUserId)
                 {
-                    if (record.isMainPlayer)
+                    if (!record.isMainPlayer)
                     {
                         secondaryPlayersList.Add(record.playerId);
                     }
@@ -67,10 +67,10 @@ public class ScoreTable
         return secondaryPlayersList;
     }
     
-    public static double ListOfSecondaryPlayerCosts(int userId)
+    public static double ListOfSecondaryPlayerScores(int userId)
     {
-        List<int> secondaryPlayerIds = secondaryTaemPlayersIds(userId);
-        double secondaryPlayersListcost = 0;
+        List<int> secondaryPlayerIds = secondaryTeamPlayersIds(userId);
+        double secondaryPlayersScoresList = 0;
         using (var db = new DataBase())
         {
             foreach (var id in secondaryPlayerIds)
@@ -79,33 +79,19 @@ public class ScoreTable
                 {
                     if (player.id == id)
                     {
-                        secondaryPlayersListcost = secondaryPlayersListcost + player.now_cost;
+                        secondaryPlayersScoresList += player.total_points;
                     }
                 }
             }
         }
 
-        return secondaryPlayersListcost;
+        return secondaryPlayersScoresList;
     }
 
     public static double scoreCalculation(int userId)
     {
-        double finallScore = ListOfSecondaryPlayerCosts(userId) + 2*ListOfMainPlayerCosts(userId);
+        double finallScore = ListOfSecondaryPlayerScores(userId) + 2*ListOfMainPlayerScores(userId);
         return finallScore;
-    }
-
-    public static List<string> usersTable()
-    {
-        List<string> usersScores = new List<string>();
-        using (var db = new DataBase())
-        {
-            foreach (var user in db.userTable)
-            {
-                usersScores.Add(user.userName + scoreCalculation(user.userId).ToString());
-            }
-        }
-
-        return usersScores;
     }
 }
 

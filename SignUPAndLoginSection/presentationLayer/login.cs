@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Asn1.Cmp;
+using ServiceStack;
 using SignUPAndLoginSection.DataAccessLayer;
 
 namespace SignUPAndLoginSection.presentationLayer
@@ -15,7 +16,7 @@ namespace SignUPAndLoginSection.presentationLayer
             presentationLayer.User u = UsersData.findUserByTheirEmailOrUsername(email_username);
             if (businessLayer.login.isUserRegistered(password, email_username)&& u.isvalid)
             {
-                var token =businessLayer.TokenAccess.generateToken(password, email_username).EncodedPayload;
+                var token = businessLayer.TokenAccess.generateToken(password, email_username);
                 businessLayer.TokenAccess.token = token;
 
                return Results.Ok(new
