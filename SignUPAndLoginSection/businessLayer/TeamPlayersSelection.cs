@@ -82,5 +82,16 @@ public class TeamPlayersSelection
         return CreationTeam.showListOfMyTeam(user.userId);
     }
 
-    
+    public static bool isChangingRoleSuccessful(string token, int selectedPlayerId)
+    {
+        var user = UsersData.FindUserByTheirToken(token);
+        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, selectedPlayerId))
+        {
+            CreationTeam.changeRoleOfPlayer(user.userId, selectedPlayerId);
+            return true;
+        }
+
+        return false;
+    }
+
 }

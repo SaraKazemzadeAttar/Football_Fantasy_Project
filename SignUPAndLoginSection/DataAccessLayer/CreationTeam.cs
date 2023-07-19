@@ -186,5 +186,49 @@ public class CreationTeam
 
         return listOfplayersInfo;
     }
-    
+
+    public static bool isSelectedPlayerInMyTeam(int targetUserId, int selectedPlayerId)
+    {
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.userId == targetUserId)
+                {
+                    if (record.playerId == selectedPlayerId)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+    }
+
+    public static void changeRoleOfPlayer(int targetUserId, int selectedPlayerId)
+    {       
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.userId == targetUserId)
+                {
+                    if (record.playerId == selectedPlayerId)
+                    {
+                        if (record.isMainPlayer)
+                        {
+                            record.isMainPlayer = false;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            record.isMainPlayer = true;
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

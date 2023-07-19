@@ -1,6 +1,7 @@
 using SignUPAndLoginSection.businessLayer;
 using SignUPAndLoginSection.DataAccessLayer;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.IdentityModel.Tokens;
 
 namespace SignUPAndLoginSection.presentationLayer;
@@ -8,34 +9,32 @@ namespace SignUPAndLoginSection.presentationLayer;
 public class TeamPlayerSelection
 {
     public static string errorMessage = "";
+
     public static bool isSelectionSuccessful(string token, int selectedPlayerId)
     {
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
         var user = UsersData.FindUserByTheirToken(token);
-        bool moneyCondition = TeamPlayersSelection.hasUserEnoughMoney(user, convertedPl );
-        bool arrangeCondition = TeamPlayersSelection.AreSelectedPlayerInCorrectArrange( user.userId,convertedPl);
-        bool teamCondition = TeamPlayersSelection.AreUnderFourPlayersFromOneTeam(user.userId,convertedPl);
-        bool isPlayerUniqueInTeam =CreationTeam.isPlayerUniqueInMyTeam(user.userId, selectedPlayerId);
-    
+        bool moneyCondition = TeamPlayersSelection.hasUserEnoughMoney(user, convertedPl);
+        bool arrangeCondition = TeamPlayersSelection.AreSelectedPlayerInCorrectArrange(user.userId, convertedPl);
+        bool teamCondition = TeamPlayersSelection.AreUnderFourPlayersFromOneTeam(user.userId, convertedPl);
+        bool isPlayerUniqueInTeam = CreationTeam.isPlayerUniqueInMyTeam(user.userId, selectedPlayerId);
+
         if (isPlayerUniqueInTeam && moneyCondition && arrangeCondition && teamCondition)
         {
             TeamPlayersSelection.buySelectedPlayer(user, selectedPlayerId);
             return true;
         }
-        else if(!moneyCondition)
+        else if (!moneyCondition)
         {
-            errorMessage="You have not enough money to buy this player!";
-            return false;
+            errorMessage = "You have not enough money to buy this player!";
         }
-        else if(!arrangeCondition)
+        else if (!arrangeCondition)
         {
             errorMessage = "This player is not in correct arrange in your team!";
-            return false;
         }
         else if (!teamCondition)
         {
             errorMessage = "You have selected three players from this team before!";
-            return false;
         }
         else if (!isPlayerUniqueInTeam)
         {
@@ -44,11 +43,12 @@ public class TeamPlayerSelection
 
         return false;
     }
-    public static IResult selectionPlayerAPI(HttpContext inputToken , string playerIdStr)
+
+    public static IResult selectionPlayerAPI(HttpContext inputToken, string playerIdStr)
     {
         int playerId = Convert.ToInt32(playerIdStr);
         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
-        if (isSelectionSuccessful( token, playerId))
+        if (isSelectionSuccessful(token, playerId))
         {
             return Results.Ok(new
                 {
@@ -60,7 +60,7 @@ public class TeamPlayerSelection
         {
             return Results.BadRequest(new
             {
-                message = "selection was not successful! "+ errorMessage
+                message = "selection was not successful! " + errorMessage
             });
         }
     }
@@ -83,12 +83,21 @@ public class TeamPlayerSelection
         int playerId = Convert.ToInt32(playerIdStr);
         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
         UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
-        businessLayer.TeamPlayersSelection.changeRoleOfPlayer(token, playerId);
-        return Results.Ok(new
+        if (TeamPlayersSelection.isChangingRoleSuccessful(token, playerId))
+        {
+            return Results.Ok(new
+                {
+                    message = "changing role was successful!"
+                }
+            );
+        }
+        else
+        {
+            return Results.BadRequest(new
             {
-                message = "changing role was successful!"
-            }
-        );
+                message = "This player is not in your team! "
+            });
+        }
     }
 
     public static IResult showSelectedPlayersAPI(HttpContext inputToken)

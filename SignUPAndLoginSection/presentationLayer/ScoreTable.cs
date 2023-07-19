@@ -2,8 +2,12 @@ namespace SignUPAndLoginSection.presentationLayer;
 
 public class ScoreTable
 {
-    public static List<string> showScoresTableAPI()
+    public static IResult showScoresTableAPI()
     {
-        return businessLayer.ScoreTable.usersTable();
+        List<string> scoresList = businessLayer.ScoreTable.usersTable();
+        return Results.Ok(new
+        {
+            scoresList
+        });
     }
 }
