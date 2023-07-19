@@ -34,30 +34,12 @@ public class TeamPlayersSelection
         user.cash =+ convertedPl.now_cost;
     }
 
-    public static bool isSelectionSuccessful(string token, int selectedPlayerId)
-    {
-        Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
-        var user = UsersData.FindUserByTheirToken(token);
-        bool moneyCondition = hasUserEnoughMoney(user, convertedPl );
-        bool arrangeCondition = AreSelectedPlayerInCorrectArrange( user.userId,convertedPl);
-        bool teamCondition = AreUnderFourPlayersFromOneTeam(user.userId,convertedPl);
-    
-        if (moneyCondition && arrangeCondition && teamCondition)
-        {
-            buySelectedPlayer(user, selectedPlayerId);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+
 
     public static bool hasUserEnoughMoney(presentationLayer.User user, Player selectedPlayer)
     {
         if (user.cash <selectedPlayer.now_cost)
         {
-            //UsersTeamPlayers.selectionPlayerErrorMessage = "You have not enough money to buy this player!";
             return false;
         }
     
@@ -88,13 +70,17 @@ public class TeamPlayersSelection
         
         if (FootballPlayersData.selectedPlayersTeamList(targetUserId ,playerTeam).Count > 4)
         {
-            //UsersTeamPlayers.selectionPlayerErrorMessage = "You have selected three players from this team before!";
             return false;
         }
     
         return true;
     }
-    
+
+    public static List<string> ShowListOfMyTeam(string token)
+    {
+        var user = UsersData.FindUserByTheirToken(token);
+        return CreationTeam.showListOfMyTeam(user.userId);
+    }
 
     
 }

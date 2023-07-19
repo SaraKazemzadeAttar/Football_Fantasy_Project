@@ -30,7 +30,8 @@
           "Sjzy.Core.Repository": "1.0.45",
           "System.ComponentModel.Annotations": "5.0.0",
           "System.IdentityModel.Tokens.Jwt": "6.30.1",
-          "System.Reflection.Context": "7.0.0"
+          "System.Reflection.Context": "7.0.0",
+          "mxProject.TokenAuthentication.MsJwt": "0.5.2"
         },
         "runtime": {
           "SignUPAndLoginSection.dll": {}
@@ -942,6 +943,26 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.1.1"
+          }
+        }
+      },
+      "mxProject.TokenAuthentication/0.5.2": {
+        "runtime": {
+          "lib/netstandard2.0/mxProject.TokenAuthentication.dll": {
+            "assemblyVersion": "0.5.2.0",
+            "fileVersion": "0.5.2.0"
+          }
+        }
+      },
+      "mxProject.TokenAuthentication.MsJwt/0.5.2": {
+        "dependencies": {
+          "System.IdentityModel.Tokens.Jwt": "6.30.1",
+          "mxProject.TokenAuthentication": "0.5.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/mxProject.TokenAuthentication.MsJwt.dll": {
+            "assemblyVersion": "0.5.2.0",
+            "fileVersion": "0.5.2.0"
           }
         }
       },
@@ -3285,6 +3306,20 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "mxProject.TokenAuthentication/0.5.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+/blT+Vgh03MEitGX9KIgiD5Dixdd9ZZxtBSuFJZ4HL6o6Xm6+XHNDjDwWNw3e5axaYL9Mq//JZ1eCyESj61nA==",
+      "path": "mxproject.tokenauthentication/0.5.2",
+      "hashPath": "mxproject.tokenauthentication.0.5.2.nupkg.sha512"
+    },
+    "mxProject.TokenAuthentication.MsJwt/0.5.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gbHC/8PTleRZkThRERO6R0k4BiRpe/qebOV6FYYwhhTJyOGi2D/x7+6xtvFe004DWjYIyOpJcjEeK86XPNWa0A==",
+      "path": "mxproject.tokenauthentication.msjwt/0.5.2",
+      "hashPath": "mxproject.tokenauthentication.msjwt.0.5.2.nupkg.sha512"
     },
     "MySql.Data/8.0.29": {
       "type": "package",

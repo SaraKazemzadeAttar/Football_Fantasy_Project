@@ -21,8 +21,22 @@ public class UsersTeamPlayers
 
     public bool isMainPlayer { get; set; }
 }
+
 public class CreationTeam
 {
+    public static bool isPlayerUniqueInMyTeam(int targetUserId, int selectedPlayerId)
+    {
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.playerId == selectedPlayerId)
+                    return false;
+            }
+        }
+
+        return true;
+    }
 
     public static void insertSelectedPlayerInUserTeam(int targetUserId, int selectedPlayerId)
     {
@@ -33,7 +47,7 @@ public class CreationTeam
         }
     }
 
-    public static void RemovePlayer(int targetUserId, int selectedPlayerId)
+        public static void RemovePlayer(int targetUserId, int selectedPlayerId)
     {
         using (var db = new DataBase())
         {
@@ -57,16 +71,18 @@ public class CreationTeam
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
         return convertedPl.element_type;
     }
-    public static UsersTeamPlayers getSubstitutePlayerOfSelectedPost(int targetUserId,int  selectedPlayerId)
+
+    public static UsersTeamPlayers getSubstitutePlayerOfSelectedPost(int targetUserId, int selectedPlayerId)
     {
-        List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId,getPostOfChangingRole(selectedPlayerId));
+        List<Player> intendedPostPlayers =
+            FootballPlayersData.selectedPlayersPostList(targetUserId, getPostOfChangingRole(selectedPlayerId));
         using (var db = new DataBase())
         {
-            foreach (var sPostPlayer in intendedPostPlayers) 
+            foreach (var sPostPlayer in intendedPostPlayers)
             {
-                foreach (var utPlayer in db.UsersTeamPlayersTable) 
+                foreach (var utPlayer in db.UsersTeamPlayersTable)
                 {
-                    if (sPostPlayer.id == utPlayer.playerId) 
+                    if (sPostPlayer.id == utPlayer.playerId)
                     {
                         if (!utPlayer.isMainPlayer)
                         {
@@ -82,7 +98,8 @@ public class CreationTeam
 
     public static UsersTeamPlayers getMainPlayerOfSelectedPost(int targetUserId, int selectedPlayerId)
     {
-        List<Player> intendedPostPlayers=FootballPlayersData.selectedPlayersPostList(targetUserId,getPostOfChangingRole(selectedPlayerId));
+        List<Player> intendedPostPlayers =
+            FootballPlayersData.selectedPlayersPostList(targetUserId, getPostOfChangingRole(selectedPlayerId));
         using (var db = new DataBase())
         {
             foreach (var utPlayer in db.UsersTeamPlayersTable)
@@ -97,16 +114,36 @@ public class CreationTeam
         return null;
     }
 
-    public static void changingRoleOfSubstitutePlayer(int targetUserId,int  selectedPlayerId)
+    public static void changingRoleOfSubstitutePlayer(int targetUserId, int selectedPlayerId)
     {
-        UsersTeamPlayers substitutePlayer = getSubstitutePlayerOfSelectedPost(targetUserId,selectedPlayerId);
-        substitutePlayer.isMainPlayer = false;
+        UsersTeamPlayers substitutePlayer = getSubstitutePlayerOfSelectedPost(targetUserId, selectedPlayerId);
+        using (var db = new DataBase())
+        {
+            foreach (var utPlayer in db.UsersTeamPlayersTable)
+            {
+                if (substitutePlayer == utPlayer)
+                {
+                    substitutePlayer.isMainPlayer = false;
+                    db.SaveChanges();
+                }
+            }
+        }
     }
-    
+
     public static void changingRoleOfMainPlayer(int targetUserId, int selectedPlayerId)
     {
         UsersTeamPlayers MainPlayer = getMainPlayerOfSelectedPost(targetUserId, selectedPlayerId);
-        MainPlayer.isMainPlayer = false;
+        using (var db = new DataBase())
+        {
+            foreach (var utPlayer in db.UsersTeamPlayersTable)
+            {
+                if (MainPlayer == utPlayer)
+                {
+                    MainPlayer.isMainPlayer = false;
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 
     public static List<int> listOfUserTeamPlayerIds(int targetUserId)
@@ -125,4 +162,29 @@ public class CreationTeam
 
         return listOfSelectedPlayersIds;
     }
+
+    public static List<string> showListOfMyTeam(int userId)
+    {
+        string playerInfo = "";
+        List<int> listOfSelectedPlayersIds = listOfUserTeamPlayerIds(userId);
+        List<string> listOfplayersInfo = new List<string>();
+        using (var db = new DataBase())
+        {
+            foreach (var player in db.playerTable)
+            {
+                foreach (var playerId in listOfSelectedPlayersIds)
+                {
+                    if (playerId == player.id)
+                    {
+                        listOfplayersInfo.Add("FullName : "+player.first_name + " " + player.second_name + "   Price :" + player.now_cost + "   Post :" +
+                                                     player.element_type + "   Team :" + player.team);
+                    }
+                }
+            }
+
+        }
+
+        return listOfplayersInfo;
+    }
+    
 }

@@ -9,7 +9,7 @@ public class TokenAccess
 {
     public  static bool isTokenActive = false;
     public static string token { get; set; }
-    public static  JwtSecurityToken generateToken(string password , string email_username)
+    public static  string generateToken(string password , string email_username)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("userTokenlsjdjsljljnbfkdkdjlhrbdjskfhhdjkkshf"));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -25,7 +25,8 @@ public class TokenAccess
             signingCredentials: credentials
         );
         setTokenActive();
-        return token;
+        var stringToken = new JwtSecurityTokenHandler().WriteToken(token);
+        return stringToken;
     }
     
     public static  void setTokenActive()

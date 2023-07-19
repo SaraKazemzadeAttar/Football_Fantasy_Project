@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BApGbxP976UjaDw3XAYPSm0n8edDm5+r9zqvFxbokED1Ywiu8xJWrIk3SexOQFzqrB/E1CDWFitXzxnxSy8Nzg==",
+  "dgSpecHash": "IRoyIh8zuUCDLsMrLrrfdh9DHowao9SUXb3mzdPgeiN0lbRNAcBerOPkzjpfGts2MsQFNFJRkiwfuEv/T6QKwQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
   "expectedPackageFiles": [
@@ -95,6 +95,8 @@
     "C:\\Users\\Asus\\.nuget\\packages\\mongodb.driver.core\\2.10.0\\mongodb.driver.core.2.10.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\mongodb.libmongocrypt\\1.0.0\\mongodb.libmongocrypt.1.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\mxproject.tokenauthentication\\0.5.2\\mxproject.tokenauthentication.0.5.2.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\mxproject.tokenauthentication.msjwt\\0.5.2\\mxproject.tokenauthentication.msjwt.0.5.2.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\mysql.data\\8.0.29\\mysql.data.8.0.29.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\nacl.core\\2.0.4\\nacl.core.2.0.4.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\ncrontab.signed\\3.3.2\\ncrontab.signed.3.3.2.nupkg.sha512",

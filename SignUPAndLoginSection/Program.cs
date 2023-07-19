@@ -29,6 +29,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/ListOfPlayersName", businessLayer.ListOfPlayers.searchingMethod);
             app.MapPost("/TableScore",DataAccessLayer.ScoreTable.usersTable);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
+            app.MapGet("/showListOfMyTeam", presentationLayer.TeamPlayerSelection.showSelectedPlayersAPI);
             app.MapPost("/RemovePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
             app.MapPost("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
            // app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
