@@ -21,7 +21,20 @@ namespace SignUPAndLoginSection
             FootballPlayersData.clearRecordsOfPlayerTable();
             FootballPlayersData.insertPlayersInDataBase();
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("MyAllowedOrigins",
+                    policy =>
+                    {
+                        policy
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
             var app = builder.Build();
+            app.UseCors("MyAllowedOrigins");
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
             app.MapPost("/OTP", businessLayer.OTP.ValidatinOTPCode);
             app.MapPost("/login", presentationLayer.login.loginApi);
