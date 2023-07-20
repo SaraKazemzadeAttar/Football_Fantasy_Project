@@ -14,38 +14,20 @@ public class TeamPlayersSelection
         CreationTeam.changingRoleOfMainPlayer(targetUserId,selectedPlayerId);
         CreationTeam.changingRoleOfSubstitutePlayer(targetUserId,selectedPlayerId);
     }
-    public static void buySelectedPlayer(presentationLayer.User user, int playerId)
-    {
-        CreationTeam.insertSelectedPlayerInUserTeam(user.userId,playerId);
-        Player convertedPl = FootballPlayersData.findPLayerByTheirId(playerId);
-        user.cash =- convertedPl.now_cost;
-    }
-    public static void omitPlayer(string token ,int playerId) 
+    public static bool isOmittingPlayerSuccessful(string token ,int playerId) 
     {
         var user = UsersData.FindUserByTheirToken(token);
         int targetUserId = user.userId;
-        CreationTeam.RemovePlayer(targetUserId,playerId);
-        returnMoneyToUser(user, playerId);
-    }
-
-    public static void returnMoneyToUser(presentationLayer.User user, int playerId)
-    {
-        Player convertedPl = FootballPlayersData.findPLayerByTheirId(playerId);
-        user.cash =+ convertedPl.now_cost;
-    }
-
-
-
-    public static bool hasUserEnoughMoney(presentationLayer.User user, Player selectedPlayer)
-    {
-        if (user.cash <selectedPlayer.now_cost)
+        if(CreationTeam.isSelectedPlayerInMyTeam(user.userId, playerId))
         {
-            return false;
+            CreationTeam.RemovePlayer(targetUserId,playerId);
+            Cash.returnMoneyToUser(user, playerId);
+            return true;
         }
-    
-        return true;
+
+        return false;
     }
-    
+
     public static bool AreSelectedPlayerInCorrectArrange( int targetUserId, Player selectedPlayer)
     {
         var intendedPost =selectedPlayer.element_type;
@@ -82,15 +64,15 @@ public class TeamPlayersSelection
         return CreationTeam.showListOfMyTeam(user.userId);
     }
 
-    public static bool isChangingRoleSuccessful(string token, int selectedPlayerId)
+    public static bool isChangingRoleSuccessful(string token, int firstPlayerId , int secondPlayerId)
     {
         var user = UsersData.FindUserByTheirToken(token);
-        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, selectedPlayerId))
+        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, firstPlayerId)&&(CreationTeam.isSelectedPlayerInMyTeam(user.userId, secondPlayerId)) )
         {
-            CreationTeam.changeRoleOfPlayer(user.userId, selectedPlayerId);
+            CreationTeam.changeRoleOfPlayer(user.userId, firstPlayerId,secondPlayerId);
             return true;
         }
-
+    
         return false;
     }
 

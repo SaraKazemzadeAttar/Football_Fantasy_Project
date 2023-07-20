@@ -14,14 +14,14 @@ public class TeamPlayerSelection
     {
         Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
         var user = UsersData.FindUserByTheirToken(token);
-        bool moneyCondition = TeamPlayersSelection.hasUserEnoughMoney(user, convertedPl);
+        bool moneyCondition = businessLayer.Cash.hasUserEnoughMoney(user, convertedPl);
         bool arrangeCondition = TeamPlayersSelection.AreSelectedPlayerInCorrectArrange(user.userId, convertedPl);
         bool teamCondition = TeamPlayersSelection.AreUnderFourPlayersFromOneTeam(user.userId, convertedPl);
         bool isPlayerUniqueInTeam = CreationTeam.isPlayerUniqueInMyTeam(user.userId, selectedPlayerId);
 
         if (isPlayerUniqueInTeam && moneyCondition && arrangeCondition && teamCondition)
         {
-            TeamPlayersSelection.buySelectedPlayer(user, selectedPlayerId);
+            businessLayer.Cash.buySelectedPlayer(user, selectedPlayerId);
             return true;
         }
         else if (!moneyCondition)
@@ -70,20 +70,30 @@ public class TeamPlayerSelection
         int playerId = Convert.ToInt32(playerIdStr);
         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
         UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
-        businessLayer.TeamPlayersSelection.omitPlayer(token, playerId);
-        return Results.Ok(new
+        if (TeamPlayersSelection.isOmittingPlayerSuccessful(token, playerId))
+        {
+            return Results.Ok(new
+                {
+                    message = "omitting was successful!"
+                }
+            );
+        }
+        else
+        {
+            return Results.BadRequest(new
             {
-                message = "omitting was successful!"
-            }
-        );
+                message = "This player is not in your team! "
+            });
+        }
     }
 
-    public static IResult changeRoleOfPlayerAPI(HttpContext inputToken, string playerIdStr)
+    public static IResult changeRoleOfPlayerAPI(HttpContext inputToken, string firstPlayerIdStr , string secondPlayerIdstr)
     {
-        int playerId = Convert.ToInt32(playerIdStr);
+        int firstPlayerId = Convert.ToInt32(firstPlayerIdStr);
+        int secondPlayerId = Convert.ToInt32(secondPlayerIdstr);
         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
         UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
-        if (TeamPlayersSelection.isChangingRoleSuccessful(token, playerId))
+        if (TeamPlayersSelection.isChangingRoleSuccessful(token, firstPlayerId,secondPlayerId))
         {
             return Results.Ok(new
                 {
@@ -95,7 +105,7 @@ public class TeamPlayerSelection
         {
             return Results.BadRequest(new
             {
-                message = "This player is not in your team! "
+                message = "This players are not in your team! "
             });
         }
     }

@@ -30,8 +30,10 @@ public class CreationTeam
         {
             foreach (var record in db.UsersTeamPlayersTable)
             {
-                if (record.playerId == selectedPlayerId)
+                if (record.userId == targetUserId && record.playerId == selectedPlayerId)
+                {
                     return false;
+                }
             }
         }
 
@@ -206,7 +208,7 @@ public class CreationTeam
         }
     }
 
-    public static void changeRoleOfPlayer(int targetUserId, int selectedPlayerId)
+    public static void changeRoleOfPlayer(int targetUserId, int firstPlayerId , int secondPlayerId )
     {       
         using (var db = new DataBase())
         {
@@ -214,7 +216,7 @@ public class CreationTeam
             {
                 if (record.userId == targetUserId)
                 {
-                    if (record.playerId == selectedPlayerId)
+                    if (record.playerId == firstPlayerId || record.playerId==secondPlayerId)
                     {
                         if (record.isMainPlayer)
                         {

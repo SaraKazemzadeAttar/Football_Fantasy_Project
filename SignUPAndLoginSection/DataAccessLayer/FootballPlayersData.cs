@@ -72,9 +72,8 @@ public class FootballPlayersData
             {
                 foreach (var id in listOfPlIds)
                 {
-                    if (player.id == id) // find user team players 
+                    if (player.id == id && targetTeam==player.team)
                     {
-                        if(targetTeam==player.team)
                         TeamList.Add(player);
                     }
                 }
@@ -94,7 +93,7 @@ public class FootballPlayersData
             {
                 foreach (var id in listOfPlIds)
                 {
-                    if (player.id == id)
+                    if (player.id == id && player.element_type==targetPost)
                     {
                         postList.Add(player);
                     }

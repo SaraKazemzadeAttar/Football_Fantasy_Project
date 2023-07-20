@@ -10,6 +10,7 @@ using System.Threading;
 using CronNET;
 using NCrontab;
 using ServiceStack;
+using Cash = SignUPAndLoginSection.businessLayer.Cash;
 
 namespace SignUPAndLoginSection
 {
@@ -26,12 +27,13 @@ namespace SignUPAndLoginSection
             app.MapPost("/otp", businessLayer.OTP.ValidatinOTPCode);
             app.MapPost("/ListOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
             app.MapPost("/FilterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
-            app.MapPost("/FilterPlayersByNAme", businessLayer.ListOfPlayers.searchingMethod);
+            app.MapPost("/FilterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
             app.MapPost("/showScoresTable",presentationLayer.ScoreTable.showScoresTableAPI);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
             app.MapGet("/showListOfMyTeam", presentationLayer.TeamPlayerSelection.showSelectedPlayersAPI);
             app.MapPost("/RemovePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
-            app.MapPost("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
+            app.MapGet("/displayCash", presentationLayer.Cash.displayUserCash);
+           app.MapPost("/ChangeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
            // app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
            // app.MapPost("/ShowListOfPlayers", updateListOfPlayers);
 
