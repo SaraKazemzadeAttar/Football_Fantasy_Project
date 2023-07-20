@@ -17,7 +17,7 @@ public class TeamPlayerSelection
         bool moneyCondition = businessLayer.Cash.hasUserEnoughMoney(user, convertedPl);
         bool arrangeCondition = TeamPlayersSelection.AreSelectedPlayerInCorrectArrange(user.userId, convertedPl);
         bool teamCondition = TeamPlayersSelection.AreUnderFourPlayersFromOneTeam(user.userId, convertedPl);
-        bool isPlayerUniqueInTeam = CreationTeam.isPlayerUniqueInMyTeam(user.userId, selectedPlayerId);
+        bool isPlayerUniqueInTeam = ListOfMyTeamPlayers.isPlayerUniqueInMyTeam(user.userId, selectedPlayerId);
 
         if (isPlayerUniqueInTeam && moneyCondition && arrangeCondition && teamCondition)
         {
@@ -52,7 +52,7 @@ public class TeamPlayerSelection
         {
             return Results.Ok(new
                 {
-                    message = "selection was successful!"
+                    message = "Selection was successful!"
                 }
             );
         }
@@ -60,21 +60,61 @@ public class TeamPlayerSelection
         {
             return Results.BadRequest(new
             {
-                message = "selection was not successful! " + errorMessage
+                message = "Selection was not successful! " + errorMessage
             });
         }
     }
 
+    public static IResult setTheMainPlayer(HttpContext inputToken,string playerIdStr)
+    {
+        int playerId = Convert.ToInt32(playerIdStr);
+        var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
+        if (TeamPlayersSelection.isSettingMainPlayerSuccessful(token, playerId))
+        {
+            return Results.Ok(new
+                {
+                    message = "Player is set as main player in your team!"
+                }
+            );
+        }
+        else
+        {
+            return Results.BadRequest(new
+            {
+                message = "This player is not in your team! "
+            });
+        }
+    }
+
+    public static IResult setTheSubstitutePlayer(HttpContext inputToken, string playerIdStr)
+    {
+        int playerId = Convert.ToInt32(playerIdStr);
+        var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
+        if (TeamPlayersSelection.isSettingSubstitutePlayerSuccessful(token, playerId))
+        {
+            return Results.Ok(new
+                {
+                    message = "Player is set as substitute player in your team!"
+                }
+            );
+        }
+        else
+        {
+            return Results.BadRequest(new
+            {
+                message = "This player is not in your team! "
+            });
+        }
+    }
     public static IResult omittingPlayerAPI(HttpContext inputToken, string playerIdStr)
     {
         int playerId = Convert.ToInt32(playerIdStr);
         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
-        UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
         if (TeamPlayersSelection.isOmittingPlayerSuccessful(token, playerId))
         {
             return Results.Ok(new
                 {
-                    message = "omitting was successful!"
+                    message = "Omitting was successful!"
                 }
             );
         }
@@ -92,12 +132,11 @@ public class TeamPlayerSelection
         int firstPlayerId = Convert.ToInt32(firstPlayerIdStr);
         int secondPlayerId = Convert.ToInt32(secondPlayerIdstr);
         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
-        UsersTeamPlayers selectedPlayer = new UsersTeamPlayers();
         if (TeamPlayersSelection.isChangingRoleSuccessful(token, firstPlayerId,secondPlayerId))
         {
             return Results.Ok(new
                 {
-                    message = "changing role was successful!"
+                    message = "Changing role was successful!"
                 }
             );
         }
