@@ -41,7 +41,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/listOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
             app.MapPost("/filterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
             app.MapPost("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
-            app.MapPost("/showScoresTable",presentationLayer.ScoreTable.showScoresTableAPI);
+            app.MapGet("/showScoresTable",presentationLayer.ScoreTable.showScoresTableAPI);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("setMainPlayer", presentationLayer.TeamPlayerSelection.setTheMainPlayer);
             app.MapPost("/setSubstitutePlayer", presentationLayer.TeamPlayerSelection.setTheSubstitutePlayer);  
