@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {}
+    "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
+    "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
         "projectName": "SignUPAndLoginSection",
-        "projectPath": "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
-        "packagesPath": "C:\\Users\\Asus Center\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus Center\\Desktop\\githubPro\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Asus Center\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -42,9 +42,21 @@
               "target": "Package",
               "version": "[1.1.4939.24773, )"
             },
+            "HiNetCloud.System.Web.Http.Cors": {
+              "target": "Package",
+              "version": "[23.6.29.6, )"
+            },
+            "Microsoft.AspNet.WebApi.Cors": {
+              "target": "Package",
+              "version": "[5.3.0-preview1, )"
+            },
             "Microsoft.AspNetCore.Authentication.AzureAD.UI": {
               "target": "Package",
               "version": "[7.0.0-preview.6.22330.3, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Mvc.DataAnnotations": {
               "target": "Package",
@@ -131,6 +143,10 @@
             "System.Reflection.Context": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "System.Web.Http.Common": {
+              "target": "Package",
+              "version": "[4.0.20126.16343, )"
             },
             "mxProject.TokenAuthentication.MsJwt": {
               "target": "Package",
