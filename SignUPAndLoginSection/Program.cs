@@ -43,7 +43,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
             app.MapGet("/showScoresTable",presentationLayer.ScoreTable.ShowScoresTableAPI);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
-            app.MapPost("setMainPlayer", presentationLayer.TeamPlayerSelection.setTheMainPlayer);
+            app.MapPost("/setMainPlayer", presentationLayer.TeamPlayerSelection.setTheMainPlayer);
             app.MapPost("/setSubstitutePlayer", presentationLayer.TeamPlayerSelection.setTheSubstitutePlayer);  
             app.MapGet("/showListOfMyTeam", presentationLayer.TeamPlayerSelection.showSelectedPlayersAPI);
             app.MapPost("/removePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
