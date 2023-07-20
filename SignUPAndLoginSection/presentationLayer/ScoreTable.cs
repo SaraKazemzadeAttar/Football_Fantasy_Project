@@ -1,13 +1,14 @@
 namespace SignUPAndLoginSection.presentationLayer;
 
 public class ScoreTable
+
 {
-    public static IResult showScoresTableAPI()
-    {
-        List<string> scoresList = businessLayer.ScoreTable.usersTable();
-        return Results.Ok(new
+        public static IResult ShowScoresTableAPI()
         {
-            scoresList
-        });
-    }
+            List<businessLayer.ScoreTable.UserScore> scoresList = businessLayer.ScoreTable.GetUserScores();
+            return Results.Ok(scoresList);
+        }
+
+
+    
 }

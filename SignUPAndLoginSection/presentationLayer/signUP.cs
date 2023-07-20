@@ -21,6 +21,8 @@ public class User
     public string OTPCode{ get; set; }
     public bool isvalid { get; set; }
     public double cash { get; set; }
+    
+    public double Score { get; set; }
 }
 
 public static class SignUp
