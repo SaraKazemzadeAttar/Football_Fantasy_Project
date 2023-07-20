@@ -188,32 +188,32 @@ public class Player
 }
 public enum Post
 {
-    Goalkeeper,
-    Defender,
-    Midfielder,
-    Forward
+    Goalkeeper=1,
+    Defender=2,
+    Midfielder=3,
+    Forward=4
 }
 
 public enum Team
 {
-    Arsenal,
-    AstonVilla,
-    Bournemouth,
-    Brentford,
-    Brighton,
-    Chelsea,
-    CrystalPalace,
-    Everton,
-    Fulham,
-    Leicester,
-    Leeds,
-    Liverpool,
-    ManCity,
-    ManUtd,
-    Newcastle,
-    Nott_m_Forest,
-    Southampton,
-    Spurs,
-    WestHam,
-    Wolves
+    Arsenal=1,
+    AstonVilla=2,
+    Bournemouth=3,
+    Brentford=4,
+    Brighton=5,
+    Chelsea=6,
+    CrystalPalace=7,
+    Everton=8,
+    Fulham=9,
+    Leicester=10,
+    Leeds=11,
+    Liverpool=12,
+    ManCity=13,
+    ManUtd=14,
+    Newcastle=15,
+    Nott_m_Forest=16,
+    Southampton=17,
+    Spurs=18,
+    WestHam=19,
+    Wolves=20
 }

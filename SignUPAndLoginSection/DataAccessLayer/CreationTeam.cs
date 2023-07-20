@@ -10,6 +10,7 @@ using User = SignUPAndLoginSection.presentationLayer.User;
 
 namespace SignUPAndLoginSection.DataAccessLayer;
 
+
 public class UsersTeamPlayers
 {
 
@@ -19,25 +20,17 @@ public class UsersTeamPlayers
 
     public int playerId { get; set; }
 
-    public bool isMainPlayer { get; set; }
+    public RoleOfPlayer roleOfPLayer { get; set; }
+}
+
+public enum RoleOfPlayer
+{
+    MainPlayer=0,
+    SubstitutePlayer=1
 }
 
 public class CreationTeam
 {
-    public static bool isPlayerUniqueInMyTeam(int targetUserId, int selectedPlayerId)
-    {
-        using (var db = new DataBase())
-        {
-            foreach (var record in db.UsersTeamPlayersTable)
-            {
-                if (record.playerId == selectedPlayerId)
-                    return false;
-            }
-        }
-
-        return true;
-    }
-
     public static void insertSelectedPlayerInUserTeam(int targetUserId, int selectedPlayerId)
     {
         using (var db = new DataBase())
@@ -66,125 +59,179 @@ public class CreationTeam
         }
     }
 
-    public static Post getPostOfChangingRole(int selectedPlayerId)
-    {
-        Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
-        return convertedPl.element_type;
-    }
+    // public static Post getPostOfChangingRole(int selectedPlayerId)
+    // {
+    //     Player convertedPl = FootballPlayersData.findPLayerByTheirId(selectedPlayerId);
+    //     return convertedPl.element_type;
+    // }
 
-    public static UsersTeamPlayers getSubstitutePlayerOfSelectedPost(int targetUserId, int selectedPlayerId)
+    // public static UsersTeamPlayers getSubstitutePlayerOfSelectedPost(int targetUserId, int selectedPlayerId)
+    // {
+    //     List<Player> intendedPostPlayers =
+    //         ListOfMyTeamPlayers.selectedPlayersPostList(targetUserId, getPostOfChangingRole(selectedPlayerId));
+    //     using (var db = new DataBase())
+    //     {
+    //         foreach (var sPostPlayer in intendedPostPlayers)
+    //         {
+    //             foreach (var utPlayer in db.UsersTeamPlayersTable)
+    //             {
+    //                 if (sPostPlayer.id == utPlayer.playerId)
+    //                 {
+    //                     if (utPlayer.roleOfPLayer==RoleOfPlayer.SubstitutePlayer)
+    //                     {
+    //                         return utPlayer;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    //     return null;
+    // }
+
+    // public static UsersTeamPlayers getMainPlayerOfSelectedPost(int targetUserId, int selectedPlayerId)
+    // {
+    //     List<Player> intendedPostPlayers =
+    //         ListOfMyTeamPlayers.selectedPlayersPostList(targetUserId, getPostOfChangingRole(selectedPlayerId));
+    //     using (var db = new DataBase())
+    //     {
+    //         foreach (var utPlayer in db.UsersTeamPlayersTable)
+    //         {
+    //             if (utPlayer.playerId == selectedPlayerId)
+    //             {
+    //                 return utPlayer;
+    //             }
+    //         }
+    //     }
+    //
+    //     return null;
+    // }
+
+    // public static void changingRoleOfSubstitutePlayer(int targetUserId, int selectedPlayerId)
+    // {
+    //     UsersTeamPlayers substitutePlayer = getSubstitutePlayerOfSelectedPost(targetUserId, selectedPlayerId);
+    //     using (var db = new DataBase())
+    //     {
+    //         foreach (var utPlayer in db.UsersTeamPlayersTable)
+    //         {
+    //             if (substitutePlayer == utPlayer)
+    //             {
+    //                 substitutePlayer.isMainPlayer = false;
+    //                 db.SaveChanges();
+    //             }
+    //         }
+    //     }
+    // }
+
+    // public static void changingRoleOfMainPlayer(int targetUserId, int selectedPlayerId)
+    // {
+    //     UsersTeamPlayers MainPlayer = getMainPlayerOfSelectedPost(targetUserId, selectedPlayerId);
+    //     using (var db = new DataBase())
+    //     {
+    //         foreach (var utPlayer in db.UsersTeamPlayersTable)
+    //         {
+    //             if (MainPlayer == utPlayer)
+    //             {
+    //                 MainPlayer.isMainPlayer = false;
+    //                 db.SaveChanges();
+    //             }
+    //         }
+    //     }
+    // }
+    
+    
+
+    public static bool isSelectedPlayerInMyTeam(int targetUserId, int selectedPlayerId)
     {
-        List<Player> intendedPostPlayers =
-            FootballPlayersData.selectedPlayersPostList(targetUserId, getPostOfChangingRole(selectedPlayerId));
         using (var db = new DataBase())
         {
-            foreach (var sPostPlayer in intendedPostPlayers)
+            foreach (var record in db.UsersTeamPlayersTable)
             {
-                foreach (var utPlayer in db.UsersTeamPlayersTable)
+                if (record.userId == targetUserId && record.playerId == selectedPlayerId)
                 {
-                    if (sPostPlayer.id == utPlayer.playerId)
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void setTheMainPlayer(int targetUserId, int selectedPlayerId)
+    {
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.userId == targetUserId && record.playerId == selectedPlayerId)
+                {
+                    record.roleOfPLayer = RoleOfPlayer.MainPlayer;
+                    db.SaveChanges();
+                }
+            }
+        }
+    }
+    
+    public static void setTheSubstitutePlayer(int targetUserId, int selectedPlayerId)
+    {
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.userId == targetUserId && record.playerId == selectedPlayerId)
+                {
+                    record.roleOfPLayer = RoleOfPlayer.SubstitutePlayer;
+                    db.SaveChanges();
+                }
+            }
+        }
+    }
+
+    public static void changeRoleOfPlayer(int UTPId)
+    {
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.UsersTeamPlayersId == UTPId)
+                {
+                    if (record.roleOfPLayer == RoleOfPlayer.MainPlayer)
                     {
-                        if (!utPlayer.isMainPlayer)
-                        {
-                            return utPlayer;
-                        }
+                        setTheSubstitutePlayer(record.userId, record.playerId);
+                        db.SaveChanges();
+                        return;
+                    }
+                    else
+                    {
+                        setTheMainPlayer(record.userId, record.playerId);
+                        db.SaveChanges();
+                        return;
                     }
                 }
             }
         }
-
-        return null;
     }
 
-    public static UsersTeamPlayers getMainPlayerOfSelectedPost(int targetUserId, int selectedPlayerId)
-    {
-        List<Player> intendedPostPlayers =
-            FootballPlayersData.selectedPlayersPostList(targetUserId, getPostOfChangingRole(selectedPlayerId));
-        using (var db = new DataBase())
-        {
-            foreach (var utPlayer in db.UsersTeamPlayersTable)
-            {
-                if (utPlayer.playerId == selectedPlayerId)
-                {
-                    return utPlayer;
-                }
-            }
-        }
 
-        return null;
-    }
 
-    public static void changingRoleOfSubstitutePlayer(int targetUserId, int selectedPlayerId)
-    {
-        UsersTeamPlayers substitutePlayer = getSubstitutePlayerOfSelectedPost(targetUserId, selectedPlayerId);
-        using (var db = new DataBase())
-        {
-            foreach (var utPlayer in db.UsersTeamPlayersTable)
-            {
-                if (substitutePlayer == utPlayer)
-                {
-                    substitutePlayer.isMainPlayer = false;
-                    db.SaveChanges();
-                }
-            }
-        }
-    }
-
-    public static void changingRoleOfMainPlayer(int targetUserId, int selectedPlayerId)
-    {
-        UsersTeamPlayers MainPlayer = getMainPlayerOfSelectedPost(targetUserId, selectedPlayerId);
-        using (var db = new DataBase())
-        {
-            foreach (var utPlayer in db.UsersTeamPlayersTable)
-            {
-                if (MainPlayer == utPlayer)
-                {
-                    MainPlayer.isMainPlayer = false;
-                    db.SaveChanges();
-                }
-            }
-        }
-    }
-
-    public static List<int> listOfUserTeamPlayerIds(int targetUserId)
-    {
-        List<int> listOfSelectedPlayersIds = new List<int>();
+    public static void changeRoleForBothPlayers(int targetUserId, int firstPlayerId , int secondPlayerId )
+    {       
         using (var db = new DataBase())
         {
             foreach (var record in db.UsersTeamPlayersTable)
             {
                 if (record.userId == targetUserId)
                 {
-                    listOfSelectedPlayersIds.Add(record.playerId);
-                }
-            }
-        }
-
-        return listOfSelectedPlayersIds;
-    }
-
-    public static List<string> showListOfMyTeam(int userId)
-    {
-        string playerInfo = "";
-        List<int> listOfSelectedPlayersIds = listOfUserTeamPlayerIds(userId);
-        List<string> listOfplayersInfo = new List<string>();
-        using (var db = new DataBase())
-        {
-            foreach (var player in db.playerTable)
-            {
-                foreach (var playerId in listOfSelectedPlayersIds)
-                {
-                    if (playerId == player.id)
+                    if (record.playerId == firstPlayerId)
                     {
-                        listOfplayersInfo.Add("FullName : "+player.first_name + " " + player.second_name + "   Price :" + player.now_cost + "   Post :" +
-                                                     player.element_type + "   Team :" + player.team);
+                        changeRoleOfPlayer(record.UsersTeamPlayersId);
+                    }
+
+                    if (record.playerId == secondPlayerId)
+                    {
+                        changeRoleOfPlayer(record.UsersTeamPlayersId);
                     }
                 }
             }
-
         }
-
-        return listOfplayersInfo;
     }
-    
 }

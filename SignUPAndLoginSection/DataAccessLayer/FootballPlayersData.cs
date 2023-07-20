@@ -61,47 +61,5 @@ public class FootballPlayersData
 
         return null;
     }
-
-    public static List<Player> selectedPlayersTeamList(int userId , Team targetTeam)
-    {
-        List<int> listOfPlIds = CreationTeam.listOfUserTeamPlayerIds(userId);
-        List<Player> TeamList = new List<Player>();
-        using (var db = new DataBase())
-        {
-            foreach (var player in db.playerTable )
-            {
-                foreach (var id in listOfPlIds)
-                {
-                    if (player.id == id) // find user team players 
-                    {
-                        if(targetTeam==player.team)
-                        TeamList.Add(player);
-                    }
-                }
-            }
-        }
-
-        return TeamList;
-    }
     
-    public static List<Player> selectedPlayersPostList(int userId , Post targetPost )
-    {
-        List<int> listOfPlIds =CreationTeam.listOfUserTeamPlayerIds(userId);
-        List<Player> postList = new List<Player>();
-        using (var db = new DataBase())
-        {
-            foreach (var player in db.playerTable )
-            {
-                foreach (var id in listOfPlIds)
-                {
-                    if (player.id == id)
-                    {
-                        postList.Add(player);
-                    }
-                }
-            }
-        }
-
-        return postList;
-    }
 }

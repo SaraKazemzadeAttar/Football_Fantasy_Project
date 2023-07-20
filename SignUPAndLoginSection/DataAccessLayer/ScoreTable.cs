@@ -15,7 +15,7 @@ public class ScoreTable
             {
                 if (record.userId == targetUserId)
                 {
-                    if (record.isMainPlayer)
+                    if (record.roleOfPLayer==RoleOfPlayer.MainPlayer)
                     {
                         mainPlayersList.Add(record.playerId);
                     }
@@ -47,7 +47,7 @@ public class ScoreTable
         return mainPlayersScoresList;
     }
     
-    public static List<int> secondaryTeamPlayersIds(int targetUserId)
+    public static List<int> substituteTeamPlayersIds(int targetUserId)
     {
         List<int> secondaryPlayersList = new List<int>();
         using (var db = new DataBase())
@@ -56,7 +56,7 @@ public class ScoreTable
             {
                 if (record.userId == targetUserId)
                 {
-                    if (!record.isMainPlayer)
+                    if (record.roleOfPLayer==RoleOfPlayer.SubstitutePlayer)
                     {
                         secondaryPlayersList.Add(record.playerId);
                     }
@@ -69,7 +69,7 @@ public class ScoreTable
     
     public static double ListOfSecondaryPlayerScores(int userId)
     {
-        List<int> secondaryPlayerIds = secondaryTeamPlayersIds(userId);
+        List<int> secondaryPlayerIds = substituteTeamPlayersIds(userId);
         double secondaryPlayersScoresList = 0;
         using (var db = new DataBase())
         {
@@ -90,8 +90,8 @@ public class ScoreTable
 
     public static double scoreCalculation(int userId)
     {
-        double finallScore = ListOfSecondaryPlayerScores(userId) + 2*ListOfMainPlayerScores(userId);
-        return finallScore;
+        double finalScore = ListOfSecondaryPlayerScores(userId) + 2*ListOfMainPlayerScores(userId);
+        return finalScore;
     }
 }
 
