@@ -61,6 +61,13 @@
          return showUserName(userprofile)+showUserMobilePhone(userprofile)+showUserEmail(userprofile)+
                 showUserUserName(userprofile);
          
+     }
 
+     public static IResult showUserProfile(HttpContext inputToken)
+     {
+         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
+         var user = UsersData.FindUserByTheirToken(token);
+         string userData=userProfile(user);
+         return Results.Ok(userData);
      }
  }

@@ -47,7 +47,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/removePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
             app.MapGet("/displayCash", presentationLayer.Cash.displayUserCash);
             app.MapPost("/changeRoleOfPlayers", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
-           // app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
+            app.MapGet("/userProfile", presentationLayer.profileOfUser.showUserProfile);
            // app.MapPost("/ShowListOfPlayers", updateListOfPlayers);
 
 
