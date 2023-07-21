@@ -10,7 +10,7 @@
          {
              foreach (var user in db.userTable)
              {
-                 if (userprofile == user)
+                 if (userprofile.userId == user.userId)
                      return user.fullName ;
              }
          }
@@ -24,7 +24,7 @@
          {
              foreach (var user in db.userTable)
              {
-                 if (userprofile == user)
+                 if (userprofile.userId == user.userId)
                      return user.mobilePhone;
              }
          }
@@ -37,7 +37,7 @@
          {
              foreach (var user in db.userTable)
              {
-                 if (userprofile == user)
+                 if (userprofile.userId == user.userId)
                      return user.email;
              }
          }
@@ -49,7 +49,7 @@
          {
              foreach (var user in db.userTable)
              {
-                 if (userprofile == user)
+                 if (userprofile.userId == user.userId)
                      return user.userName;
              }
          }
