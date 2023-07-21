@@ -4,63 +4,29 @@
 
  public class profileOfUser
  {
-     public static string showUserName(User userprofile )
+     public static User showUserinfo(presentationLayer.User u )
      {
          using (var db = new DataBase())
          {
              foreach (var user in db.userTable)
              {
-                 if (userprofile == user)
-                     return user.fullName ;
+                 if (user.userId.Equals(u.userId) )
+                     return new presentationLayer.User
+                     {
+                         fullName = user.fullName, score = user.score,userName=user.userName,
+                         mobilePhone=user.mobilePhone,email=user.email,
+                     } ;
              }
          }
 
          return null;
      }
 
-     public static string showUserMobilePhone(User userprofile)
+     public static IResult showUserProfile(HttpContext inputToken)
      {
-         using (var db = new DataBase())
-         {
-             foreach (var user in db.userTable)
-             {
-                 if (userprofile == user)
-                     return user.mobilePhone;
-             }
-         }
-         return null;
-     }
-
-     public static string showUserEmail(User userprofile)
-     {
-         using (var db = new DataBase())
-         {
-             foreach (var user in db.userTable)
-             {
-                 if (userprofile == user)
-                     return user.email;
-             }
-         }
-         return null;
-     }
-     public static string showUserUserName(User userprofile)
-     {
-         using (var db = new DataBase())
-         {
-             foreach (var user in db.userTable)
-             {
-                 if (userprofile == user)
-                     return user.userName;
-             }
-         }
-         return null;
-     }
-    
-     public static string userProfile(User userprofile)
-     {
-         return showUserName(userprofile)+showUserMobilePhone(userprofile)+showUserEmail(userprofile)+
-                showUserUserName(userprofile);
-         
-
+         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
+         var user = UsersData.FindUserByTheirToken(token);
+         presentationLayer.User userInfo=showUserinfo(user);
+         return Results.Ok(userInfo );
      }
  }
