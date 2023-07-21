@@ -22,7 +22,7 @@ public class User
     public bool isvalid { get; set; }
     public double cash { get; set; }
     
-    public double Score { get; set; }
+    public double score { get; set; }
 }
 
 public static class SignUp

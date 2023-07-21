@@ -93,6 +93,7 @@ public class ScoreTable
         double finalScore = ListOfSecondaryPlayerScores(userId) + 2*ListOfMainPlayerScores(userId);
         return finalScore;
     }
+    
 }
 
 

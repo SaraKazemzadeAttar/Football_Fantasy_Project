@@ -1133,3 +1133,9 @@ C:\Users\User\Desktop\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\n
 C:\Users\User\Desktop\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.Web.Http.Cors.dll
 C:\Users\User\Desktop\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
 C:\Users\User\Desktop\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.Web.Http.Common.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.Web.Cors.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.Web.Http.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.Web.Http.Cors.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\Asus\Desktop\Advanced Programming\AP_FootballFantasyPro_GitHub\Football_Fantasy_Project\Football_Fantasy_Project\SignUPAndLoginSection\bin\Debug\net7.0\System.Web.Http.Common.dll

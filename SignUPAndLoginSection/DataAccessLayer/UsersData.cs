@@ -62,17 +62,13 @@ public class UsersData
 
         return false;
     }
-
-    public static void setInitialCashForUser(presentationLayer.User u)
-    {
-        u.cash = 1000;
-    }
+    
 
     public static void insertUserToDataBase(presentationLayer.User u)
     {
         using (var db = new DataBase())
         {
-            setInitialCashForUser(u);
+            Cash.setInitialCashForUser(u);
             db.userTable.Add(u);
             db.SaveChanges();
         }

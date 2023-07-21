@@ -9,10 +9,9 @@ using SignUPAndLoginSection.presentationLayer;
  using System.Collections.Generic;
  using CronNET;
  using NUnit.Framework;
- using SignUPAndLoginSection.businessLayer; 
-using Player = SignUPAndLoginSection.businessLayer.Player;
+ using SignUPAndLoginSection.businessLayer;
 
-namespace SignUPAndLoginSection.DataAccessLayer;
+ namespace SignUPAndLoginSection.DataAccessLayer;
 
 public class FootballFanatasyAPIResponse
 {

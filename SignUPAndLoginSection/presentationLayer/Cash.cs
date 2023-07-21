@@ -8,6 +8,6 @@ public class Cash
     { 
         var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
         var user = UsersData.FindUserByTheirToken(token);
-        return Results.Json(user.userId);
+        return Results.Ok(user.cash);
     }
 }

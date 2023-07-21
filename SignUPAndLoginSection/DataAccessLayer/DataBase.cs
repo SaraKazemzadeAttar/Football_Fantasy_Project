@@ -17,6 +17,6 @@ public class DataBase : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)
     {
-        contextOptionsBuilder.UseSqlite("Data source=database0.db");//kazemzadeh
+        contextOptionsBuilder.UseSqlite("Data source=database0.db");
     }
 }

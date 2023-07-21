@@ -7,27 +7,45 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class TeamPlayersSelection
 {
-    // public static void changeRoleOfPlayer(string token ,int selectedPlayerId)
-    // {
-    //     var user = UsersData.FindUserByTheirToken(token);
-    //     int targetUserId = user.userId;
-    //     CreationTeam.changingRoleOfMainPlayer(targetUserId,selectedPlayerId);
-    //     CreationTeam.changingRoleOfSubstitutePlayer(targetUserId,selectedPlayerId);
-    // }
     public static bool isOmittingPlayerSuccessful(string token ,int playerId) 
     {
         var user = UsersData.FindUserByTheirToken(token);
         int targetUserId = user.userId;
         if(CreationTeam.isSelectedPlayerInMyTeam(user.userId, playerId))
         {
+            DataAccessLayer.Cash.returnMoneyToUser(user, playerId);
             CreationTeam.RemovePlayer(targetUserId,playerId);
-            Cash.returnMoneyToUser(user, playerId);
             return true;
         }
 
         return false;
     }
 
+    public static bool isSettingSubstitutePlayerSuccessful(string token, int playerId)
+    {
+        var user = UsersData.FindUserByTheirToken(token);
+        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, playerId))
+        {
+            CreationTeam.setTheSubstitutePlayer(user.userId, playerId);
+            return true;
+        }
+
+        return false;
+    }
+    
+    public static bool isChangingRoleSuccessful(string token, int firstPlayerId , int secondPlayerId)
+    {
+        var user = UsersData.FindUserByTheirToken(token);
+        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, firstPlayerId)&&(CreationTeam.isSelectedPlayerInMyTeam(user.userId, secondPlayerId)) )
+        {
+            CreationTeam.changeRoleForBothPlayers(user.userId, firstPlayerId,secondPlayerId);
+            return true;
+        }
+    
+        return false;
+    }
+    
+    
     public static bool AreSelectedPlayerInCorrectArrange( int targetUserId, Player selectedPlayer)
     {
         var intendedPost =selectedPlayer.element_type;
@@ -63,40 +81,4 @@ public class TeamPlayersSelection
         var user = UsersData.FindUserByTheirToken(token);
         return ListOfMyTeamPlayers.showListOfMyTeam(user.userId);
     }
-
-    public static bool isChangingRoleSuccessful(string token, int firstPlayerId , int secondPlayerId)
-    {
-        var user = UsersData.FindUserByTheirToken(token);
-        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, firstPlayerId)&&(CreationTeam.isSelectedPlayerInMyTeam(user.userId, secondPlayerId)) )
-        {
-            CreationTeam.changeRoleForBothPlayers(user.userId, firstPlayerId,secondPlayerId);
-            return true;
-        }
-    
-        return false;
-    }
-
-    public static bool isSettingMainPlayerSuccessful(string token, int playerId)
-    {
-        var user = UsersData.FindUserByTheirToken(token);
-        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, playerId))
-        {
-            CreationTeam.setTheMainPlayer(user.userId, playerId);
-            return true;
-        }
-
-        return false;
-    }
-    public static bool isSettingSubstitutePlayerSuccessful(string token, int playerId)
-    {
-        var user = UsersData.FindUserByTheirToken(token);
-        if (CreationTeam.isSelectedPlayerInMyTeam(user.userId, playerId))
-        {
-            CreationTeam.setTheSubstitutePlayer(user.userId, playerId);
-            return true;
-        }
-
-        return false;
-    }
-
 }

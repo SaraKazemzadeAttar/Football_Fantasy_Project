@@ -10,7 +10,6 @@ using System.Threading;
 using CronNET;
 using NCrontab;
 using ServiceStack;
-using Cash = SignUPAndLoginSection.businessLayer.Cash;
 
 namespace SignUPAndLoginSection
 {
@@ -41,14 +40,13 @@ namespace SignUPAndLoginSection
             app.MapPost("/listOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
             app.MapPost("/filterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
             app.MapPost("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
-            app.MapGet("/showScoresTable",presentationLayer.ScoreTable.ShowScoresTableAPI);
+            app.MapGet("/showScoresTable",presentationLayer.ScoreBoard.ShowScoresTableAPI);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
-            app.MapPost("/setMainPlayer", presentationLayer.TeamPlayerSelection.setTheMainPlayer);
             app.MapPost("/setSubstitutePlayer", presentationLayer.TeamPlayerSelection.setTheSubstitutePlayer);  
             app.MapGet("/showListOfMyTeam", presentationLayer.TeamPlayerSelection.showSelectedPlayersAPI);
             app.MapPost("/removePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
             app.MapGet("/displayCash", presentationLayer.Cash.displayUserCash);
-            app.MapPost("/changeRoleOfPlayer", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
+            app.MapPost("/changeRoleOfPlayers", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
            // app.MapGet("/userProfile", presentationLayer.profileOfUser.userProfile);
            // app.MapPost("/ShowListOfPlayers", updateListOfPlayers);
 

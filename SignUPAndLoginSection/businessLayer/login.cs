@@ -13,11 +13,10 @@ public class login
 {
     public static bool isUserRegistered(string password, string email_username)
     {
-        if (DataAccessLayer.logIn.arePasswordAndUsernameSync(email_username, password) || DataAccessLayer.logIn.arePasswordAndEmailSync(email_username,password))
+        if (logIn.arePasswordAndUsernameSync(email_username, password) ||logIn.arePasswordAndEmailSync(email_username,password))
         {
             return true;
         }
         return false;
     }
-//comment for pull kazemzadeh
 }

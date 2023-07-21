@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using SignUPAndLoginSection.businessLayer;
 
 namespace SignUPAndLoginSection.DataAccessLayer;
@@ -45,12 +46,12 @@ public class ListOfMyTeamPlayers
             {
                 foreach (var utp in db.UsersTeamPlayersTable)
                 {
-                    if (player.id == utp.playerId)
+                    if ( playerId==player.id &&player.id == utp.playerId)
                     {
                         return "FullName : " + player.first_name + " " + player.second_name + "   Price :" +
                                player.now_cost +
                                "   Post :" +
-                               player.element_type + "   Team :" + player.team + "   Role : ";
+                               player.element_type + "   Team :" + player.team + "   Role : " +utp.roleOfPLayer;
 
                     }
                 }
@@ -73,8 +74,8 @@ public class ListOfMyTeamPlayers
                 {
                     if (playerId == player.id)
                     {
-                        listOfplayersInfo.Add("FullName : "+player.first_name + " " + player.second_name + "   Price :" + player.now_cost + "   Post :" +
-                                              player.element_type + "   Team :" + player.team);
+                        string info = showInfoOfPlayer(player.id);
+                        listOfplayersInfo.Add(info);
                     }
                 }
             }
@@ -94,9 +95,12 @@ public class ListOfMyTeamPlayers
             {
                 foreach (var id in listOfPlIds)
                 {
-                    if (player.id == id && targetTeam==player.team)
+                    if (player.id == id)
                     {
-                        TeamList.Add(player);
+                        if (targetTeam == player.team)
+                        {
+                            TeamList.Add(player);
+                        }
                     }
                 }
             }
@@ -111,13 +115,16 @@ public class ListOfMyTeamPlayers
         List<Player> postList = new List<Player>();
         using (var db = new DataBase())
         {
-            foreach (var player in db.playerTable )
+            foreach (var player in db.playerTable)
             {
                 foreach (var id in listOfPlIds)
                 {
-                    if (player.id == id && player.element_type==targetPost)
+                    if (player.id == id)
                     {
-                        postList.Add(player);
+                        if (player.element_type == targetPost)
+                        {
+                            postList.Add(player);
+                        }
                     }
                 }
             }
@@ -125,4 +132,45 @@ public class ListOfMyTeamPlayers
 
         return postList;
     }
+    
+    public static List<UsersTeamPlayers> mySubstitutePlayersList(int userId)
+    {
+        List<UsersTeamPlayers> listOfSubstituesPlayers = new List<UsersTeamPlayers>();
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.userId == userId)
+                {
+                    if (record.roleOfPLayer == RoleOfPlayer.SubstitutePlayer)
+                    {
+                        listOfSubstituesPlayers.Add(record);
+                    }
+                }
+            }
+        }
+
+        return listOfSubstituesPlayers;
+    }
+    
+    public static List<UsersTeamPlayers> myMainPlayersList(int userId)
+    {
+        List<UsersTeamPlayers> listOfMainPlayers = new List<UsersTeamPlayers>();
+        using (var db = new DataBase())
+        {
+            foreach (var record in db.UsersTeamPlayersTable)
+            {
+                if (record.userId == userId)
+                {
+                    if (record.roleOfPLayer == RoleOfPlayer.MainPlayer)
+                    {
+                        listOfMainPlayers.Add(record);
+                    }
+                }
+            }
+        }
+
+        return listOfMainPlayers;
+    }
+    
 }

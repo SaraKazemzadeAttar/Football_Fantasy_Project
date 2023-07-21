@@ -13,7 +13,7 @@ namespace SignUPAndLoginSection.presentationLayer
     {
         public static IResult loginApi(string password, string email_username)
         {
-            presentationLayer.User u = UsersData.findUserByTheirEmailOrUsername(email_username);
+            User u = UsersData.findUserByTheirEmailOrUsername(email_username);
             if (businessLayer.login.isUserRegistered(password, email_username)&& u.isvalid)
             {
                 var token = businessLayer.TokenAccess.generateToken(password, email_username);
