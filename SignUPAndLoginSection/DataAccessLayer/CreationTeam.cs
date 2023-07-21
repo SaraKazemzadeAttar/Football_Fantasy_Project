@@ -87,7 +87,6 @@ public class CreationTeam
                     {
                         record.roleOfPLayer = RoleOfPlayer.MainPlayer;
                         db.SaveChanges();
-                        return;
                     }
                 }
             }
@@ -106,7 +105,6 @@ public class CreationTeam
                     {
                         record.roleOfPLayer = RoleOfPlayer.SubstitutePlayer;
                         db.SaveChanges();
-                        return;
                     }
                 }
             }
