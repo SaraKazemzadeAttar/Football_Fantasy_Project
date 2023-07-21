@@ -41,19 +41,7 @@ public class ListOfPlayers
     
     public static List<string> searchingMethod(string entry)
     {
-        
-        List<string> foundNames = new List<string>();
-        
-        foreach (var playerFullName in fullName)
-        {
-            if (playerFullName.Contains(entry))
-            {
-                foundNames.Add(playerFullName);
-            }
-        }
-
-        return foundNames;
-
+        return DataAccessLayer.FootballPlayersData.findPlayerByName(entry);
     }
 
     public static List<Player> sortedDescendingListOfPlayersByPoint(List<Player> players)
@@ -129,20 +117,6 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> FilterByPost(Post post,List <Player> players)
-    {
-        List <Player> posts= new List<Player>();
-        for (int i = 0; i < players.Count; i++)
-        {
-            if (post.Equals(players[i].element_type))
-            {
-                posts.Add(players[i]);
-            }
-        }
-
-        return posts;
-    }
-
     public static List<Player> FilterPlayers(int? filter)
     {
         List<Player> players = getListOfPlayers();
@@ -160,6 +134,21 @@ public class ListOfPlayers
                 return null;
         }
     }
+    
+    public static List<Player> FilterByPost(Post post,List <Player> players)
+    {
+        List <Player> posts= new List<Player>();
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (post.Equals(players[i].element_type))
+            {
+                posts.Add(players[i]);
+            }
+        }
+
+        return posts;
+    }
+    
 
     public static List<Player> FilterPlayersByPost(int? post )
     {

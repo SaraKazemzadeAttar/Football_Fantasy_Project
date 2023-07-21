@@ -37,10 +37,11 @@ namespace SignUPAndLoginSection
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
             app.MapPost("/OTP", businessLayer.OTP.ValidatinOTPCode);
             app.MapPost("/login", presentationLayer.login.loginApi);
+            app.MapPost("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
             app.MapPost("/listOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
             app.MapPost("/filterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
             app.MapPost("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
-            app.MapGet("/showScoresTable",presentationLayer.ScoreBoard.ShowScoresTableAPI);
+            app.MapGet("/showScoresTable",presentationLayer.ScoreBoard.showScoresTableWeeklyAPI);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("/setSubstitutePlayer", presentationLayer.TeamPlayerSelection.setTheSubstitutePlayer);  
             app.MapGet("/showListOfMyTeam", presentationLayer.TeamPlayerSelection.showSelectedPlayersAPI);

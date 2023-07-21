@@ -61,4 +61,22 @@ public class FootballPlayersData
         return null;
     }
     
-}
+    public static List<string> findPlayerByName(string input)
+    {
+        List<string> foundNames = new List<string>();
+        
+        using (var db = new DataBase())
+        {
+            foreach (var player in db.playerTable)
+            {
+                if (player.first_name.Contains(input) || player.second_name.Contains(input))
+                {
+                    foundNames.Add(player.first_name +" "+ player.second_name);
+                }
+            }
+        }
+
+        return foundNames;
+    }
+    
+    }
