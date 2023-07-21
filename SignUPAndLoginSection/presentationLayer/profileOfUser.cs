@@ -68,6 +68,9 @@
          var token = inputToken.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.ToString();
          var user = UsersData.FindUserByTheirToken(token);
          string userData=userProfile(user);
-         return Results.Ok(userData);
+         return Results.Ok(new
+         {
+             userData
+         });
      }
  }
