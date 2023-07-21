@@ -168,14 +168,14 @@ public class CreationTeam
         {
             if (record.playerId == firstPlayerId || record.playerId==secondPlayerId)
             {
-                setTheSubstitutePlayer(record.userId, record.playerId);
+                setTheMainPlayer(record.userId, record.playerId);
             }
         }
         foreach (var record in UTPMainPlayers)
         {
             if (record.playerId == firstPlayerId || record.playerId==secondPlayerId)
             {
-                setTheMainPlayer(record.userId, record.playerId);
+                setTheSubstitutePlayer(record.userId, record.playerId);
             }
         }
     }
