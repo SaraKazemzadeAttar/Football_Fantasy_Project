@@ -38,7 +38,10 @@ namespace SignUPAndLoginSection
             app.MapPost("/OTP", businessLayer.OTP.ValidatinOTPCode);
             app.MapPost("/login", presentationLayer.login.loginApi);
             app.MapPost("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
-            app.MapPost("/listOfPlayers",(int? filter)=>businessLayer.ListOfPlayers.FilterPlayers(filter));
+            app.MapPost("/filterPlayersByAscendingPoint",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPoint);
+            app.MapPost("/filterPlayersByAscendingPrice",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPrice);
+            app.MapPost("/filterPlayersByDescendingPrice",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPrice);
+            app.MapPost("/filterPlayersByDescendingPoint",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPoint);
             app.MapPost("/filterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
             app.MapPost("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
             app.MapGet("/showScoresTable",presentationLayer.ScoreBoard.showScoresTableWeeklyAPI);
@@ -50,6 +53,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/changeRoleOfPlayers", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
             app.MapGet("/userProfile", presentationLayer.profileOfUser.showUserProfile);
            // app.MapPost("/ShowListOfPlayers", updateListOfPlayers);
+           app.MapPost("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
 
 
             app.Run("http://localhost:7005");

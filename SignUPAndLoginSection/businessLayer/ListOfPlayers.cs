@@ -117,24 +117,6 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> FilterPlayers(int? filter)
-    {
-        List<Player> players = getListOfPlayers();
-        switch (filter)
-        {
-            case 1:
-                return sortedAscendingListOfPlayersByPoint(players);
-            case 2:
-                return sortedDescendingListOfPlayersByPoint(players);
-            case 3:
-                return sortedAscendingListOfPlayersByPrice(players);
-            case 4:
-                return sortedDescendingListOfPlayersByPrice(players);
-            default:
-                return null;
-        }
-    }
-    
     public static List<Player> FilterByPost(Post post,List <Player> players)
     {
         List <Player> posts= new List<Player>();
@@ -149,7 +131,6 @@ public class ListOfPlayers
         return posts;
     }
     
-
     public static List<Player> FilterPlayersByPost(int? post )
     {
         List<Player> players = getListOfPlayers();
