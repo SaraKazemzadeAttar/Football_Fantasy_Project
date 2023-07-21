@@ -63,7 +63,7 @@ public class ListOfPlayers
         {
             for (int j = i; j < players.Count;j++)
             {
-                if (players[i].total_points > players[j].total_points)
+                if (players[i].total_points < players[j].total_points)
                 {
                     var temp = players[i];
                     players[i] = players[j ];
@@ -81,7 +81,7 @@ public class ListOfPlayers
         {
             for (int j = i; j < players.Count;j++)
             {
-                if (players[i].total_points < players[j ].total_points)
+                if (players[i].total_points > players[j ].total_points)
                 {
                     var temp = players[i];
                     players[i] = players[j ];
@@ -149,9 +149,9 @@ public class ListOfPlayers
         switch (filter)
         {
             case 1:
-                return sortedDescendingListOfPlayersByPoint(players);
-            case 2:
                 return sortedAscendingListOfPlayersByPoint(players);
+            case 2:
+                return sortedDescendingListOfPlayersByPoint(players);
             case 3:
                 return sortedAscendingListOfPlayersByPrice(players);
             case 4:
