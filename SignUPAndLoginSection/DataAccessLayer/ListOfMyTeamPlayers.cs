@@ -63,8 +63,7 @@ public class ListOfMyTeamPlayers
 
     public static List<string> showListOfMyTeam(int userId)
     {
-        string playerInfo = "";
-        List<int> listOfSelectedPlayersIds = ListOfMyTeamPlayers.listOfUserTeamPlayerIds(userId);
+        List<int> listOfSelectedPlayersIds =listOfUserTeamPlayerIds(userId);
         List<string> listOfplayersInfo = new List<string>();
         using (var db = new DataBase())
         {
