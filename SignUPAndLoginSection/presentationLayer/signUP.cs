@@ -90,11 +90,32 @@ public static class SignUp
             }
             else
             {
-                return Results.BadRequest(new
-                    {
-                        message = "information is not unique!"
-                    }
-                );
+                if (emailExistence)
+                {
+                    return Results.BadRequest(new
+                        {
+                            message = "email is not unique!"
+                        }
+                    );
+                }
+
+                if (phoneNumberExistence)
+                {
+                    return Results.BadRequest(new
+                        {
+                            message = "mobile phone is not unique!"
+                        }
+                    );
+                }
+
+                if (userNameExistence)
+                {
+                    return Results.BadRequest(new
+                        {
+                            message = "username is not unique!"
+                        }
+                    );
+                }
             }
         }
         else
@@ -103,7 +124,7 @@ public static class SignUp
             {
                 return Results.BadRequest(new
                     {
-                        message = "mobileErrorMessage"
+                        message = "problem: " + u.mobilePhone.mobileErrorMessage
                     }
                 );
             }
@@ -112,7 +133,7 @@ public static class SignUp
             {
                 return Results.BadRequest(new
                     {
-                        message = "passwordErrorMessage"
+                        message = "problem: " + u.password.passwordErrorMessage
                     }
                 );
             }
@@ -121,7 +142,7 @@ public static class SignUp
             {
                 return Results.BadRequest(new
                     {
-                        message = "userNameErrorMessage"
+                        message = "problem: " + u.userName.userNameErrorMessage
                     }
                 );
             }
@@ -130,7 +151,7 @@ public static class SignUp
             {
                 return Results.BadRequest(new
                     {
-                        message = "fullNameErrorMassage"
+                        message = "problem: " + u.fullname.fullNameErrorMassage
                     }
                 );
             }
@@ -143,13 +164,12 @@ public static class SignUp
                     }
                 );
             }
-            
-            return Results.BadRequest(new
-                {
-                    message = "information is not valid that can not be found !"
-                }
-            );
         }
+        return Results.BadRequest(new
+            {
+                message = "Unpredictable problem !"
+            }
+        );
     }
 }
 
