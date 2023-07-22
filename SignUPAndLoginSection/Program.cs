@@ -73,10 +73,6 @@ namespace SignUPAndLoginSection
                 FootballPlayersData.insertPlayersInDataBase(); // Call the function to insert players in the database
             }, null, delay, TimeSpan.FromDays(7));
             
-            while (true)
-            {
-                Thread.Sleep(Timeout.Infinite);
-            }
         }
         
         public static void showScoresTableWeeklyAPI()
@@ -86,7 +82,6 @@ namespace SignUPAndLoginSection
             TimeSpan duration = nextRun - now;
 
             var timer = new Timer(o => {ScoreBoard.showScoresTableAPI();}, null, TimeSpan.Zero, duration);
-            //t.Change(0,100);
         }
         
         public static DateTime CalculateNextWeeklyRun(DateTime now)
