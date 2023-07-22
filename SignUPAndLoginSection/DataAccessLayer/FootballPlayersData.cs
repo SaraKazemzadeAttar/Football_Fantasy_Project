@@ -61,9 +61,9 @@ public class FootballPlayersData
         return null;
     }
     
-    public static List<string> findPlayerByName(string input)
+    public static List<Player> findPlayerByName(string input)
     {
-        List<string> foundNames = new List<string>();
+        List <Player> foundNames = new List <Player>();
         
         using (var db = new DataBase())
         {
@@ -71,12 +71,14 @@ public class FootballPlayersData
             {
                 if (player.first_name.Contains(input) || player.second_name.Contains(input))
                 {
-                    foundNames.Add(player.first_name +" "+ player.second_name);
+                    foundNames.Add(player);
                 }
             }
         }
 
         return foundNames;
     }
+    
+   
     
     }

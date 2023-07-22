@@ -38,7 +38,7 @@ public class ListOfPlayers
         return fullName;
     }
     
-    public static List<string> searchingMethod(string entry)
+    public static List<Player> searchingMethod(string entry)
     {
         return DataAccessLayer.FootballPlayersData.findPlayerByName(entry);
     }
