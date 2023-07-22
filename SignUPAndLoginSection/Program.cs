@@ -55,7 +55,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/changeRoleOfPlayers", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
             app.MapGet("/userProfile", presentationLayer.profileOfUser.showUserProfile);
             app.MapPost("/ShowListOfUpdatePlayers",updateListOfPlayers);
-            app.MapPost("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
+            app.MapGet("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
 
 
             app.Run("http://localhost:7005");
