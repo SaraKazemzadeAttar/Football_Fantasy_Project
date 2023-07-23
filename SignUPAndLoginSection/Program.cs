@@ -39,20 +39,20 @@ namespace SignUPAndLoginSection
                     });
             });
             
-            // builder.Services.AddQuartz(q =>
-            // {
-            //     q.UseMicrosoftDependencyInjectionScopedJobFactory();
-            //     var jobKey = new JobKey("DemoJob");
-            //     q.AddJob<UpdateJob>(opts => opts.WithIdentity(jobKey));
-            //
-            //     q.AddTrigger(opts => opts
-            //         .ForJob(jobKey)
-            //         .WithIdentity("DemoJob-trigger")
-            //         .WithCronSchedule("0 0 7 * *"));
-            //
-            // });
-            // builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
-            //
+            builder.Services.AddQuartz(q =>
+            {
+                q.UseMicrosoftDependencyInjectionScopedJobFactory();
+                var jobKey = new JobKey("DemoJob");
+                q.AddJob<UpdateJob>(opts => opts.WithIdentity(jobKey));
+            
+                q.AddTrigger(opts => opts
+                    .ForJob(jobKey)
+                    .WithIdentity("DemoJob-trigger")
+                    .WithCronSchedule("0 0 12 ? * WED"));
+            
+            });
+            builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+            
             var app = builder.Build();
             app.UseCors("MyAllowedOrigins");
             app.MapPost("/signUp",SignUp.signUPAPI);
