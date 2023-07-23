@@ -20,7 +20,7 @@ public class checkEmail_Phone_Username
 {
     public static bool isEmailExist(string e)
     {
-        if (DataAccessLayer.UsersData.doesEmailExistBefore(e))
+        if (UsersData.doesEmailExistBefore(e))
         {
             return true;
         }
@@ -30,7 +30,7 @@ public class checkEmail_Phone_Username
 
     public static bool isPhoneExist(string m)
     {
-        if (DataAccessLayer.UsersData.doesPhoneNumberExistBefore(m))
+        if (UsersData.doesPhoneNumberExistBefore(m))
         {
             return true;
         }
@@ -40,7 +40,7 @@ public class checkEmail_Phone_Username
 
     public static bool isUsernameExist(string un)
     {
-        if (DataAccessLayer.UsersData.doesUserNameExistBefore(un))
+        if (UsersData.doesUserNameExistBefore(un))
         {
             return true;
         }

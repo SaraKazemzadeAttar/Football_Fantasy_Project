@@ -27,7 +27,7 @@ public class ListOfPlayers
         return response.elements;
     }
     
-    
+
     public static List<Player> searchingMethod(string entry)
     {
         return FootballPlayersData.findPlayerByName(entry);

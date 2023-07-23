@@ -4,7 +4,7 @@
 
  public class profileOfUser
  {
-     public static User showUserinfo(presentationLayer.User u )
+     public static User showUserinfo(User u )
      {
          using (var db = new DataBase())
          {

@@ -27,6 +27,7 @@ public class User
 
 public static class SignUp
 {
+    public static string errorMessage = "";
     public static businessLayer.User convertPres_UserToBusi_User(presentationLayer.User PU)
     {
         businessLayer.User BU = new businessLayer.User();
@@ -62,11 +63,11 @@ public static class SignUp
     public static IResult signUPAPI(presentationLayer.User input)
     {
         businessLayer.User u = new businessLayer.User();
-        u = convertPres_UserToBusi_User(input);
-       // UserValidator user = new UserValidator();
+    u = convertPres_UserToBusi_User(input);
+        // UserValidator user = new UserValidator();
 
         if (u.mobilePhone.mobilePhoneValidator(input.mobilePhone) && u.password.passwordValidator(input.password) &&
-            u.userName.usernameValidator(input.userName) && u.fullname.fullNameValidator(input.fullName) 
+            u.userName.usernameValidator(input.userName) && u.fullname.fullNameValidator(input.fullName)
             && u.email.emailValidator(input.email))
         {
             bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(input.email);
@@ -75,18 +76,18 @@ public static class SignUp
 
             if (!emailExistence && !phoneNumberExistence && !userNameExistence)
             {
-                
+
                 string otp_code = businessLayer.OTP.send_code(input);
                 input.OTPCode = otp_code;
-              
+
                 DataAccessLayer.UsersData.insertUserToDataBase(input);
-               
-                    return Results.Ok(new
-                        {
-                            message = "Let's go to Verification phase!"
-                        }
-                    );
-                
+
+                return Results.Ok(new
+                    {
+                        message = "Let's go to Verification phase!"
+                    }
+                );
+
             }
             else
             {
@@ -122,48 +123,33 @@ public static class SignUp
         {
             if (!u.mobilePhone.mobilePhoneValidator(input.mobilePhone))
             {
-                return Results.BadRequest(new
-                    {
-                        message = "problem: " + u.mobilePhone.mobileErrorMessage
-                    }
-                );
+                errorMessage = u.mobilePhone.mobileErrorMessage;
             }
             
             if (!u.password.passwordValidator(input.password))
             {
-                return Results.BadRequest(new
-                    {
-                        message = "problem: " + u.password.passwordErrorMessage
-                    }
-                );
+                errorMessage = u.password.passwordErrorMessage;
             }
 
             if (!u.userName.usernameValidator(input.userName))
             {
-                return Results.BadRequest(new
-                    {
-                        message = "problem: " + u.userName.userNameErrorMessage
-                    }
-                );
+                errorMessage = u.userName.userNameErrorMessage;
             }
 
             if (!u.fullname.fullNameValidator(input.fullName))
             {
-                return Results.BadRequest(new
-                    {
-                        message = "problem: " + u.fullname.fullNameErrorMassage
-                    }
-                );
+                errorMessage = u.fullname.fullNameErrorMassage;
             }
             
             if (!u.email.emailValidator(input.email))
             {
-                return Results.BadRequest(new
-                    {
-                        message = "emailErrorMassage"
-                    }
-                );
+                errorMessage = "emailErrorMassage";
             }
+            return Results.BadRequest(new
+                {
+                    message = "problem: " + errorMessage
+                }
+            );
         }
         return Results.BadRequest(new
             {
@@ -175,7 +161,6 @@ public static class SignUp
 
 public class UserName
 {
-    // public bool isValidUsername = false;
     public string userNameContext;
     public string userNameErrorMessage = "";
     public bool isContainLetters = true;

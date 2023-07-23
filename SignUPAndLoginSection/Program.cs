@@ -39,41 +39,42 @@ namespace SignUPAndLoginSection
                     });
             });
             
-            builder.Services.AddQuartz(q =>
-            {
-                q.UseMicrosoftDependencyInjectionScopedJobFactory();
-                var jobKey = new JobKey("DemoJob");
-                q.AddJob<UpdateJob>(opts => opts.WithIdentity(jobKey));
-
-                q.AddTrigger(opts => opts
-                    .ForJob(jobKey)
-                    .WithIdentity("DemoJob-trigger")
-                    .WithCronSchedule("0 0 7 * *"));
-
-            });
-            builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
-            
+            // builder.Services.AddQuartz(q =>
+            // {
+            //     q.UseMicrosoftDependencyInjectionScopedJobFactory();
+            //     var jobKey = new JobKey("DemoJob");
+            //     q.AddJob<UpdateJob>(opts => opts.WithIdentity(jobKey));
+            //
+            //     q.AddTrigger(opts => opts
+            //         .ForJob(jobKey)
+            //         .WithIdentity("DemoJob-trigger")
+            //         .WithCronSchedule("0 0 7 * *"));
+            //
+            // });
+            // builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+            //
             var app = builder.Build();
             app.UseCors("MyAllowedOrigins");
-            app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
-            app.MapPost("/OTP", businessLayer.OTP.ValidatinOTPCode);
-            app.MapPost("/login", presentationLayer.login.loginApi);
-            app.MapGet("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
-            app.MapGet("/filterPlayersByAscendingPoint",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPoint);
-            app.MapGet("/filterPlayersByAscendingPrice",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPrice);
-            app.MapGet("/filterPlayersByDescendingPrice",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPrice);
-            app.MapGet("/filterPlayersByDescendingPoint",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPoint);
-            app.MapGet("/filterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
-            app.MapGet("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
-            app.MapGet("/showScoresTable",presentationLayer.ScoreBoard.showScoresTableAPI);
-            app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
-            app.MapPost("/setSubstitutePlayer", presentationLayer.TeamPlayerSelection.setTheSubstitutePlayer);  
-            app.MapGet("/showListOfMyTeam", presentationLayer.TeamPlayerSelection.showSelectedPlayersAPI);
-            app.MapPost("/removePlayer", presentationLayer.TeamPlayerSelection.omittingPlayerAPI);
+            app.MapPost("/signUp",SignUp.signUPAPI);
+            app.MapPost("/OTP", OTP.ValidatinOTPCode);
+            app.MapGet("/login", presentationLayer.login.loginApi);
+            app.MapGet("/filterPlayersByAscendingPoint",ListOfPlayers.sortedAscendingListOfPlayersByPoint);
+            app.MapGet("/filterPlayersByAscendingPrice",ListOfPlayers.sortedAscendingListOfPlayersByPrice);
+            app.MapGet("/filterPlayersByDescendingPrice",ListOfPlayers.sortedDescendingListOfPlayersByPrice);
+            app.MapGet("/filterPlayersByDescendingPoint",ListOfPlayers.sortedDescendingListOfPlayersByPoint);
+            app.MapGet("/filterPlayersByPost",(int?post)=>ListOfPlayers.FilterPlayersByPost(post));
+            app.MapGet("/filterPlayersByName", ListOfPlayers.searchingMethod);
+            app.MapGet("/showScoresTable",ScoreBoard.showScoresTableAPI);
+            app.MapPost("/selectPlayer", TeamPlayerSelection.selectionPlayerAPI);
+            app.MapPost("/setSubstitutePlayer", TeamPlayerSelection.setTheSubstitutePlayer);  
+            app.MapGet("/showListOfMyTeam", TeamPlayerSelection.showSelectedPlayersAPI);
+            app.MapGet("/showListOfMyMainPlayers",ListOfMyTeam.ListOfMainPlayers);
+            app.MapGet("/showListOfMySubstitutePlayers",ListOfMyTeam.ListOfSubstitutePlayers);
+            app.MapPost("/removePlayer", TeamPlayerSelection.omittingPlayerAPI);
             app.MapGet("/displayCash", presentationLayer.Cash.displayUserCash);
-            app.MapPost("/changeRoleOfPlayers", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
-            app.MapGet("/userProfile", presentationLayer.profileOfUser.showUserProfile);
-            app.MapGet("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
+            app.MapPost("/changeRoleOfPlayers", TeamPlayerSelection.changeRoleOfPlayerAPI);
+            app.MapGet("/userProfile", profileOfUser.showUserProfile);
+            app.MapGet("/ShowListOfPlayers", ListOfPlayers.getListOfPlayers);
 
 
             app.Run("http://localhost:7005");

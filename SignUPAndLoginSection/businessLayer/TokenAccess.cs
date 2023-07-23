@@ -7,7 +7,6 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class TokenAccess
 {
-    public  static bool isTokenActive = false;
     public static string token { get; set; }
     public static  string generateToken(string password , string email_username)
     {
@@ -24,14 +23,8 @@ public class TokenAccess
             claims,
             signingCredentials: credentials
         );
-        setTokenActive();
         var stringToken = new JwtSecurityTokenHandler().WriteToken(token);
         return stringToken;
-    }
-    
-    public static  void setTokenActive()
-    {
-        isTokenActive = true;
     }
 
     public static string getEmailOrUsernameFromToken(string token)

@@ -3,9 +3,9 @@ namespace SignUPAndLoginSection.presentationLayer;
 
 public class ScoreBoard
 {
-    public static List<presentationLayer.User> showScoresTableAPI()
+    public static List<User> showScoresTableAPI()
     {
-        List<presentationLayer.User> scoresList = DataAccessLayer.ScoreBoard.GetUserScores();
+        List<User> scoresList = DataAccessLayer.ScoreBoard.GetUserScores();
         return scoresList;
     }
 }
