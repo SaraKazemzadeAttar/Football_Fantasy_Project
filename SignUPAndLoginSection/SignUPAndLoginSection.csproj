@@ -7,7 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Cron.NET" Version="1.1.0" />
       <PackageReference Include="CronNET" Version="1.1.4939.24773" />
+      <PackageReference Include="CronNETAsync" Version="1.0.0" />
       <PackageReference Include="HiNetCloud.System.Web.Http.Cors" Version="23.6.29.6" />
       <PackageReference Include="Jx.Quartz.TimerServiceBase" Version="0.6.0" />
       <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.3.0-preview1" />

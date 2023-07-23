@@ -24,16 +24,17 @@ public class OTP
         SmtpClient smtp = new SmtpClient("smtp.gmail.com");
 
         mail.From = new MailAddress("shahedap.footballfantasy@gmail.com");
-        mail.Subject = "Fotball Fantasy";
+        mail.Subject = "Football Fantasy";
         mail.To.Add(u.email);
-        mail.Body = GenerateRandomCode();
+        string otpCode = GenerateRandomCode();
+        mail.Body = "Hey! "+u.fullName+" Here is your verification code : "+ otpCode;
 
         smtp.Port = 587;
         smtp.Credentials = new System.Net.NetworkCredential("shahedap.footballfantasy@gmail.com", "vfecuirpkbwojjkj");
         smtp.EnableSsl = true;
        
         smtp.Send(mail);
-        return mail.Body;
+        return otpCode;
     }
 
     public static IResult ValidatinOTPCode(presentationLayer.User u)

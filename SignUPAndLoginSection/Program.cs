@@ -57,13 +57,13 @@ namespace SignUPAndLoginSection
             app.UseCors("MyAllowedOrigins");
             app.MapPost("/signUp",SignUp.signUPAPI);
             app.MapPost("/OTP", OTP.ValidatinOTPCode);
-            app.MapGet("/login", presentationLayer.login.loginApi);
+            app.MapPost("/login", presentationLayer.login.loginApi);
             app.MapGet("/filterPlayersByAscendingPoint",ListOfPlayers.sortedAscendingListOfPlayersByPoint);
             app.MapGet("/filterPlayersByAscendingPrice",ListOfPlayers.sortedAscendingListOfPlayersByPrice);
             app.MapGet("/filterPlayersByDescendingPrice",ListOfPlayers.sortedDescendingListOfPlayersByPrice);
             app.MapGet("/filterPlayersByDescendingPoint",ListOfPlayers.sortedDescendingListOfPlayersByPoint);
             app.MapGet("/filterPlayersByPost",(int?post)=>ListOfPlayers.FilterPlayersByPost(post));
-            app.MapGet("/filterPlayersByName", ListOfPlayers.searchingMethod);
+            app.MapPost("/filterPlayersByName", ListOfPlayers.searchingMethod);
             app.MapGet("/showScoresTable",ScoreBoard.showScoresTableAPI);
             app.MapPost("/selectPlayer", TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("/setSubstitutePlayer", TeamPlayerSelection.setTheSubstitutePlayer);  
