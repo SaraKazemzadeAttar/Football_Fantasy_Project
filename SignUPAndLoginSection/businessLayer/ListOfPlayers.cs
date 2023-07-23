@@ -17,8 +17,7 @@ namespace SignUPAndLoginSection.businessLayer;
 
 public class ListOfPlayers
 {
-    public static List<string> fullName = new List<string>();
-    
+
     public static List<Player> getListOfPlayers()
     {
         string url = "https://fantasy.premierleague.com/api/bootstrap-static/";
@@ -28,23 +27,15 @@ public class ListOfPlayers
         return response.elements;
     }
     
-    public static List<string> FullNameOfPlayers()
-    {
-        foreach (var player in ListOfPlayers.getListOfPlayers())
-        {
-            fullName.Add(player.first_name + player.second_name);
-        }
-
-        return fullName;
-    }
     
     public static List<Player> searchingMethod(string entry)
     {
-        return DataAccessLayer.FootballPlayersData.findPlayerByName(entry);
+        return FootballPlayersData.findPlayerByName(entry);
     }
 
-    public static List<Player> sortedDescendingListOfPlayersByPoint(List<Player> players)
+    public static List<Player> sortedDescendingListOfPlayersByPoint()
     {
+        List<Player> players = getListOfPlayers();
         players = getListOfPlayers();
         for (int i = 0; i < players.Count;i++)
         {
@@ -62,8 +53,9 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> sortedAscendingListOfPlayersByPoint(List<Player> players)
+    public static List<Player> sortedAscendingListOfPlayersByPoint()
     {
+        List<Player> players =getListOfPlayers() ;
         for (int i = 0; i < players.Count;i++)
         {
             for (int j = i; j < players.Count;j++)
@@ -80,8 +72,9 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> sortedAscendingListOfPlayersByPrice(List<Player> players)
+    public static List<Player> sortedAscendingListOfPlayersByPrice()
     {
+        List<Player> players =getListOfPlayers() ;
         for (int i = 0; i < players.Count;i++)
         {
             for (int j = i; j < players.Count;j++)
@@ -98,8 +91,9 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> sortedDescendingListOfPlayersByPrice(List<Player> players)
+    public static List<Player> sortedDescendingListOfPlayersByPrice()
     {
+        List<Player> players =getListOfPlayers() ;
         for (int i = 0; i < players.Count;i++)
         {
             for (int j = i; j < players.Count;j++)
@@ -116,8 +110,9 @@ public class ListOfPlayers
         return players;
     }
     
-    public static List<Player> FilterByPost(Post post,List <Player> players)
+    public static List<Player> FilterByPost(Post post)
     {
+        List<Player> players =getListOfPlayers();
         List <Player> posts= new List<Player>();
         for (int i = 0; i < players.Count; i++)
         {
@@ -135,7 +130,7 @@ public class ListOfPlayers
         List<Player> players = getListOfPlayers();
         Post playersPost=(Post)post;
         
-            return FilterByPost(playersPost ,players);
+            return FilterByPost(playersPost);
        
     }
     

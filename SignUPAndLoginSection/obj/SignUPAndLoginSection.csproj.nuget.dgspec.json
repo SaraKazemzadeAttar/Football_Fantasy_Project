@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {}
+    "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
+    "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
         "projectName": "SignUPAndLoginSection",
-        "projectPath": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
-        "packagesPath": "C:\\Users\\Asus Center\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus Center\\Desktop\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
+        "projectPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\SignUPAndLoginSection.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Asus\\Desktop\\Advanced Programming\\AP_FootballFantasyPro_GitHub\\Football_Fantasy_Project\\Football_Fantasy_Project\\SignUPAndLoginSection\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Asus Center\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +47,10 @@
             "HiNetCloud.System.Web.Http.Cors": {
               "target": "Package",
               "version": "[23.6.29.6, )"
+            },
+            "Jx.Quartz.TimerServiceBase": {
+              "target": "Package",
+              "version": "[0.6.0, )"
             },
             "Microsoft.AspNet.WebApi.Cors": {
               "target": "Package",
@@ -115,6 +121,30 @@
             "Quartz": {
               "target": "Package",
               "version": "[3.6.3, )"
+            },
+            "Quartz.API": {
+              "target": "Package",
+              "version": "[1.0.0.18276, )"
+            },
+            "Quartz.AspNetCore": {
+              "target": "Package",
+              "version": "[3.6.3, )"
+            },
+            "Quartz.Jobs": {
+              "target": "Package",
+              "version": "[3.6.3, )"
+            },
+            "Quartz.Plugins.RecentHistory": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "Quartz.Plugins.TimeZoneConverter": {
+              "target": "Package",
+              "version": "[3.6.3, )"
+            },
+            "Quartz.Spi.MongoDbJobStore": {
+              "target": "Package",
+              "version": "[4.0.0-preview.1, )"
             },
             "ScottBrady.IdentityModel.Tokens.Branca": {
               "target": "Package",

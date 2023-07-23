@@ -9,6 +9,7 @@
     <ItemGroup>
       <PackageReference Include="CronNET" Version="1.1.4939.24773" />
       <PackageReference Include="HiNetCloud.System.Web.Http.Cors" Version="23.6.29.6" />
+      <PackageReference Include="Jx.Quartz.TimerServiceBase" Version="0.6.0" />
       <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.3.0-preview1" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="7.0.0-preview.6.22330.3" />
       <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
@@ -30,6 +31,12 @@
       <PackageReference Include="NCrontab.Signed" Version="3.3.2" />
       <PackageReference Include="NUnit" Version="3.13.3" />
       <PackageReference Include="Quartz" Version="3.6.3" />
+      <PackageReference Include="Quartz.API" Version="1.0.0.18276" />
+      <PackageReference Include="Quartz.AspNetCore" Version="3.6.3" />
+      <PackageReference Include="Quartz.Jobs" Version="3.6.3" />
+      <PackageReference Include="Quartz.Plugins.RecentHistory" Version="1.0.3" />
+      <PackageReference Include="Quartz.Plugins.TimeZoneConverter" Version="3.6.3" />
+      <PackageReference Include="Quartz.Spi.MongoDbJobStore" Version="4.0.0-preview.1" />
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Branca" Version="3.0.0" />
       <PackageReference Include="ScottBrady.IdentityModel.Tokens.Paseto" Version="3.0.0" />
       <PackageReference Include="ServiceStack.Text" Version="6.8.0" />

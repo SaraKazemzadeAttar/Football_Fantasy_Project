@@ -10,12 +10,17 @@ using System.Threading;
 using CronNET;
 using NCrontab;
 using ServiceStack;
+using Quartz;
+using Quartz.Impl;
+using System;
+using System.Threading.Tasks;
 using ScoreBoard = SignUPAndLoginSection.presentationLayer.ScoreBoard;
 
 namespace SignUPAndLoginSection
 {
     public class program
     {
+        [Obsolete("Obsolete")]
         public static void Main(string[] args)
         {
             FootballPlayersData.clearRecordsOfPlayerTable();
@@ -33,19 +38,33 @@ namespace SignUPAndLoginSection
                             .AllowAnyHeader();
                     });
             });
+            
+            builder.Services.AddQuartz(q =>
+            {
+                q.UseMicrosoftDependencyInjectionScopedJobFactory();
+                var jobKey = new JobKey("DemoJob");
+                q.AddJob<UpdateJob>(opts => opts.WithIdentity(jobKey));
+
+                q.AddTrigger(opts => opts
+                    .ForJob(jobKey)
+                    .WithIdentity("DemoJob-trigger")
+                    .WithCronSchedule("0 0 7 * *"));
+
+            });
+            builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+            
             var app = builder.Build();
             app.UseCors("MyAllowedOrigins");
             app.MapPost("/signUp", presentationLayer.SignUp.signUPAPI);
             app.MapPost("/OTP", businessLayer.OTP.ValidatinOTPCode);
             app.MapPost("/login", presentationLayer.login.loginApi);
-            app.MapPost("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
-            app.MapPost("/filterPlayersByAscendingPoint",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPoint);
-            app.MapPost("/filterPlayersByAscendingPrice",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPrice);
-            app.MapPost("/filterPlayersByDescendingPrice",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPrice);
-            app.MapPost("/filterPlayersByDescendingPoint",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPoint);
-            app.MapPost("/filterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
-            app.MapPost("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
-            app.MapGet("/showScoresTableWeekly",presentationLayer.ScoreBoard.showScoresTableWeeklyAPI);
+            app.MapGet("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
+            app.MapGet("/filterPlayersByAscendingPoint",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPoint);
+            app.MapGet("/filterPlayersByAscendingPrice",businessLayer.ListOfPlayers.sortedAscendingListOfPlayersByPrice);
+            app.MapGet("/filterPlayersByDescendingPrice",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPrice);
+            app.MapGet("/filterPlayersByDescendingPoint",businessLayer.ListOfPlayers.sortedDescendingListOfPlayersByPoint);
+            app.MapGet("/filterPlayersByPost",(int?post)=>businessLayer.ListOfPlayers.FilterPlayersByPost(post));
+            app.MapGet("/filterPlayersByName", businessLayer.ListOfPlayers.searchingMethod);
             app.MapGet("/showScoresTable",presentationLayer.ScoreBoard.showScoresTableAPI);
             app.MapPost("/selectPlayer", presentationLayer.TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("/setSubstitutePlayer", presentationLayer.TeamPlayerSelection.setTheSubstitutePlayer);  
@@ -54,7 +73,6 @@ namespace SignUPAndLoginSection
             app.MapGet("/displayCash", presentationLayer.Cash.displayUserCash);
             app.MapPost("/changeRoleOfPlayers", presentationLayer.TeamPlayerSelection.changeRoleOfPlayerAPI);
             app.MapGet("/userProfile", presentationLayer.profileOfUser.showUserProfile);
-            app.MapPost("/ShowListOfUpdatePlayers",updateListOfPlayers);
             app.MapGet("/ShowListOfPlayers", businessLayer.ListOfPlayers.getListOfPlayers);
 
 
@@ -62,40 +80,7 @@ namespace SignUPAndLoginSection
             
         }
         
-        public static void updateListOfPlayers()
-        {
-            DateTime now = DateTime.Now;
-            DateTime nextRun = CalculateNextWeeklyRun(now);
-            TimeSpan delay = nextRun - now;
-            var timer = new System.Threading.Timer(_ =>
-            {
-                FootballPlayersData.clearRecordsOfPlayerTable();
-                FootballPlayersData.insertPlayersInDataBase(); // Call the function to insert players in the database
-            }, null, delay, TimeSpan.FromDays(7));
-            
-        }
-        
-        public static void showScoresTableWeeklyAPI()
-        {
-            DateTime now = DateTime.Now;
-            DateTime nextRun = CalculateNextWeeklyRun(now);
-            TimeSpan duration = nextRun - now;
 
-            var timer = new Timer(o => {ScoreBoard.showScoresTableAPI();}, null, TimeSpan.Zero, duration);
-        }
-        
-        public static DateTime CalculateNextWeeklyRun(DateTime now)
-        {
-            // Get the current day of the week
-            int currentDayOfWeek = (int)now.DayOfWeek;
-            // Calculate the number of days until the next Sunday (day of the week: 0)
-            int daysUntilNextSunday = (7 - currentDayOfWeek) % 7;
-            // Calculate the next weekly run by adding the days to the current date
-            DateTime nextRun = now.AddDays(daysUntilNextSunday);
-            // Set the time to midnight (0:00) for consistency
-            nextRun = nextRun.Date;
-        
-            return nextRun;
-        }
     }
+    
 }

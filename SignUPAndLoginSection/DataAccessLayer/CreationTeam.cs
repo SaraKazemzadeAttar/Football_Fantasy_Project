@@ -110,70 +110,21 @@ public class CreationTeam
             }
         }
     }
-
-    // public static void changeRoleOfPlayer(int UTPId)
-    // {
-    //     using (var db = new DataBase())
-    //     {
-    //         foreach (var record in db.UsersTeamPlayersTable)
-    //         {
-    //             if (record.UsersTeamPlayersId == UTPId)
-    //             {
-    //                 if (record.roleOfPLayer == RoleOfPlayer.MainPlayer)
-    //                 {
-    //                     setTheSubstitutePlayer(record.userId, record.playerId);
-    //                     db.SaveChanges();
-    //                     return;
-    //                 }
-    //                 else
-    //                 {
-    //                     setTheMainPlayer(record.userId, record.playerId);
-    //                     db.SaveChanges();
-    //                     return;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-    //
-    //
-    //
-    // public static void changeRoleForBothPlayers(int targetUserId, int firstPlayerId, int secondPlayerId)
-    // {
-    //     using (var db = new DataBase())
-    //     {
-    //         foreach (var record in db.UsersTeamPlayersTable)
-    //         {
-    //             if (record.userId == targetUserId)
-    //             {
-    //                 if (record.playerId == firstPlayerId)
-    //                 {
-    //                     changeRoleOfPlayer(record.UsersTeamPlayersId);
-    //                 }
-    //
-    //                 if (record.playerId == secondPlayerId)
-    //                 {
-    //                     changeRoleOfPlayer(record.UsersTeamPlayersId);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
+    
     public static void changeRoleForBothPlayers(int targetUserId, int firstPlayerId, int secondPlayerId)
     {
         List<UsersTeamPlayers> UTPMainPlayers = ListOfMyTeamPlayers.myMainPlayersList(targetUserId);
         List<UsersTeamPlayers> UTPSubstitutePlayers = ListOfMyTeamPlayers.mySubstitutePlayersList(targetUserId);
         foreach (var record in UTPSubstitutePlayers)
         {
-            if (record.playerId == firstPlayerId || record.playerId==secondPlayerId)
+            if (record.playerId == firstPlayerId || record.playerId==secondPlayerId)  // anyone who is sub -> set him main
             {
                 setTheMainPlayer(record.userId, record.playerId);
             }
         }
         foreach (var record in UTPMainPlayers)
         {
-            if (record.playerId == firstPlayerId || record.playerId==secondPlayerId)
+            if (record.playerId == firstPlayerId || record.playerId==secondPlayerId) // anyone who is main -> set him sub
             {
                 setTheSubstitutePlayer(record.userId, record.playerId);
             }
