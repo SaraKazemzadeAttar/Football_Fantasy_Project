@@ -63,7 +63,7 @@ namespace SignUPAndLoginSection
             app.MapGet("/filterPlayersByDescendingPrice",ListOfPlayers.sortedDescendingListOfPlayersByPrice);
             app.MapGet("/filterPlayersByDescendingPoint",ListOfPlayers.sortedDescendingListOfPlayersByPoint);
             app.MapGet("/filterPlayersByPost",(int?post)=>ListOfPlayers.FilterPlayersByPost(post));
-            app.MapPost("/filterPlayersByName", ListOfPlayers.searchingMethod);
+            app.MapGet("/filterPlayersByName", ListOfPlayers.searchingMethod);
             app.MapGet("/showScoresTable",ScoreBoard.showScoresTableAPI);
             app.MapPost("/selectPlayer", TeamPlayerSelection.selectionPlayerAPI);
             app.MapPost("/setSubstitutePlayer", TeamPlayerSelection.setTheSubstitutePlayer);  
