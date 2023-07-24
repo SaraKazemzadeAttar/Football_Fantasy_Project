@@ -64,11 +64,10 @@ public static class SignUp
     {
         businessLayer.User u = new businessLayer.User();
     u = convertPres_UserToBusi_User(input);
-        // UserValidator user = new UserValidator();
 
-        if (u.mobilePhone.mobilePhoneValidator(input.mobilePhone) && u.password.passwordValidator(input.password) &&
-            u.userName.usernameValidator(input.userName) && u.fullname.fullNameValidator(input.fullName)
-            && u.email.emailValidator(input.email))
+    if (u.mobilePhone.mobilePhoneValidator(input.mobilePhone) && u.password.passwordValidator(input.password) &&
+        u.userName.usernameValidator(input.userName) && u.fullname.fullNameValidator(input.fullName)
+        && u.email.emailValidator(input.email))
         {
             bool emailExistence = businessLayer.checkEmail_Phone_Username.isEmailExist(input.email);
             bool phoneNumberExistence = businessLayer.checkEmail_Phone_Username.isPhoneExist(input.mobilePhone);
@@ -316,7 +315,6 @@ public class UserName
             (!checkingDashOrUnderscoreInStart(un)))
         {
             userNameContext = un;
-            // isValidUsername = true;
             return true;
         }
         else
@@ -329,7 +327,6 @@ public class UserName
 
 public class Email
 {
-    //public bool isValidEmail = false;
     public string emailErrorMassage = "";
 
     public Email(string e)
@@ -352,8 +349,7 @@ public class Email
 public class FullName
 {
     public string nameContext;
-
-    //  public bool isValidFullName = false;
+    
     private bool isContainLetters = false;
     public string fullNameErrorMassage = "";
 
@@ -385,7 +381,6 @@ public class FullName
         if (checkingLetters(fn))
         {
             nameContext = fn;
-            // isValidFullName = true;
             return true;
         }
         else
@@ -399,8 +394,7 @@ public class FullName
 public class Password
 {
     public string passwordContext;
-
-    //public bool isValidPassword = false;
+    
     public string passwordErrorMessage = "";
     private bool isContainUpperCaseLetters = false;
     private bool isContainLowerCaseLetters = false;
@@ -545,12 +539,10 @@ public class Password
             (isContainSpecialCharacters) && (isLengthEqualToEight))
         {
             passwordContext = pw;
-            // isValidPassword = true;
             return true;
         }
         else
         {
-            // isValidPassword = false;
             passwordProblemsHandler();
             return false;
         }
@@ -562,8 +554,7 @@ public class MobilePhone
     public string mobilePhoneContext;
 
     public string mobileErrorMessage = "";
-
-    // public bool isValidMobilePhone = false;
+    
     public bool isContainDigits = true;
     public bool isStartsWithZeroAndNine = false;
     public bool isLengthEqualsToEleven = false;
@@ -639,12 +630,10 @@ public class MobilePhone
         if ((isStartsWithZeroAndNine) && (isLengthEqualsToEleven) && (isContainDigits))
         {
             mobilePhoneContext = pn;
-            // isValidMobilePhone = true;
             return true;
         }
         else
         {
-            // isValidMobilePhone = false;
             mobilePhoneProblemsHandler();
             return false;
         }

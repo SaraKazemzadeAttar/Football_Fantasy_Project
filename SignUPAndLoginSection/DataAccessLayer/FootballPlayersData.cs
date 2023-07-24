@@ -70,7 +70,7 @@ public class FootballPlayersData
         {
             foreach (var player in db.playerTable)
             {
-                if (player.first_name.Contains(input) || player.second_name.Contains(input))
+                if ((player.first_name+" "+player.second_name).Contains(input))
                 {
                     foundNames.Add(player);
                 }
@@ -79,7 +79,5 @@ public class FootballPlayersData
 
         return foundNames;
     }
-    
-   
     
     }
