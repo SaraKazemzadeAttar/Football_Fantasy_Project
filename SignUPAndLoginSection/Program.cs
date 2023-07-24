@@ -75,6 +75,7 @@ namespace SignUPAndLoginSection
             app.MapPost("/changeRoleOfPlayers", TeamPlayerSelection.changeRoleOfPlayerAPI);
             app.MapGet("/userProfile", profileOfUser.showUserProfile);
             app.MapGet("/ShowListOfPlayers", ListOfPlayers.getListOfPlayers);
+            app.MapGet("/paginationFormOfPlayers", Pagination.paginationFormOfListOfPlayers);
 
 
             app.Run("http://localhost:7005");
