@@ -1,14 +1,14 @@
-# 🏆 Football Fantasy Project
+#  Football Fantasy Project
 
 This project is a **Football Fantasy Management System** developed in C# using the .NET 7.0 framework. It provides functionality for user registration, login, and managing football fantasy teams.
 
 ---
 
-## 📄 Project Description
+##  Project Description
 
 For a complete overview of the project architecture, features, and usage instructions, please refer to the following PDF document included in the root directory:
 
-📁 **[Football-Fantasy.pdf](./Football-Fantasy.pdf)**
+ **[Football-Fantasy.pdf](./Football-Fantasy.pdf)**
 
 This document includes:
 
@@ -21,7 +21,7 @@ This document includes:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 | Folder/File                  | Description                                 |
 |-----------------------------|---------------------------------------------|
@@ -37,7 +37,7 @@ This document includes:
 
 ---
 
-## ⚙️ Technologies Used
+## ⚙ Technologies Used
 
 - C#
 - .NET 7.0
@@ -47,7 +47,7 @@ This document includes:
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 To run the project:
 
