@@ -2,7 +2,6 @@
 
 This project is a **Football Fantasy Management System** developed in C# using the .NET 7.0 framework. It provides functionality for user registration, login, and managing football fantasy teams.
 
----
 
 ##  Project Description
 
@@ -19,8 +18,6 @@ This document includes:
 - Setup and run instructions
 - Feature descriptions
 
----
-
 ##  Project Structure
 
 | Folder/File                  | Description                                 |
@@ -35,17 +32,13 @@ This document includes:
 | `Football-Fantasy.pdf`      | 📄 Main documentation (project intro)       |
 | `front.zip`                 | (Optional) Front-end assets or related code |
 
----
-
-## ⚙ Technologies Used
+##  Technologies Used
 
 - C#
 - .NET 7.0
 - Entity Framework Core
 - SQLite
 - Layered Architecture (DAL, BLL, UI)
-
----
 
 ##  Getting Started
 
