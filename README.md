@@ -102,12 +102,4 @@ The PDF contains:
 - Unit testing and integration testing are encouraged to ensure stability.  
 
 
-## Contact & Support
 
-For questions or support, please refer to the documentation or contact the project maintainer.
-
-
-
-> **هشدار:**  
-> این پروژه به زبان فارسی و انگلیسی مستند شده است.  
-> برای مطالعه کامل و دقیق‌تر به فایل PDF اصلی مراجعه کنید.  
